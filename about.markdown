@@ -1,12 +1,24 @@
 ---
-title: One picture a day
+title: About me
 layout: page
 ---
 
-<div align="center"> <img src="https://api.gushi.ci/all.svg" style="max-width:100%; ">
 <p/>
 
-<div align="center">
-    <img src="/media/img.jpg" width="100%" height="100%"  />
-</div><p/>
+Chwhsen
 
+> 无折腾；不人生
+>
+> 喜欢探索，向往未知的领域
+
+心理有数
+
+> 第一，绝对理性
+>
+> 第二，对数字敏感
+>
+> 第三，亲情永远第一位
+
+王痴豆
+
+> 心爱的姑娘，你永远是我的软肋，是我内心深处最为神圣的一个
