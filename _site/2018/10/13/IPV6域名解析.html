@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="chwhsen" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+    <title>IPv6域名解析</title>
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/atom.xml" rel="alternate" title="第七间夜店" type="application/atom+xml" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/media/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/retina.js/1.3.0/retina.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script type="text/javascript"> hljs.initHighlightingOnLoad(); </script>
+  </head>
+  <body>
+      <div id="main" role="main">
+        <header>
+          <div id="header">
+            <h1><a title="第七间夜店" class="" href="/">第七间夜店</a></h1>
+          </div>
+          <nav>
+            
+            <span><a title="归档" href="/archive.html"><i class="fa fa-list-ul"></i></a></span>
+            
+            <span><a title="标签" href="/tags.html"><i class="fa fa-tags"></i></a></span>
+            
+            <span><a title="Stop" href="/about.html"><i class="fa fa-user"></i></a></span>
+            
+          </nav>
+        </header>
+        <div id="content">
+        <article>
+  <section class="title">
+    <h2>IPv6域名解析 </h2>
+  </section>
+  <section class="meta">
+  <span class="time">
+    <time datetime="2018-10-13">2018-10-13</time>
+  </span>
+  
+  <span class="tags">
+    
+    <a href="/tags.html#ipv6" title="ipv6">#ipv6</a>
+    
+    <a href="/tags.html#API" title="API">#API</a>
+    
+    <a href="/tags.html#域名" title="域名">#域名</a>
+    
+  </span>
+  <!-- BEGIN this would not work on any other domain -->
+  <span
+    class           = "like-wrapper"
+    like-shortname  = 'yuanyuan'
+    like-identifier = 'urn:uuid:da10d154-2048-4bc1-98bf-0b449c0131f3'
+    like-name       = 'IPv6域名解析'
+    like-btn        = '&#xf087;'
+    like-link       = 'http://www.chwhsen.xyz:999/2018/10/13/IPV6%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90.html'
+    ></span>
+  <script type="text/javascript">
+    var l = document.createElement('script');
+    l.type = 'text/javascript'; l.async = true; l.src = 'https://like.lhzhang.com/javascript/widget.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(l);
+  </script>
+  <!-- END this would not work on any other domain -->
+  
+  </section>
+  <section class="post">
+  <p>由于运营商的问题，即使我们可以获取到公网IP，但是IPv4的80端口与443端口是堵塞的，并不能让我们每个人使用。不过IPV6却没有这方面限制，所以，我们就可以。。。嘿嘿嘿。。。</p>
+
+<p>使用IPV6还有一个好处是你可以直接访问你一级路由下的任何一个联网设备，前提是你的路由器能为他们分配到IPV6地址</p>
+
+<ol>
+  <li>
+    <p>注册DNSpod，得到你的token_id，由两部分组成</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ID:xxxxx
+Token:4caxxxxxxxxxxxxxxxxxxx
+</code></pre></div>    </div>
+
+    <p>login_token的写法是</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ID，Token
+xxxxx,4caxxxxxxxxxxxxxxxxxxxxx
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>通过login_token获取你的domain_id</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-k</span> <span class="s1">'https://dnsapi.cn/Domain.List'</span> <span class="nt">-d</span> <span class="s1">'login_token=&lt;token_id&gt;&amp;format=json'</span>
+</code></pre></div>    </div>
+
+    <p>每一个要解析的域名会对应一个domain_id，拿到你对应的id，如果只有一个域名的话就只有domain_id。</p>
+
+    <p><img src="https://i.loli.net/2018/10/23/5bceae74859cf.png" alt="" /></p>
+  </li>
+  <li>
+    <p>再来获取该域名下的解析记录record_id</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-k</span> <span class="s1">'https://dnsapi.cn/Record.List'</span> <span class="nt">-d</span> <span class="s1">'login_token=&lt;token_id&gt;&amp;format=xml&amp;domain_id=&lt;domain_id&gt;'</span>
+</code></pre></div>    </div>
+
+    <p>同样的，任一解析记录都有自己对应的record_id，正常情况下，会有不少于三个record_id，其中两个为dns记录，剩下的一个或多个你添加的解析记录，你需要仔细找到你要解析的record_id，不要搞错了。</p>
+
+    <p><img src="https://i.loli.net/2018/10/23/5bceae749270c.png" alt="" /></p>
+  </li>
+  <li>
+    <p>这样我们就有了login_token ，domain_id ，record_id，就可以通过API来随时更新解析记录了</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span>  <span class="nt">-X</span> POST <span class="s2">"https://dnsapi.cn/Record.Modify"</span> <span class="nt">-d</span> <span class="s2">"login_token=&lt;token_id&gt;&amp;format=xml&amp;domain_id=&lt;domain_id&gt;&amp;record_id=&lt;record_id&gt;&amp;record_type=AAAA&amp;record_line=%e9%bb%98%e8%ae%a4&amp;value=&lt;ipaddress&gt;&amp;sub_domain=@"</span>
+</code></pre></div>    </div>
+
+    <p>其中record_type决定你的解析类型，A为IPV4，我们需要的是AAAA，即IPV6</p>
+
+    <p><img src="https://i.loli.net/2018/10/23/5bceae749fe0f.png" alt="" /></p>
+
+    <p>ipaddress可以通过bash脚本获取你的IPV6地址，比如</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">ipaddress</span><span class="o">=</span><span class="k">$(</span>ip addr show eth0 | <span class="nb">grep </span>2408 | <span class="nb">sed</span> <span class="s1">'s/\/.*//g'</span> | <span class="nb">awk</span> <span class="s1">'{print $2}'</span><span class="k">)</span>
+</code></pre></div>    </div>
+
+    <p>其中eth0与2408要根据自己情况进行改写</p>
+  </li>
+  <li>
+    <p>图已更新</p>
+  </li>
+</ol>
+
+
+  </section>
+  
+  <div class="divider">
+    <span>
+    
+    <a href="/2018/09/18/HG8321R.html"><i class="fa fa-chevron-left"></i></a>
+    
+    </span>
+    <!-- BEGIN comment icon
+    <span><a href="javascript:leave_comment();" id="leave_comment_link"><i class="fa fa-comment-o"></i></a></span>
+    <span><a href="javascript:collapse_comment();" id="collapse_comment_link" style="display:none;"><i class="fa fa-chevron-up"></i></a></span>
+      END comment icon -->
+
+    <span>
+    
+    <a href="/2018/10/16/%E8%B0%83%E7%94%A8%E7%99%BE%E5%BA%A6%E8%AF%AD%E9%9F%B3API%E8%AE%A9%E4%BD%A0%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B4%E8%AF%9D.html"><i class="fa fa-chevron-right"></i></a>
+    
+    </span>
+	
+  </div>
+
+  <!-- BEGIN comment
+  <section class="comment">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'yuanyuan';
+      var disqus_identifier = 'urn:uuid:da10d154-2048-4bc1-98bf-0b449c0131f3';
+
+      function leave_comment() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          $("#leave_comment_link").css("display", "none");
+          $("#collapse_comment_link").css("display", "");
+      };
+      function collapse_comment() {
+          // document.getElementById("disqus_thread").innerHTML = '';
+          $("#disqus_thread").slideUp(400, function() {
+              $("#disqus_thread").empty();
+              $("#leave_comment_link").css("display", "");
+              $("#collapse_comment_link").css("display", "none");
+              $("#disqus_thread").css("display", "");
+          });
+      };
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </section>
+  END comment -->
+  
+</article>
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?9c651515b864fe89150625c30c3dce34";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+        </div>
+        <footer>
+          <div>
+            
+            &copy; 2017 ~ 2018 chwhsen | 阿远心之所向 吾辈剑之所指
+          </div>
+		  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?9c651515b864fe89150625c30c3dce34";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+        </footer>
+      </div> <!-- main -->
+  </body>
+</html>
+
