@@ -3,6 +3,4 @@ title: 404
 layout: page
 ---
 
-Nothing found :(
-
-But you still can have a [look around](/index.html)
+You lost me ......
