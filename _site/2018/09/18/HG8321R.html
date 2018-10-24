@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="chwhsen" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+    <title>HG8321R</title>
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/atom.xml" rel="alternate" title="第七间夜店" type="application/atom+xml" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/media/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/retina.js/1.3.0/retina.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script type="text/javascript"> hljs.initHighlightingOnLoad(); </script>
+  </head>
+  <body>
+      <div id="main" role="main">
+        <header>
+          <div id="header">
+            <h1><a title="第七间夜店" class="" href="/">第七间夜店</a></h1>
+          </div>
+          <nav>
+            
+            <span><a title="归档" href="/archive.html"><i class="fa fa-list-ul"></i></a></span>
+            
+            <span><a title="标签" href="/tags.html"><i class="fa fa-tags"></i></a></span>
+            
+            <span><a title="Stop" href="/about.html"><i class="fa fa-user"></i></a></span>
+            
+          </nav>
+        </header>
+        <div id="content">
+        <article>
+  <section class="title">
+    <h2>HG8321R </h2>
+  </section>
+  <section class="meta">
+  <span class="time">
+    <time datetime="2018-09-18">2018-09-18</time>
+  </span>
+  
+  <span class="tags">
+    
+    <a href="/tags.html#光猫" title="光猫">#光猫</a>
+    
+    <a href="/tags.html#网络" title="网络">#网络</a>
+    
+  </span>
+  <!-- BEGIN this would not work on any other domain -->
+  <span
+    class           = "like-wrapper"
+    like-shortname  = 'yuanyuan'
+    like-identifier = 'urn:uuid:e225a518-a98c-4370-b35a-563fb160e504'
+    like-name       = 'HG8321R'
+    like-btn        = '&#xf087;'
+    like-link       = 'http://www.chwhsen.xyz:999/2018/09/18/HG8321R.html'
+    ></span>
+  <script type="text/javascript">
+    var l = document.createElement('script');
+    l.type = 'text/javascript'; l.async = true; l.src = 'https://like.lhzhang.com/javascript/widget.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(l);
+  </script>
+  <!-- END this would not work on any other domain -->
+  
+  </section>
+  <section class="post">
+  <p><strong>默认你电脑已开启Telnet且光猫telnet已使能</strong></p>
+
+<p>电脑和光猫直接通过网线连接；在电脑上“win”+“R”打开cmd窗口</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>telnet 192.168.1.1
+</code></pre></div></div>
+
+<p>账号密码分别为</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Login:root
+
+Password:admin
+</code></pre></div></div>
+
+<p>然后输入</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>su
+</code></pre></div></div>
+
+<p>并回车</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shell
+</code></pre></div></div>
+
+<p>再回车，出现以下内容即代表成功连接光猫</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>BusyBox v1.18.4 <span class="o">(</span>2017-10-23 07:02:41 CST<span class="o">)</span> built-in shell <span class="o">(</span>ash<span class="o">)</span> Enter <span class="s1">'help'</span> <span class="k">for </span>a list of built-in commands. 
+profile close core dump 
+WAP<span class="o">(</span>Dopra Linux<span class="o">)</span> <span class="c"># </span>
+</code></pre></div></div>
+
+<p>接下来正式开始破解</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> //
+
+<span class="nb">cd </span>mnt/jffs2
+
+<span class="nb">cp </span>hw_ctree.xml myconfig.xml.gz
+
+aescrypt2 1 myconf.xml.gz tmp
+
+<span class="nb">gzip</span> <span class="nt">-d</span> myconfig.xml.gz
+
+tftp <span class="nt">-l</span> myconfig.xml <span class="nt">-p</span> &lt;pc ip&gt;
+</code></pre></div></div>
+
+<p>在本地打开myconfig.xml文件，寻找超级用户的账号和密码即可</p>
+
+
+  </section>
+  
+  <div class="divider">
+    <span>
+    
+    <a href="/2018/01/24/%E4%BA%B2%E5%AD%90%E6%B8%B8%E6%88%8F.html"><i class="fa fa-chevron-left"></i></a>
+    
+    </span>
+    <!-- BEGIN comment icon
+    <span><a href="javascript:leave_comment();" id="leave_comment_link"><i class="fa fa-comment-o"></i></a></span>
+    <span><a href="javascript:collapse_comment();" id="collapse_comment_link" style="display:none;"><i class="fa fa-chevron-up"></i></a></span>
+      END comment icon -->
+
+    <span>
+    
+    <a href="/2018/10/13/IPV6%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90.html"><i class="fa fa-chevron-right"></i></a>
+    
+    </span>
+	
+  </div>
+
+  <!-- BEGIN comment
+  <section class="comment">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'yuanyuan';
+      var disqus_identifier = 'urn:uuid:e225a518-a98c-4370-b35a-563fb160e504';
+
+      function leave_comment() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          $("#leave_comment_link").css("display", "none");
+          $("#collapse_comment_link").css("display", "");
+      };
+      function collapse_comment() {
+          // document.getElementById("disqus_thread").innerHTML = '';
+          $("#disqus_thread").slideUp(400, function() {
+              $("#disqus_thread").empty();
+              $("#leave_comment_link").css("display", "");
+              $("#collapse_comment_link").css("display", "none");
+              $("#disqus_thread").css("display", "");
+          });
+      };
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </section>
+  END comment -->
+  
+</article>
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?9c651515b864fe89150625c30c3dce34";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+        </div>
+        <footer>
+          <div>
+            
+            &copy; 2017 ~ 2018 chwhsen | 阿远心之所向 吾辈剑之所指
+          </div>
+		  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?9c651515b864fe89150625c30c3dce34";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+        </footer>
+      </div> <!-- main -->
+  </body>
+</html>
+
