@@ -2,7 +2,7 @@ name: "第七间夜店"
 permalink: /:year/:month/:day/:title.html
 
 author: "chwhsen"
-atom-baseurl: "http://www.chwhsen.xyz:999"
+atom-baseurl: "https://chwhsen.github.io"
 disqus: "yuanyuan"
 
 navigations:
