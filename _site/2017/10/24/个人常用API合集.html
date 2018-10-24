@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="chwhsen" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+    <title>个人常用API合集</title>
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/atom.xml" rel="alternate" title="第七间夜店" type="application/atom+xml" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/media/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/retina.js/1.3.0/retina.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script type="text/javascript"> hljs.initHighlightingOnLoad(); </script>
+  </head>
+  <body>
+      <div id="main" role="main">
+        <header>
+          <div id="header">
+            <h1><a title="第七间夜店" class="" href="/">第七间夜店</a></h1>
+          </div>
+          <nav>
+            
+            <span><a title="归档" href="/archive.html"><i class="fa fa-list-ul"></i></a></span>
+            
+            <span><a title="标签" href="/tags.html"><i class="fa fa-tags"></i></a></span>
+            
+            <span><a title="Stop" href="/about.html"><i class="fa fa-user"></i></a></span>
+            
+          </nav>
+        </header>
+        <div id="content">
+        <article>
+  <section class="title">
+    <h2>个人常用API合集 </h2>
+  </section>
+  <section class="meta">
+  <span class="time">
+    <time datetime="2017-10-24">2017-10-24</time>
+  </span>
+  
+  <span class="tags">
+    
+    <a href="/tags.html#API" title="API">#API</a>
+    
+    <a href="/tags.html#linux" title="linux">#linux</a>
+    
+  </span>
+  <!-- BEGIN this would not work on any other domain -->
+  <span
+    class           = "like-wrapper"
+    like-shortname  = 'yuanyuan'
+    like-identifier = 'urn:uuid:9ca1e6bf-64f9-4929-8a32-59f3ee37dfc6'
+    like-name       = '个人常用API合集'
+    like-btn        = '&#xf087;'
+    like-link       = 'http://www.chwhsen.xyz:999/2017/10/24/%E4%B8%AA%E4%BA%BA%E5%B8%B8%E7%94%A8API%E5%90%88%E9%9B%86.html'
+    ></span>
+  <script type="text/javascript">
+    var l = document.createElement('script');
+    l.type = 'text/javascript'; l.async = true; l.src = 'https://like.lhzhang.com/javascript/widget.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(l);
+  </script>
+  <!-- END this would not work on any other domain -->
+  
+  </section>
+  <section class="post">
+  <p>本文收录自己经常用的一些API，鉴权参数均采用<code class="highlighter-rouge">AES</code>加密做隐私保护</p>
+
+<ol>
+  <li>
+    <p>极光推送</p>
+
+    <p>请求地址</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">--insecure</span> <span class="nt">-X</span> POST <span class="nt">-v</span> https://api.jpush.cn/v3/push <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="nt">-u</span> <span class="s2">"7d431e42dfa6a6d693ac2d04:5e987ac6d2e04d95a9d8f0d1"</span> <span class="nt">-d</span> <span class="s1">'{"platform":"all","audience":"all","notification":{"alert":"Hi,JPush !","android":{"extras":{"android-key1":"android-value1"}},"ios":{"sound":"sound.caf","badge":"+1","extras":{"ios-key1":"ios-value1"}}}}'</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>快递跟踪</p>
+
+    <p>请求地址</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="s2">"http://www.kuaidi100.com/query?type=</span><span class="nv">$kuaidi</span><span class="s2">&amp;postid=</span><span class="nv">$danhao</span><span class="s2">"</span>
+</code></pre></div>    </div>
+
+    <p>参数解释</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">kuaidi</span><span class="o">=</span><span class="s2">"zhongtong"</span>
+<span class="nv">danhao</span><span class="o">=</span><span class="s2">"2402802494"</span>
+</code></pre></div>    </div>
+
+    <p>完整调用示例</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
+<span class="c"># . /chwhsen/kuaidi.log</span>
+<span class="nv">didi</span><span class="o">=</span><span class="k">$(</span>curl <span class="s2">"http://www.kuaidi100.com/query?type=zhongtong&amp;postid=75102158011464"</span> | jq <span class="nt">-r</span> <span class="s1">'.data[0].context'</span> | <span class="nb">sed</span> <span class="s1">'s/ /-/g'</span><span class="k">)</span>
+   
+<span class="nv">olddidi</span><span class="o">=</span><span class="k">$(</span> <span class="nb">awk</span> <span class="s1">' {printf $1}'</span> /chwhsen/kuaidi.log | <span class="nb">cut</span> <span class="nt">-d</span>/ <span class="nt">-f1</span> <span class="k">)</span>
+<span class="nb">echo</span> <span class="nv">$didi</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$didi</span> <span class="o">!=</span> <span class="nv">$olddidi</span> <span class="o">]</span> <span class="p">;</span><span class="k">then</span>
+<span class="o">{</span>
+<span class="nb">echo</span> <span class="nv">$didi</span> <span class="o">&gt;</span> /chwhsen/kuaidi.log 2&gt;&amp;1 <span class="p">;</span>
+curl <span class="nt">-s</span> <span class="s2">"https://pushbear.ftqq.com/sub?sendkey=</span><span class="nv">$sendkey</span><span class="s2">&amp;text=快递动态"</span> <span class="nt">-d</span> <span class="s2">"&amp;desp=</span><span class="nv">$didi</span><span class="s2">"</span><span class="p">;</span>
+<span class="o">}</span>
+<span class="k">fi</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>和风天气预报</p>
+
+    <p>请求地址</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="s2">"https://free-api.heweather.com/s6/weather/now?location=hebi&amp;key=</span><span class="nv">$key</span><span class="s2">"</span>
+<span class="nv">key</span><span class="o">=</span>U2FsdGVkX1+7TBau9mjE3/+AiaRRpa9ByMpTriz1EELnwvdjODMQqNmCoqd24DFjyrTE1OXdMSAT8b3989e3pA<span class="o">==</span>
+</code></pre></div>    </div>
+
+    <p>参数解释</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>local:地址
+key：鉴权参数
+</code></pre></div>    </div>
+
+    <p>完整调用示例</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
+curl <span class="s2">"https://free-api.heweather.com/s6/weather/now?location=hebi&amp;key=</span><span class="nv">$key</span><span class="s2">"</span> <span class="o">&gt;</span> /chwhsen/weather.log <span class="p">;</span>
+<span class="nb">local</span><span class="o">=</span><span class="k">$(</span>jq <span class="nt">-r</span> .HeWeather6[0].basic.location /chwhsen/weather.log<span class="k">)</span><span class="p">;</span>
+<span class="nv">cond</span><span class="o">=</span><span class="k">$(</span>jq <span class="nt">-r</span> .HeWeather6[0].now.cond_txt /chwhsen/weather.log<span class="k">)</span><span class="p">;</span>
+<span class="nv">tmp</span><span class="o">=</span><span class="k">$(</span>jq <span class="nt">-r</span> .HeWeather6[0].now.tmp /chwhsen/weather.log<span class="k">)</span><span class="p">;</span>
+<span class="nv">wind1</span><span class="o">=</span><span class="k">$(</span>jq <span class="nt">-r</span> .HeWeather6[0].now.wind_sc /chwhsen/weather.log<span class="k">)</span><span class="p">;</span>
+<span class="nv">wind2</span><span class="o">=</span><span class="k">$(</span>jq <span class="nt">-r</span> .HeWeather6[0].now.wind_dir /chwhsen/weather.log<span class="k">)</span><span class="p">;</span>
+<span class="nv">AAA</span><span class="o">=</span><span class="s2">"此时"</span>+<span class="nv">$local</span>+<span class="s2">"天气："</span>+<span class="nv">$cond</span>+<span class="s2">"；温度"</span>+<span class="nv">$tmp</span>+<span class="s2">"℃；伴有"</span>+<span class="nv">$wind1</span>+<span class="s2">"级"</span>+<span class="nv">$wind2</span>+<span class="s2">"."</span> <span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>京东价格实时监测</p>
+
+    <p>请求地址</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl "http://p.3.cn/prices/mgets?skuIds=J_number&amp;type=1"
+</code></pre></div>    </div>
+
+    <p>参数说明</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>J_number:商品编号
+</code></pre></div>    </div>
+
+    <p>完整调用示例</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
+<span class="nv">money</span><span class="o">=</span><span class="k">$(</span>curl <span class="s2">"http://p.3.cn/prices/mgets?skuIds=J_28479497987&amp;type=1"</span> | jq <span class="nt">-r</span> <span class="s1">'.[].p'</span><span class="k">)</span><span class="p">;</span>
+<span class="nv">thing</span><span class="o">=</span><span class="s1">'Jbl-Go-2'</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>百度语音开放平台</p>
+
+    <p>调用地址</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget <span class="nt">-o-</span> <span class="s2">"http://tsn.baidu.com/text2audio?tex=</span><span class="nv">$urlen</span><span class="s2">&amp;lan=zh&amp;vol=10&amp;spd=4&amp;cuid=</span><span class="nv">$cuid</span><span class="s2">&amp;ctp=1&amp;tok=</span><span class="nv">$access_token</span><span class="s2">"</span> 
+</code></pre></div>    </div>
+
+    <p>参数说明</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cuid=U2FsdGVkX19EGWqFBemC3AUS0qkXaE63+GAyZEgXM6roFNpagdgvCVACLIObjluK
+   
+tok=U2FsdGVkX18BLROB1f5qTxZk+SI5LF/DPaCtHfgZb/OmMs3vta1E6NE1Af/VvATVqu8pnk9wTVIzzXPJWDU9UKuXJmaNT7FtU9JJBhLmcZb9GsUFx+6koUtiwdIzI8tO
+</code></pre></div>    </div>
+
+    <p>完整调用示例</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">ttt</span><span class="o">=</span><span class="s2">"something"</span>
+<span class="nb">echo</span> <span class="nv">$ttt</span>
+<span class="nv">urlen</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$ttt</span><span class="s2">"</span> | <span class="nb">tr</span> <span class="nt">-d</span> <span class="s1">'\n'</span> | xxd <span class="nt">-plain</span> | <span class="nb">sed</span> <span class="s1">'s/\(..\)/%\1/g'</span> <span class="k">)</span>
+mplayer <span class="s2">"http://tsn.baidu.com/text2audio?tex=</span><span class="nv">$urlen</span><span class="s2">&amp;lan=zh&amp;vol=10&amp;spd=4&amp;cuid=</span><span class="nv">$cuid</span><span class="s2">&amp;ctp=1&amp;tok=</span><span class="nv">$access_token</span><span class="s2">"</span> 
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>讯飞语音</p>
+
+    <p>完整调用示范</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">app</span><span class="o">=</span><span class="nv">$app</span>
+<span class="nv">key</span><span class="o">=</span><span class="nv">$key</span>
+<span class="nb">time</span><span class="o">=</span><span class="s2">"</span><span class="sb">`</span><span class="nb">date</span> <span class="s1">'+%s'</span><span class="sb">`</span><span class="s2">"</span>
+<span class="nv">bbb</span><span class="o">=</span><span class="s2">"ewogICAgImF1ZiI6ICJhdWRpby9MMTY7cmF0ZT0xNjAwMCIsCiAgICAiYXVlIjogImxhbWUiLAogICAgInZvaWNlX25hbWUiOiAieGlhb3lhbiIsCiAgICAic3BlZWQiOiAiNTAiLAogICAgInZvbHVtZSI6ICI1MCIsCiAgICAicGl0Y2giOiAiNTAiLAogICAgImVuZ2luZV90eXBlIjogImludHA2NSIsCiAgICAidGV4dF90eXBlIjogInRleHQiCn0="</span>
+<span class="nv">aaa</span><span class="o">=</span><span class="nv">$key$time$bbb</span>
+<span class="nb">echo</span> <span class="nv">$aaa</span>
+<span class="nv">ppp</span><span class="o">=</span><span class="k">$(</span> <span class="nb">echo</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$aaa</span><span class="s2">"</span> | <span class="nb">md5sum</span> | <span class="nb">awk</span> <span class="s1">'{print $1}'</span>  <span class="k">)</span>
+<span class="nb">echo</span> <span class="nv">$ppp</span>
+<span class="nv">ttt</span><span class="o">=</span><span class="s2">"你好"</span>
+<span class="nv">urlen</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$ttt</span><span class="s2">"</span> | <span class="nb">tr</span> <span class="nt">-d</span> <span class="s1">'\n'</span> | xxd <span class="nt">-plain</span> | <span class="nb">sed</span> <span class="s1">'s/\(..\)/%\1/g'</span> <span class="k">)</span>
+<span class="nb">echo</span> <span class="s2">"http://api.xfyun.cn/v1/service/v1/tts?apikey=</span><span class="nv">$app</span><span class="s2">&amp;curTime=</span><span class="nv">$time</span><span class="s2">&amp;param=</span><span class="nv">$bbb</span><span class="s2">&amp;checkSum=</span><span class="nv">$ppp</span><span class="s2">&amp;text=</span><span class="nv">$urlen</span><span class="s2">"</span>
+curl <span class="nt">-v</span> api.xfyun.cn/v1/aiui/v1/iat <span class="nt">-H</span> <span class="s2">"X-Appid:</span><span class="nv">$key</span><span class="s2">"</span> <span class="nt">-H</span> <span class="s2">"X-CurTime:</span><span class="nv">$time</span><span class="s2">"</span> <span class="nt">-H</span> <span class="s2">"X-Param:</span><span class="nv">$bbb</span><span class="s2">"</span> <span class="nt">-H</span> <span class="s2">"X-CheckSum:</span><span class="nv">$ppp</span><span class="s2">"</span> <span class="nt">-d</span> <span class="s2">"</span><span class="nv">$urlen</span><span class="s2">"</span> | jq <span class="s1">'.'</span>
+</code></pre></div>    </div>
+
+    <p>参数说明</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>app=U2FsdGVkX19Wy48f37X8HADrbOmNUFhJzXN9efCC1Pk=
+key=U2FsdGVkX1+Lpq/9dfMYUeXPM/ILZc+xMOZ7L0VyyoPObpRjDEuw9P8Hvs1Sga2AXSc7z/BmZYu1jYCTD84YBw==
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Dnspod域名解析</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span>  <span class="nt">-X</span> POST <span class="s2">"https://dnsapi.cn/Record.Modify"</span> <span class="nt">-d</span> <span class="s2">"login_token=</span><span class="nv">$token</span><span class="s2">&amp;format=json&amp;domain_id=</span><span class="nv">$domain</span><span class="s2">&amp;record_id=</span><span class="nv">$record</span><span class="s2">&amp;record_type=AAAA&amp;record_line=%e9%bb%98%e8%ae%a4&amp;value=</span><span class="k">${</span><span class="nv">pv6</span><span class="k">}</span><span class="s2">"</span> | jq <span class="s1">'.'</span>
+</code></pre></div>    </div>
+
+    <p>参数说明</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">login_token</span><span class="o">=</span><span class="nv">U2FsdGVkX19LLnCi7D427gMcK2uhIu3UtPMDMm1W1CICqsZqNsqrPYSjm4yvLMFjX2CCaOJ6HrzJcGsXPRWorg</span><span class="o">==</span>
+<span class="nv">domain_id</span><span class="o">=</span><span class="nv">U2FsdGVkX19iojj0gXniLRDr6nR1CxuUAizfB14UzhQ</span><span class="o">=</span>
+<span class="nv">record_id</span><span class="o">=</span>U2FsdGVkX1/fozYLpBoUG/HjAv50KaUceI+KJy8xD/k<span class="o">=</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>server酱</p>
+  </li>
+</ol>
+
+  </section>
+  
+  <div class="divider">
+    <span>
+    
+    <i class="fa fa-circle"></i>
+    
+    </span>
+    <!-- BEGIN comment icon
+    <span><a href="javascript:leave_comment();" id="leave_comment_link"><i class="fa fa-comment-o"></i></a></span>
+    <span><a href="javascript:collapse_comment();" id="collapse_comment_link" style="display:none;"><i class="fa fa-chevron-up"></i></a></span>
+      END comment icon -->
+
+    <span>
+    
+    <a href="/2018/01/24/%E4%BA%B2%E5%AD%90%E6%B8%B8%E6%88%8F.html"><i class="fa fa-chevron-right"></i></a>
+    
+    </span>
+	
+  </div>
+
+  <!-- BEGIN comment
+  <section class="comment">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'yuanyuan';
+      var disqus_identifier = 'urn:uuid:9ca1e6bf-64f9-4929-8a32-59f3ee37dfc6';
+
+      function leave_comment() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          $("#leave_comment_link").css("display", "none");
+          $("#collapse_comment_link").css("display", "");
+      };
+      function collapse_comment() {
+          // document.getElementById("disqus_thread").innerHTML = '';
+          $("#disqus_thread").slideUp(400, function() {
+              $("#disqus_thread").empty();
+              $("#leave_comment_link").css("display", "");
+              $("#collapse_comment_link").css("display", "none");
+              $("#disqus_thread").css("display", "");
+          });
+      };
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </section>
+  END comment -->
+  
+</article>
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?9c651515b864fe89150625c30c3dce34";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+        </div>
+        <footer>
+          <div>
+            
+            &copy; 2017 ~ 2018 chwhsen | 阿远心之所向 吾辈剑之所指
+          </div>
+		  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?9c651515b864fe89150625c30c3dce34";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+        </footer>
+      </div> <!-- main -->
+  </body>
+</html>
+
