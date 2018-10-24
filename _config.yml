@@ -1,0 +1,24 @@
+name: "第七间夜店"
+permalink: /:year/:month/:day/:title.html
+
+author: "chwhsen"
+atom-baseurl: "http://www.chwhsen.xyz:999"
+disqus: "yuanyuan"
+
+navigations:
+  - title: 归档
+    class: fa fa-list-ul
+    href: /archive.html
+  - title: 标签
+    class: fa fa-tags
+    href: /tags.html
+  - title: Stop
+    class: fa fa-user
+    href: /about.html
+#  - title: Gallery
+#    class: fa fa-film
+#    href: 
+#  - title: Subscribe
+#    class: fa fa-rss
+#    href: /atom.xml
+baidu-analysis: 9c651515b864fe89150625c30c3dce34
