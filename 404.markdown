@@ -1,8 +1,0 @@
----
-title: 404
-layout: page
----
-
-You lost me ......
-
-I'm soooooooooooooooooooooooooo sad......
