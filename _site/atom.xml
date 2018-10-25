@@ -4,7 +4,7 @@
  <title>第七间夜店</title>
  <link href="https://chwhsen.github.io/atom.xml" rel="self"/>
  <link href="https://chwhsen.github.io"/>
- <updated>2018-10-25T13:03:42+08:00</updated>
+ <updated>2018-10-25T13:15:30+08:00</updated>
  <id>https://chwhsen.github.io/</id>
  <author>
    <name>chwhsen</name>
@@ -444,6 +444,15 @@ key=U2FsdGVkX1+Lpq/9dfMYUeXPM/ILZc+xMOZ7L0VyyoPObpRjDEuw9P8Hvs1Sga2AXSc7z/BmZYu1
     &lt;p&gt;server酱&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>test2</title>
+   <link href="https://chwhsen.github.io/2017/02/23/test2.html"/>
+   <updated>2017-02-23T00:00:00+08:00</updated>
+   <id>urn:uuid:d2e62e00-d814-11e8-8767-9cdc2f79c0ff</id>
+   <content type="html">&lt;p&gt;这还是一个测试&lt;/p&gt;
 </content>
  </entry>
  
