@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="chwhsen" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+    <title>Jekyll美化之路</title>
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/atom.xml" rel="alternate" title="第七间夜店" type="application/atom+xml" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/media/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/retina.js/1.3.0/retina.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script type="text/javascript"> hljs.initHighlightingOnLoad(); </script>
+  </head>
+  <body>
+      <div id="main" role="main">
+        <header>
+          <div id="header">
+            <h1><a title="第七间夜店" class="" href="/">第七间夜店</a></h1>
+          </div>
+          <nav>
+            
+            <span><a title="归档" href="/archive.html"><i class="fa fa-list-ul"></i></a></span>
+            
+            <span><a title="标签" href="/tags.html"><i class="fa fa-tags"></i></a></span>
+            
+            <span><a title="Stop" href="/about.html"><i class="fa fa-user"></i></a></span>
+            
+          </nav>
+        </header>
+        <div id="content">
+        <article>
+  <section class="title">
+    <h2>Jekyll美化之路 </h2>
+  </section>
+  <section class="meta">
+  <span class="time">
+    <time datetime="2018-10-25">2018-10-25</time>
+  </span>
+  
+  <span class="tags">
+    
+    <a href="/tags.html#jekyll" title="jekyll">#jekyll</a>
+    
+  </span>
+  <!-- BEGIN this would not work on any other domain -->
+  <span
+    class           = "like-wrapper"
+    like-shortname  = 'yuanyuan'
+    like-identifier = 'urn:uuid:86c54ab8-1ac4-4add-9886-e7256cc860c2'
+    like-name       = 'Jekyll美化之路'
+    like-btn        = '&#xf087;'
+    like-link       = 'https://chwhsen.github.io/2018/10/25/Jekyll%E7%BE%8E%E5%8C%96%E4%B9%8B%E8%B7%AF.html'
+    ></span>
+  <script type="text/javascript">
+    var l = document.createElement('script');
+    l.type = 'text/javascript'; l.async = true; l.src = 'https://like.lhzhang.com/javascript/widget.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(l);
+  </script>
+  <!-- END this would not work on any other domain -->
+  
+  </section>
+  <section class="post">
+  <blockquote>
+  <p>因为不太喜欢Jekyll自带的主题，字体太大，自己写CSS和模板又不现实，索性就clone了一份看着不错的主题自己魔改了</p>
+</blockquote>
+
+<h4 id="效果图">效果图</h4>
+
+<p>改之前的默认主题</p>
+
+<p>​	PC端–你看这个字，他又大又圆 ……</p>
+
+<p><img src="https://i.loli.net/2018/10/26/5bd1faa8af00f.png" alt="" /></p>
+
+<p>​	手机端–勉强可以接受</p>
+
+<p><img src="https://i.loli.net/2018/10/26/5bd1f9e42eaff.png" alt="" /></p>
+
+<h4 id="改之后">改之后</h4>
+
+<p>​	PC端–简约大气，大量的留白给人一种从容不迫的舒适感</p>
+
+<p><img src="https://i.loli.net/2018/10/26/5bd1fba7e89c5.png" alt="" /></p>
+
+<p>​	移动端–赏心悦目，恰到好处的配色让人流连忘返</p>
+
+<p><img src="https://i.loli.net/2018/10/26/5bd1fb66976a2.png" alt="" /></p>
+
+<h4 id="魔改过程">魔改过程</h4>
+
+<p>首先是对_config.yml配置文件的修改</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#-------------</span>
+<span class="err">个人信息</span>
+<span class="c1">#-------------</span>
+<span class="ss">name: </span><span class="s2">"第七间夜店"</span>
+<span class="ss">permalink: </span><span class="sr">/:year/</span><span class="ss">:month</span><span class="o">/</span><span class="ss">:day</span><span class="o">/</span><span class="ss">:title</span><span class="p">.</span><span class="nf">html</span>
+<span class="ss">author: </span><span class="s2">"chwhsen"</span>
+<span class="n">atom</span><span class="o">-</span><span class="ss">baseurl: </span><span class="s2">"https://chwhsen.github.io"</span>
+<span class="ss">disqus: </span><span class="s2">"yuanyuan"</span>
+<span class="c1">#------------</span>
+<span class="err">菜单页</span>
+<span class="c1">#------------</span>
+<span class="ss">navigations:
+  </span><span class="o">-</span> <span class="ss">title: </span><span class="err">归档</span>
+    <span class="ss">class: </span><span class="n">fa</span> <span class="n">fa</span><span class="o">-</span><span class="n">list</span><span class="o">-</span><span class="n">ul</span>
+    <span class="ss">href: </span><span class="sr">/archive.html
+  - title: 标签
+    class: fa fa-tags
+    href: /</span><span class="n">tags</span><span class="p">.</span><span class="nf">html</span>
+  <span class="o">-</span> <span class="ss">title: </span><span class="no">Stop</span>
+    <span class="ss">class: </span><span class="n">fa</span> <span class="n">fa</span><span class="o">-</span><span class="n">user</span>
+    <span class="ss">href: </span><span class="sr">/about.html
+#  - title: Gallery
+#    class: fa fa-film
+#    href: 
+#  - title: Subscribe
+#    class: fa fa-rss
+#    href: /</span><span class="n">atom</span><span class="p">.</span><span class="nf">xml</span>
+<span class="c1">#-------------</span>
+<span class="err">百度统计</span>
+<span class="c1">#-------------</span>
+<span class="n">baidu</span><span class="o">-</span><span class="ss">analysis: </span><span class="mi">9</span><span class="n">c651515b864fe89150625c30c3dce34</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>订阅界面和画册界面我给注释掉了，用上的可能性不大</p>
+</blockquote>
+
+<p>其次是/_layout里模板的微调</p>
+
+<blockquote>
+  <p>修改主要集中在两部分，页脚的个性签名，以及增加了百度统计的代码块</p>
+</blockquote>
+
+
+  </section>
+  
+  <div class="divider">
+    <span>
+    
+    <a href="/2018/10/23/%E7%94%A8Excel%E6%8E%92%E6%88%90%E7%BB%A9%E5%8D%95%E7%9A%84%E6%AD%A3%E7%A1%AE%E9%A3%9F%E7%94%A8%E6%96%B9%E6%B3%95.html"><i class="fa fa-chevron-left"></i></a>
+    
+    </span>
+    <!-- BEGIN comment icon
+    <span><a href="javascript:leave_comment();" id="leave_comment_link"><i class="fa fa-comment-o"></i></a></span>
+    <span><a href="javascript:collapse_comment();" id="collapse_comment_link" style="display:none;"><i class="fa fa-chevron-up"></i></a></span>
+      END comment icon -->
+
+    <span>
+    
+    <a href="/2018/10/26/about.html"><i class="fa fa-chevron-right"></i></a>
+    
+    </span>
+	
+  </div>
+
+  <!-- BEGIN comment
+  <section class="comment">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'yuanyuan';
+      var disqus_identifier = 'urn:uuid:86c54ab8-1ac4-4add-9886-e7256cc860c2';
+
+      function leave_comment() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          $("#leave_comment_link").css("display", "none");
+          $("#collapse_comment_link").css("display", "");
+      };
+      function collapse_comment() {
+          // document.getElementById("disqus_thread").innerHTML = '';
+          $("#disqus_thread").slideUp(400, function() {
+              $("#disqus_thread").empty();
+              $("#leave_comment_link").css("display", "");
+              $("#collapse_comment_link").css("display", "none");
+              $("#disqus_thread").css("display", "");
+          });
+      };
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </section>
+  END comment -->
+  
+</article>
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?9c651515b864fe89150625c30c3dce34";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+        </div>
+        <footer>
+          <div>
+            
+            &copy; 2017 ~ 2018 chwhsen | 阿远心之所向 吾辈剑之所指
+          </div>
+		  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?9c651515b864fe89150625c30c3dce34";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+        </footer>
+      </div> <!-- main -->
+  </body>
+</html>
+
