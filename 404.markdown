@@ -3,6 +3,8 @@ title: 404
 layout: page
 ---
 
-You lost me ......
+<h1>Warming !</h1>
 
-I'm soooooooooooo sad ......
+Sorry but I can't find myself ......
+
+Please wait for a moment
