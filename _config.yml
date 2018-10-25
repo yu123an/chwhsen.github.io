@@ -22,5 +22,3 @@ navigations:
 #    class: fa fa-rss
 #    href: /atom.xml
 baidu-analysis: 9c651515b864fe89150625c30c3dce34
-
-theme: jekyll-theme-cayman
