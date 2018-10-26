@@ -3,9 +3,8 @@ title: 404
 layout: page
 ---
 
-<h1>$\color{red}{Warming !} $</h1>
-<h1><font color=red>Warming !</font></h1>
+<h1>Warming !</h1>
 
-Sorry but I can't find myself ......
+Opps ！！！
 
-Please wait for a moment
+​	It seems that I lost something .......
