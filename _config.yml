@@ -19,6 +19,6 @@ navigations:
 #    class: fa fa-film
 #    href: 
   - title: Subscribe
-    class: fa fa-rmb
+    class: fa fa-jpy
     href: /free.markdown
 baidu-analysis: 9c651515b864fe89150625c30c3dce34
