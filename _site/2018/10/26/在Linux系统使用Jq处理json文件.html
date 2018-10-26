@@ -124,13 +124,13 @@
 
 </span></code></pre></div></div>
 
-<p>想要提取某一项的值，可以使用<code class="highlighter-rouge">[index]</code>比如获取今日天气<code class="highlighter-rouge">cond_txt</code>可以这样</p>
+<p>想要提取某一项的值，可以使用<code class="highlighter-rouge">[index]</code>，比如获取今日天气<code class="highlighter-rouge">cond_txt</code>可以这样</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat </span>test.json  | jq <span class="s1">'.HeWeather6[0].now.cond_txt'</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"晴"
-</code></pre></div></div>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">"晴"</span><span class="w">
+</span></code></pre></div></div>
 
 <p>如果想要去掉引号，可以添加<code class="highlighter-rouge">-r</code>参数</p>
 

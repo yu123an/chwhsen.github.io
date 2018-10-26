@@ -1,6 +1,7 @@
 ---
 title: Welcome
 layout: page
+guid: urn:uuid:020e19e6-3b66-400f-8ce1-a6e00da0aafc
 ---
 
 <div align="center"> <script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script>

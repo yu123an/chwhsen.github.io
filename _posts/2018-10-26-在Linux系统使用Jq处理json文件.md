@@ -70,13 +70,13 @@ jq '.' test.json
 
 ```
 
-想要提取某一项的值，可以使用`[index]`比如获取今日天气`cond_txt`可以这样
+想要提取某一项的值，可以使用`[index]`，比如获取今日天气`cond_txt`可以这样
 
 ```shell
 cat test.json  | jq '.HeWeather6[0].now.cond_txt'
 ```
 
-```
+```json
 "晴"
 ```
 

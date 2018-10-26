@@ -4,7 +4,7 @@
  <title>第七间夜店</title>
  <link href="https://chwhsen.github.io/atom.xml" rel="self"/>
  <link href="https://chwhsen.github.io"/>
- <updated>2018-10-27T00:41:05+08:00</updated>
+ <updated>2018-10-27T00:46:55+08:00</updated>
  <id>https://chwhsen.github.io/</id>
  <author>
    <name>chwhsen</name>
@@ -15,7 +15,7 @@
    <title>Welcome</title>
    <link href="https://chwhsen.github.io/2018/10/27/about.html"/>
    <updated>2018-10-27T00:00:00+08:00</updated>
-   <id>https://chwhsen.github.io/2018/10/27/about</id>
+   <id>urn:uuid:020e19e6-3b66-400f-8ce1-a6e00da0aafc</id>
    <content type="html">&lt;div align=&quot;center&quot;&gt; &lt;script src=&quot;https://v1.hitokoto.cn/?encode=js&amp;amp;select=%23hitokoto&quot; defer=&quot;&quot;&gt;&lt;/script&gt;
   &lt;p id=&quot;hitokoto&quot;&gt;:D 获取中...&lt;/p&gt;
 &lt;/div&gt;
@@ -94,13 +94,13 @@
 
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;想要提取某一项的值，可以使用&lt;code class=&quot;highlighter-rouge&quot;&gt;[index]&lt;/code&gt;比如获取今日天气&lt;code class=&quot;highlighter-rouge&quot;&gt;cond_txt&lt;/code&gt;可以这样&lt;/p&gt;
+&lt;p&gt;想要提取某一项的值，可以使用&lt;code class=&quot;highlighter-rouge&quot;&gt;[index]&lt;/code&gt;，比如获取今日天气&lt;code class=&quot;highlighter-rouge&quot;&gt;cond_txt&lt;/code&gt;可以这样&lt;/p&gt;
 
 &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;test.json  | jq &lt;span class=&quot;s1&quot;&gt;'.HeWeather6[0].now.cond_txt'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&quot;晴&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s2&quot;&gt;&quot;晴&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;如果想要去掉引号，可以添加&lt;code class=&quot;highlighter-rouge&quot;&gt;-r&lt;/code&gt;参数&lt;/p&gt;
 
