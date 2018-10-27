@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="chwhsen" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+    <title>年轻人的第一台虚拟云主机</title>
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/atom.xml" rel="alternate" title="第七间夜店" type="application/atom+xml" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/media/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/retina.js/1.3.0/retina.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script type="text/javascript"> hljs.initHighlightingOnLoad(); </script>
+  </head>
+  <body>
+      <div id="main" role="main">
+        <header>
+          <div id="header">
+            <h1><a title="第七间夜店" class="" href="/">第七间夜店</a></h1>
+          </div>
+          <nav>
+            
+            <span><a title="归档" href="/archive.html"><i class="fa fa-list-ul"></i></a></span>
+            
+            <span><a title="标签" href="/tags.html"><i class="fa fa-tags"></i></a></span>
+            
+            <span><a title="Stop" href="/about.html"><i class="fa fa-user"></i></a></span>
+            
+          </nav>
+        </header>
+        <div id="content">
+        <article>
+  <section class="title">
+    <h2>年轻人的第一台虚拟云主机 </h2>
+  </section>
+  <section class="meta">
+  <span class="time">
+    <time datetime="2018-10-26">2018-10-26</time>
+  </span>
+  
+  <span class="tags">
+    
+    <a href="/tags.html#linux" title="linux">#linux</a>
+    
+  </span>
+  <!-- BEGIN this would not work on any other domain -->
+  <span
+    class           = "like-wrapper"
+    like-shortname  = 'yuanyuan'
+    like-identifier = 'urn:uuid:0b977b50-361d-4e1f-b8b3-ebb23c36456d'
+    like-name       = '年轻人的第一台虚拟云主机'
+    like-btn        = '&#xf087;'
+    like-link       = 'https://chwhsen.github.io/2018/10/26/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%B8%80%E5%8F%B0%E8%99%9A%E6%8B%9F%E4%BA%91%E4%B8%BB%E6%9C%BA.html'
+    ></span>
+  <script type="text/javascript">
+    var l = document.createElement('script');
+    l.type = 'text/javascript'; l.async = true; l.src = 'https://like.lhzhang.com/javascript/widget.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(l);
+  </script>
+  <!-- END this would not work on any other domain -->
+  
+  </section>
+  <section class="post">
+  <p>​	我这个人真的是不到南墙心不死，自从九月份萌发了用<code class="highlighter-rouge">from</code>提交表单的方式来让阿远家长提交信息的想法之后，就开始各种尝试，从路由器到N1盒子，都尝试了，也许真的是我水平不行吧，一直达不到让人满意的效果，其实有一种方法是已经成功了一半的，就是在N1盒子上用<code class="highlighter-rouge">Nginx</code>静态页面来提交，虽然不能提交到数据库中，因为数据库实在装不上去，意外的我发先可以在日志文件中看到提交的过程，通过正则表达式可以将其中的请求参数过滤出来：</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> /var/log/nginx/access.log | <span class="nb">awk</span> <span class="nt">-F</span> <span class="s1">'"'</span> <span class="s1">'{print $2}'</span> | <span class="nb">sed</span> <span class="s1">'s/[&amp;]\{0,1\}tttt[0-9]=/ppppp/g'</span> | <span class="nb">awk</span> <span class="nt">-F</span> <span class="s2">"ppppp"</span> <span class="s1">'{print $2,";"$3,";"$4}'</span>| <span class="nb">sed</span> <span class="s1">':a;N;$!ba;s/ ; ;\n//g'</span> <span class="o">&gt;&gt;</span> /mnt/record.txt 2&gt;&amp;1
+</code></pre></div></div>
+
+<p>其中<code class="highlighter-rouge">from</code>是这么写的</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">method=</span><span class="s">"post"</span> <span class="na">action=</span><span class="s">"pp.php"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;br</span> <span class="na">id=</span><span class="s">"tijiao"</span><span class="nt">&gt;</span>用户名<span class="nt">&lt;br&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"tttt1"</span> <span class="na">value=</span><span class="s">""</span> <span class="na">type=</span><span class="s">"text"</span> <span class="nt">/&gt;&lt;br&gt;</span>
+密码<span class="nt">&lt;br&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"tttt2"</span> <span class="na">value=</span><span class="s">""</span> <span class="na">type=</span><span class="s">"password"</span> <span class="nt">/&gt;&lt;/br&gt;</span>
+手机号<span class="nt">&lt;br&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"tttt3"</span> <span class="na">value=</span><span class="s">""</span> <span class="na">type=</span><span class="s">"text"</span> <span class="nt">/&gt;&lt;br&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">value=</span><span class="s">"提交"</span>  <span class="nt">/&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</code></pre></div></div>
+
+<p>再把<code class="highlighter-rouge">urlencode</code>的中文转码就可以了</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">awk</span> <span class="s1">'BEGIN{for(i=0;i&lt;10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART&gt;1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}'</span> /mnt/record.txt <span class="o">&gt;</span> /mnt/urldecode.txt 2&gt;&amp;1  
+</code></pre></div></div>
+
+<p>结果是因为自己不太懂浏览器的兼容问题，导致发给别人测试的时候都是打不开页面，导致我也是很崩溃。后来就准备放弃了</p>
+
+<p>​	今天看到百度云主机双十一打折，一年才11块钱，于是就毫不吝啬的打开了支付宝</p>
+
+<p><img src="https://i.loli.net/2018/10/27/5bd4692567d6d.png" alt="" /></p>
+
+<p>​	<del>我的钱包在哭泣</del></p>
+
+<p>​	买完之后一脸懵逼，因为是第一次用，这都什么鬼啊，什么SQL，什么FTP，还有HTTPs，完全不懂好吧，就硬着头皮，装上了WordPress掉进了建站的深坑。。。。。。</p>
+
+<p>​	真的是什么都不懂，一路靠着谷歌和百度跌跌撞撞的搞成了下面这个样子</p>
+
+<p><img src="https://i.loli.net/2018/10/27/5bd46a7bcb0fe.png" alt="" /></p>
+
+<p>​	现在依旧有很多问题悬而未决，比如腾讯云的域名解析，这个主题的菜单设置，分分钟让人处于崩溃的边缘，不过呢，难得保持初心，终于把最开始想要<code class="highlighter-rouge">from</code>提交表单的想法给实现了，还是值得庆祝的。提交表单的界面是这样的，用的是WP的插件<code class="highlighter-rouge">Contact Form 7</code>能够自动生成表单，提交表单时会想指定邮箱发送邮件，且在数据库复写一份。超贴心的</p>
+
+<p><img src="https://i.loli.net/2018/10/27/5bd46bd26fab4.png" alt="" /></p>
+
+
+  </section>
+  
+  <div class="divider">
+    <span>
+    
+    <a href="/2018/10/26/%E5%9C%A8Linux%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8Jq%E5%A4%84%E7%90%86json%E6%96%87%E4%BB%B6.html"><i class="fa fa-chevron-left"></i></a>
+    
+    </span>
+    <!-- BEGIN comment icon
+    <span><a href="javascript:leave_comment();" id="leave_comment_link"><i class="fa fa-comment-o"></i></a></span>
+    <span><a href="javascript:collapse_comment();" id="collapse_comment_link" style="display:none;"><i class="fa fa-chevron-up"></i></a></span>
+      END comment icon -->
+
+    <span>
+    
+    <a href="/2018/10/27/about.html"><i class="fa fa-chevron-right"></i></a>
+    
+    </span>
+	
+  </div>
+
+  <!-- BEGIN comment
+  <section class="comment">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'yuanyuan';
+      var disqus_identifier = 'urn:uuid:0b977b50-361d-4e1f-b8b3-ebb23c36456d';
+
+      function leave_comment() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          $("#leave_comment_link").css("display", "none");
+          $("#collapse_comment_link").css("display", "");
+      };
+      function collapse_comment() {
+          // document.getElementById("disqus_thread").innerHTML = '';
+          $("#disqus_thread").slideUp(400, function() {
+              $("#disqus_thread").empty();
+              $("#leave_comment_link").css("display", "");
+              $("#collapse_comment_link").css("display", "none");
+              $("#disqus_thread").css("display", "");
+          });
+      };
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </section>
+  END comment -->
+  
+</article>
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?9c651515b864fe89150625c30c3dce34";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+        </div>
+        <footer>
+          <div>
+            
+            &copy; 2017 ~ 2018 chwhsen | 阿远心之所向 吾辈剑之所指
+          </div>
+		  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?9c651515b864fe89150625c30c3dce34";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+        </footer>
+      </div> <!-- main -->
+  </body>
+</html>
+

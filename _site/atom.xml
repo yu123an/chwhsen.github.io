@@ -4,7 +4,7 @@
  <title>第七间夜店</title>
  <link href="https://chwhsen.github.io/atom.xml" rel="self"/>
  <link href="https://chwhsen.github.io"/>
- <updated>2018-10-27T00:46:55+08:00</updated>
+ <updated>2018-10-27T21:49:09+08:00</updated>
  <id>https://chwhsen.github.io/</id>
  <author>
    <name>chwhsen</name>
@@ -24,6 +24,56 @@
     &lt;img src=&quot;/media/img.jpg&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;
 &lt;/div&gt;
 &lt;p /&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>年轻人的第一台虚拟云主机</title>
+   <link href="https://chwhsen.github.io/2018/10/26/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%B8%80%E5%8F%B0%E8%99%9A%E6%8B%9F%E4%BA%91%E4%B8%BB%E6%9C%BA.html"/>
+   <updated>2018-10-26T00:00:00+08:00</updated>
+   <id>urn:uuid:0b977b50-361d-4e1f-b8b3-ebb23c36456d</id>
+   <content type="html">&lt;p&gt;​	我这个人真的是不到南墙心不死，自从九月份萌发了用&lt;code class=&quot;highlighter-rouge&quot;&gt;from&lt;/code&gt;提交表单的方式来让阿远家长提交信息的想法之后，就开始各种尝试，从路由器到N1盒子，都尝试了，也许真的是我水平不行吧，一直达不到让人满意的效果，其实有一种方法是已经成功了一半的，就是在N1盒子上用&lt;code class=&quot;highlighter-rouge&quot;&gt;Nginx&lt;/code&gt;静态页面来提交，虽然不能提交到数据库中，因为数据库实在装不上去，意外的我发先可以在日志文件中看到提交的过程，通过正则表达式可以将其中的请求参数过滤出来：&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; /var/log/nginx/access.log | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-F&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&quot;'&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{print $2}'&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/[&amp;amp;]\{0,1\}tttt[0-9]=/ppppp/g'&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-F&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;ppppp&quot;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{print $2,&quot;;&quot;$3,&quot;;&quot;$4}'&lt;/span&gt;| &lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;':a;N;$!ba;s/ ; ;\n//g'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; /mnt/record.txt 2&amp;gt;&amp;amp;1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;其中&lt;code class=&quot;highlighter-rouge&quot;&gt;from&lt;/code&gt;是这么写的&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;form&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;method=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;action=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;pp.php&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;br&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;tijiao&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;用户名&lt;span class=&quot;nt&quot;&gt;&amp;lt;br&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;tttt1&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&amp;lt;br&amp;gt;&lt;/span&gt;
+密码&lt;span class=&quot;nt&quot;&gt;&amp;lt;br&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;tttt2&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;password&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&amp;lt;/br&amp;gt;&lt;/span&gt;
+手机号&lt;span class=&quot;nt&quot;&gt;&amp;lt;br&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;tttt3&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&amp;lt;br&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;submit&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;提交&quot;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/form&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;再把&lt;code class=&quot;highlighter-rouge&quot;&gt;urlencode&lt;/code&gt;的中文转码就可以了&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'BEGIN{for(i=0;i&amp;lt;10;i++)hex[i]=i;hex[&quot;A&quot;]=hex[&quot;a&quot;]=10;hex[&quot;B&quot;]=hex[&quot;b&quot;]=11;hex[&quot;C&quot;]=hex[&quot;c&quot;]=12;hex[&quot;D&quot;]=hex[&quot;d&quot;]=13;hex[&quot;E&quot;]=hex[&quot;e&quot;]=14;hex[&quot;F&quot;]=hex[&quot;f&quot;]=15;}{gsub(/\+/,&quot; &quot;);i=$0;while(match(i,/%../)){;if(RSTART&amp;gt;1);printf&quot;%s&quot;,substr(i,1,RSTART-1);printf&quot;%c&quot;,hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}'&lt;/span&gt; /mnt/record.txt &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; /mnt/urldecode.txt 2&amp;gt;&amp;amp;1  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;结果是因为自己不太懂浏览器的兼容问题，导致发给别人测试的时候都是打不开页面，导致我也是很崩溃。后来就准备放弃了&lt;/p&gt;
+
+&lt;p&gt;​	今天看到百度云主机双十一打折，一年才11块钱，于是就毫不吝啬的打开了支付宝&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/10/27/5bd4692567d6d.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;​	&lt;del&gt;我的钱包在哭泣&lt;/del&gt;&lt;/p&gt;
+
+&lt;p&gt;​	买完之后一脸懵逼，因为是第一次用，这都什么鬼啊，什么SQL，什么FTP，还有HTTPs，完全不懂好吧，就硬着头皮，装上了WordPress掉进了建站的深坑。。。。。。&lt;/p&gt;
+
+&lt;p&gt;​	真的是什么都不懂，一路靠着谷歌和百度跌跌撞撞的搞成了下面这个样子&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/10/27/5bd46a7bcb0fe.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;​	现在依旧有很多问题悬而未决，比如腾讯云的域名解析，这个主题的菜单设置，分分钟让人处于崩溃的边缘，不过呢，难得保持初心，终于把最开始想要&lt;code class=&quot;highlighter-rouge&quot;&gt;from&lt;/code&gt;提交表单的想法给实现了，还是值得庆祝的。提交表单的界面是这样的，用的是WP的插件&lt;code class=&quot;highlighter-rouge&quot;&gt;Contact Form 7&lt;/code&gt;能够自动生成表单，提交表单时会想指定邮箱发送邮件，且在数据库复写一份。超贴心的&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/10/27/5bd46bd26fab4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 </content>
  </entry>
@@ -496,167 +546,6 @@ tftp &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; myconfig.xml &lt;span clas
 
 &lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/10/24/5bd08c5b4cd47.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-</content>
- </entry>
- 
- <entry>
-   <title>个人常用API合集</title>
-   <link href="https://chwhsen.github.io/2017/10/24/%E4%B8%AA%E4%BA%BA%E5%B8%B8%E7%94%A8API%E5%90%88%E9%9B%86.html"/>
-   <updated>2017-10-24T00:00:00+08:00</updated>
-   <id>urn:uuid:9ca1e6bf-64f9-4929-8a32-59f3ee37dfc6</id>
-   <content type="html">&lt;p&gt;本文收录自己经常用的一些API，鉴权参数均采用&lt;code class=&quot;highlighter-rouge&quot;&gt;AES&lt;/code&gt;加密做隐私保护&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;极光推送&lt;/p&gt;
-
-    &lt;p&gt;请求地址&lt;/p&gt;
-
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl &lt;span class=&quot;nt&quot;&gt;--insecure&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; POST &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; https://api.jpush.cn/v3/push &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Content-Type: application/json&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;7d431e42dfa6a6d693ac2d04:5e987ac6d2e04d95a9d8f0d1&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{&quot;platform&quot;:&quot;all&quot;,&quot;audience&quot;:&quot;all&quot;,&quot;notification&quot;:{&quot;alert&quot;:&quot;Hi,JPush !&quot;,&quot;android&quot;:{&quot;extras&quot;:{&quot;android-key1&quot;:&quot;android-value1&quot;}},&quot;ios&quot;:{&quot;sound&quot;:&quot;sound.caf&quot;,&quot;badge&quot;:&quot;+1&quot;,&quot;extras&quot;:{&quot;ios-key1&quot;:&quot;ios-value1&quot;}}}}'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;快递跟踪&lt;/p&gt;
-
-    &lt;p&gt;请求地址&lt;/p&gt;
-
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl &lt;span class=&quot;s2&quot;&gt;&quot;http://www.kuaidi100.com/query?type=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$kuaidi&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;amp;postid=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$danhao&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-
-    &lt;p&gt;参数解释&lt;/p&gt;
-
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;kuaidi&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;zhongtong&quot;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;danhao&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2402802494&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-
-    &lt;p&gt;完整调用示例&lt;/p&gt;
-
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/sh&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# . /chwhsen/kuaidi.log&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;didi&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;curl &lt;span class=&quot;s2&quot;&gt;&quot;http://www.kuaidi100.com/query?type=zhongtong&amp;amp;postid=75102158011464&quot;&lt;/span&gt; | jq &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'.data[0].context'&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/ /-/g'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
-   
-&lt;span class=&quot;nv&quot;&gt;olddidi&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;' {printf $1}'&lt;/span&gt; /chwhsen/kuaidi.log | &lt;span class=&quot;nb&quot;&gt;cut&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt;/ &lt;span class=&quot;nt&quot;&gt;-f1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$didi&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$didi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$olddidi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;then&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$didi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; /chwhsen/kuaidi.log 2&amp;gt;&amp;amp;1 &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-curl &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;https://pushbear.ftqq.com/sub?sendkey=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$sendkey&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;amp;text=快递动态&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&amp;amp;desp=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$didi&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;和风天气预报&lt;/p&gt;
-
-    &lt;p&gt;请求地址&lt;/p&gt;
-
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl &lt;span class=&quot;s2&quot;&gt;&quot;https://free-api.heweather.com/s6/weather/now?location=hebi&amp;amp;key=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$key&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;U2FsdGVkX1+7TBau9mjE3/+AiaRRpa9ByMpTriz1EELnwvdjODMQqNmCoqd24DFjyrTE1OXdMSAT8b3989e3pA&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-
-    &lt;p&gt;参数解释&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;local:地址
-key：鉴权参数
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-
-    &lt;p&gt;完整调用示例&lt;/p&gt;
-
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/sh&lt;/span&gt;
-curl &lt;span class=&quot;s2&quot;&gt;&quot;https://free-api.heweather.com/s6/weather/now?location=hebi&amp;amp;key=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$key&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; /chwhsen/weather.log &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;local&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;jq &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; .HeWeather6[0].basic.location /chwhsen/weather.log&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;cond&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;jq &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; .HeWeather6[0].now.cond_txt /chwhsen/weather.log&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;tmp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;jq &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; .HeWeather6[0].now.tmp /chwhsen/weather.log&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;wind1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;jq &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; .HeWeather6[0].now.wind_sc /chwhsen/weather.log&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;wind2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;jq &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; .HeWeather6[0].now.wind_dir /chwhsen/weather.log&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;AAA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;此时&quot;&lt;/span&gt;+&lt;span class=&quot;nv&quot;&gt;$local&lt;/span&gt;+&lt;span class=&quot;s2&quot;&gt;&quot;天气：&quot;&lt;/span&gt;+&lt;span class=&quot;nv&quot;&gt;$cond&lt;/span&gt;+&lt;span class=&quot;s2&quot;&gt;&quot;；温度&quot;&lt;/span&gt;+&lt;span class=&quot;nv&quot;&gt;$tmp&lt;/span&gt;+&lt;span class=&quot;s2&quot;&gt;&quot;℃；伴有&quot;&lt;/span&gt;+&lt;span class=&quot;nv&quot;&gt;$wind1&lt;/span&gt;+&lt;span class=&quot;s2&quot;&gt;&quot;级&quot;&lt;/span&gt;+&lt;span class=&quot;nv&quot;&gt;$wind2&lt;/span&gt;+&lt;span class=&quot;s2&quot;&gt;&quot;.&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;京东价格实时监测&lt;/p&gt;
-
-    &lt;p&gt;请求地址&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl &quot;http://p.3.cn/prices/mgets?skuIds=J_number&amp;amp;type=1&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-
-    &lt;p&gt;参数说明&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;J_number:商品编号
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-
-    &lt;p&gt;完整调用示例&lt;/p&gt;
-
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/sh&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;money&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;curl &lt;span class=&quot;s2&quot;&gt;&quot;http://p.3.cn/prices/mgets?skuIds=J_28479497987&amp;amp;type=1&quot;&lt;/span&gt; | jq &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'.[].p'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;thing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Jbl-Go-2'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;百度语音开放平台&lt;/p&gt;
-
-    &lt;p&gt;调用地址&lt;/p&gt;
-
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget &lt;span class=&quot;nt&quot;&gt;-o-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;http://tsn.baidu.com/text2audio?tex=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$urlen&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;amp;lan=zh&amp;amp;vol=10&amp;amp;spd=4&amp;amp;cuid=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cuid&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;amp;ctp=1&amp;amp;tok=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$access_token&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-
-    &lt;p&gt;参数说明&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cuid=U2FsdGVkX19EGWqFBemC3AUS0qkXaE63+GAyZEgXM6roFNpagdgvCVACLIObjluK
-   
-tok=U2FsdGVkX18BLROB1f5qTxZk+SI5LF/DPaCtHfgZb/OmMs3vta1E6NE1Af/VvATVqu8pnk9wTVIzzXPJWDU9UKuXJmaNT7FtU9JJBhLmcZb9GsUFx+6koUtiwdIzI8tO
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-
-    &lt;p&gt;完整调用示例&lt;/p&gt;
-
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;ttt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;something&quot;&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ttt&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;urlen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ttt&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;tr&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'\n'&lt;/span&gt; | xxd &lt;span class=&quot;nt&quot;&gt;-plain&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/\(..\)/%\1/g'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
-mplayer &lt;span class=&quot;s2&quot;&gt;&quot;http://tsn.baidu.com/text2audio?tex=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$urlen&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;amp;lan=zh&amp;amp;vol=10&amp;amp;spd=4&amp;amp;cuid=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cuid&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;amp;ctp=1&amp;amp;tok=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$access_token&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;讯飞语音&lt;/p&gt;
-
-    &lt;p&gt;完整调用示范&lt;/p&gt;
-
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$app&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$key&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;date&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'+%s'&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;bbb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ewogICAgImF1ZiI6ICJhdWRpby9MMTY7cmF0ZT0xNjAwMCIsCiAgICAiYXVlIjogImxhbWUiLAogICAgInZvaWNlX25hbWUiOiAieGlhb3lhbiIsCiAgICAic3BlZWQiOiAiNTAiLAogICAgInZvbHVtZSI6ICI1MCIsCiAgICAicGl0Y2giOiAiNTAiLAogICAgImVuZ2luZV90eXBlIjogImludHA2NSIsCiAgICAidGV4dF90eXBlIjogInRleHQiCn0=&quot;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;aaa&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$key$time$bbb&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$aaa&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;ppp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$aaa&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;md5sum&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{print $1}'&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ppp&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;ttt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;你好&quot;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;urlen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ttt&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;tr&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'\n'&lt;/span&gt; | xxd &lt;span class=&quot;nt&quot;&gt;-plain&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/\(..\)/%\1/g'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;http://api.xfyun.cn/v1/service/v1/tts?apikey=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$app&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;amp;curTime=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$time&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;amp;param=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$bbb&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;amp;checkSum=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ppp&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;amp;text=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$urlen&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-curl &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; api.xfyun.cn/v1/aiui/v1/iat &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;X-Appid:&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$key&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;X-CurTime:&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$time&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;X-Param:&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$bbb&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;X-CheckSum:&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ppp&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$urlen&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | jq &lt;span class=&quot;s1&quot;&gt;'.'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-
-    &lt;p&gt;参数说明&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;app=U2FsdGVkX19Wy48f37X8HADrbOmNUFhJzXN9efCC1Pk=
-key=U2FsdGVkX1+Lpq/9dfMYUeXPM/ILZc+xMOZ7L0VyyoPObpRjDEuw9P8Hvs1Sga2AXSc7z/BmZYu1jYCTD84YBw==
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Dnspod域名解析&lt;/p&gt;
-
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; POST &lt;span class=&quot;s2&quot;&gt;&quot;https://dnsapi.cn/Record.Modify&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;login_token=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$token&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;amp;format=json&amp;amp;domain_id=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$domain&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;amp;record_id=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$record&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;amp;record_type=AAAA&amp;amp;record_line=%e9%bb%98%e8%ae%a4&amp;amp;value=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;pv6&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | jq &lt;span class=&quot;s1&quot;&gt;'.'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-
-    &lt;p&gt;参数说明&lt;/p&gt;
-
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;login_token&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;U2FsdGVkX19LLnCi7D427gMcK2uhIu3UtPMDMm1W1CICqsZqNsqrPYSjm4yvLMFjX2CCaOJ6HrzJcGsXPRWorg&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;domain_id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;U2FsdGVkX19iojj0gXniLRDr6nR1CxuUAizfB14UzhQ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;record_id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;U2FsdGVkX1/fozYLpBoUG/HjAv50KaUceI+KJy8xD/k&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;server酱&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
 </content>
  </entry>
  
