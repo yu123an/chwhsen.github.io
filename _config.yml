@@ -16,7 +16,7 @@ navigations:
     class: fa fa-user
     href: /about.html
   - title: Download
-    class: fa fa-download
+    class: fa fa-save
     href:  ftp://ftpadmin:ftpadmin@www.chwhsen.xyz:909
 #  - title: 搜索
 #    class: fa fa-search
