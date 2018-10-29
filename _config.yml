@@ -15,9 +15,9 @@ navigations:
   - title: Stop
     class: fa fa-user
     href: /about.html
-  - title: Gallery
-    class: fa fa-film
-    href: http://foto.lhzhang.com
+ # - title: Gallery
+ #   class: fa fa-film
+ #   href: http://foto.lhzhang.com
 #  - title: 搜索
 #    class: fa fa-search
 #    href: /search.html
