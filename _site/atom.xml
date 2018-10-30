@@ -4,7 +4,7 @@
  <title>第七间夜店</title>
  <link href="https://chwhsen.github.io/atom.xml" rel="self"/>
  <link href="https://chwhsen.github.io"/>
- <updated>2018-10-30T13:27:14+08:00</updated>
+ <updated>2018-10-30T20:26:08+08:00</updated>
  <id>https://chwhsen.github.io/</id>
  <author>
    <name>chwhsen</name>
@@ -241,7 +241,7 @@
 
 &lt;h4 id=&quot;魔改过程&quot;&gt;魔改过程&lt;/h4&gt;
 
-&lt;p&gt;首先是对_config.yml配置文件的修改&lt;/p&gt;
+&lt;p&gt;首先是对&lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;配置文件的修改&lt;/p&gt;
 
 &lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;#-------------&lt;/span&gt;
 &lt;span class=&quot;s&quot;&gt;个人信息&lt;/span&gt;
@@ -253,6 +253,7 @@
 &lt;span class=&quot;na&quot;&gt;disqus&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;yuanyuan&quot;&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;#------------&lt;/span&gt;
 &lt;span class=&quot;s&quot;&gt;菜单页&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;屏蔽了没必要的画展页面和订阅页面，增加了挂在路由器上的U盘下载入口&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;#------------&lt;/span&gt;
 &lt;span class=&quot;na&quot;&gt;navigations&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
   &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;归档&lt;/span&gt;
@@ -267,24 +268,39 @@
 &lt;span class=&quot;c1&quot;&gt;#  - title: Gallery&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;#    class: fa fa-film&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;#    href: &lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#  - title: Subscribe&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#    class: fa fa-rss&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#    href: /atom.xml&lt;/span&gt;
+ &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Download&lt;/span&gt;
+   &lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;fa fa-rss&lt;/span&gt;
+   &lt;span class=&quot;na&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ftp://www.chwhsen.xyz:909&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;#-------------&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;百度统计&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;添加了百度统计&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;#-------------&lt;/span&gt;
 &lt;span class=&quot;na&quot;&gt;baidu-analysis&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;9c651515b864fe89150625c30c3dce34&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;订阅界面和画册界面我给注释掉了，用上的可能性不大&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;现在菜单显示是这样的&lt;/p&gt;
 
-&lt;p&gt;其次是/_layout里模板的微调&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/10/30/5bd8443f51179.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;修改主要集中在两部分，页脚的个性签名，以及增加了百度统计的代码块&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;其次是&lt;code class=&quot;highlighter-rouge&quot;&gt;/_layout&lt;/code&gt;里模板的调整；从另外一位大佬的模板借鉴了新的样式表，可以自由打开或关闭评论区&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/media/css/github.css&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+     undefined&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/media/js/jquery-1.7.1.min.js&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;charset=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;utf-8&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt; 
+    undefined&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/media/js/highlight.pack.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;评论区效果如下：&lt;/p&gt;
+
+&lt;ul class=&quot;task-list&quot;&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;​	默认不显示评论区&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/10/30/5bd84369275f2.png&quot; alt=&quot;默认关闭评论&quot; /&gt;&lt;/p&gt;
+
+&lt;ul class=&quot;task-list&quot;&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;显示评论区&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/10/30/5bd8436948a13.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 </content>
  </entry>

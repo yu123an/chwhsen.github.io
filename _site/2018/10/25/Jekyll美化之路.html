@@ -85,7 +85,7 @@
 
 <h4 id="魔改过程">魔改过程</h4>
 
-<p>首先是对_config.yml配置文件的修改</p>
+<p>首先是对<code class="highlighter-rouge">_config.yml</code>配置文件的修改</p>
 
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#-------------</span>
 <span class="s">个人信息</span>
@@ -97,6 +97,7 @@
 <span class="na">disqus</span><span class="pi">:</span> <span class="s2">"</span><span class="s">yuanyuan"</span>
 <span class="c1">#------------</span>
 <span class="s">菜单页</span>
+<span class="s">屏蔽了没必要的画展页面和订阅页面，增加了挂在路由器上的U盘下载入口</span>
 <span class="c1">#------------</span>
 <span class="na">navigations</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="na">title</span><span class="pi">:</span> <span class="s">归档</span>
@@ -111,24 +112,39 @@
 <span class="c1">#  - title: Gallery</span>
 <span class="c1">#    class: fa fa-film</span>
 <span class="c1">#    href: </span>
-<span class="c1">#  - title: Subscribe</span>
-<span class="c1">#    class: fa fa-rss</span>
-<span class="c1">#    href: /atom.xml</span>
+ <span class="pi">-</span> <span class="na">title</span><span class="pi">:</span> <span class="s">Download</span>
+   <span class="na">class</span><span class="pi">:</span> <span class="s">fa fa-rss</span>
+   <span class="na">href</span><span class="pi">:</span> <span class="s">ftp://www.chwhsen.xyz:909</span>
 <span class="c1">#-------------</span>
-<span class="s">百度统计</span>
+<span class="s">添加了百度统计</span>
 <span class="c1">#-------------</span>
 <span class="na">baidu-analysis</span><span class="pi">:</span> <span class="s">9c651515b864fe89150625c30c3dce34</span>
 </code></pre></div></div>
 
-<blockquote>
-  <p>订阅界面和画册界面我给注释掉了，用上的可能性不大</p>
-</blockquote>
+<p>现在菜单显示是这样的</p>
 
-<p>其次是/_layout里模板的微调</p>
+<p><img src="https://i.loli.net/2018/10/30/5bd8443f51179.png" alt="" /></p>
 
-<blockquote>
-  <p>修改主要集中在两部分，页脚的个性签名，以及增加了百度统计的代码块</p>
-</blockquote>
+<p>其次是<code class="highlighter-rouge">/_layout</code>里模板的调整；从另外一位大佬的模板借鉴了新的样式表，可以自由打开或关闭评论区</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"/media/css/github.css"</span><span class="nt">&gt;</span>
+     undefined<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/media/js/jquery-1.7.1.min.js"</span> <span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;&lt;/script&gt;</span> 
+    undefined<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"/media/js/highlight.pack.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p>评论区效果如下：</p>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />​	默认不显示评论区</li>
+</ul>
+
+<p><img src="https://i.loli.net/2018/10/30/5bd84369275f2.png" alt="默认关闭评论" /></p>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />显示评论区</li>
+</ul>
+
+<p><img src="https://i.loli.net/2018/10/30/5bd8436948a13.png" alt="" /></p>
 
 
   </section>
