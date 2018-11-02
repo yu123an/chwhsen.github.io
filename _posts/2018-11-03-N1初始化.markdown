@@ -1,0 +1,90 @@
+---
+title: N1初始化
+guid: urn:uuid:1f5c4362-0e2b-41bc-876f-5e7c3146c7aa
+tags: linux jekyll
+layout: post
+---
+替换`/root/install.sh`：
+
+```shell
+rm /root/install.sh
+wget -o- ftp://ftpadmin:ftpadmin@192.168.1.1/install.sh
+cdhmod 755 /root/install.sh
+mkfs.ext4 /dev/data -y
+/root/install.sh -y
+```
+
+启用`Wifi`
+
+```shell
+modprobe dhd && echo dhd >> /etc/modules
+```
+
+设置时区：
+
+```shell
+echo "Asia/Shanghai" > /etc/timezone && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+```
+
+删除默认`DNS`
+
+```shell
+rm /etc/resolvconf/resolv.conf.d/head && touch /etc/resolvconf/resolv.conf.d/head && systemctl restart network-manager.service
+```
+
+停止红外支持
+
+```shell
+systemctl stop lircd.service lircd-setup.service lircd.socket lircd-uinput.service lircmd.service
+```
+
+删除红外支持
+
+```shell
+apt remove -y lirc && apt autoremove -y
+```
+
+更新软件包：
+
+```shell
+apt update && apt upgrade -y
+```
+
+挂载U盘
+
+```shell
+mount -t ntfs-3g /dev/sda /mnt
+```
+
+个性化设置
+
+```shell
+armbian-config
+```
+
+-----
+
+以下为还原上次配置
+
+```shell
+cd //
+rm -r "lost+found" media
+unzip /mnt/BAK/bak.zip
+cd /chwhsen
+chmod 755 *
+chmod 755 /speak/*
+rm /etc/samba/smb.conf
+cp /chwhsen/backup/smb.conf /etc/samba/smb.conf
+rm /etc/cron.d/sysstat
+cp /chwhsen/backup/sysstat /etc/cron.d/sysstat
+rm /etc/ssmtp/ssmtp.conf
+cp /chwhsen/backup/ssmtp.conf /etc/ssmtp/ssmtp.conf
+rm ~/.bashrc
+cp /chwhsen/backup/bashrc ~/.bashrc
+rm ~/.vimrc
+cp /chwhsen/backup/vimrc ~/.vimrc
+rm /etc/rc.local
+cp /chwhsen/backup/rc.local /etc/rc.local
+/etc/init.d/samba restart
+```
+
