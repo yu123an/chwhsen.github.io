@@ -107,6 +107,11 @@ mkfs.ext4 /dev/data <span class="nt">-y</span>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>armbian-config
 </code></pre></div></div>
+<p>安装软件</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt update 
+apt-get <span class="nb">install </span>jq ssmtp zip mplayer sox <span class="nt">-y</span>
+</code></pre></div></div>
 
 <hr />
 
@@ -131,6 +136,27 @@ unzip /mnt/BAK/bak.zip
 <span class="nb">rm</span> /etc/rc.local
 <span class="nb">cp</span> /chwhsen/backup/rc.local /etc/rc.local
 /etc/init.d/samba restart
+</code></pre></div></div>
+
+<p>配置<code class="highlighter-rouge">Jekyll</code>环境</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt <span class="nb">install </span>ruby-dev libffi-dev clang make <span class="nt">-y</span>
+gem <span class="nb">install </span>jekyll
+gem <span class="nb">install </span>rdiscount
+gem <span class="nb">install </span>bundler
+</code></pre></div></div>
+
+<p>同步<code class="highlighter-rouge">github-page</code></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config <span class="nt">--global</span> user.name <span class="s2">"yu123an"</span>
+git config <span class="nt">--global</span> user.email <span class="s2">"chwhsen@qq.com"</span>
+<span class="c">#生成密钥</span>
+ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-C</span> <span class="s2">"chwhsen@qq.com"</span>
+<span class="c">#添加至ssh-agent</span>
+<span class="nb">eval</span> <span class="s2">"</span><span class="k">$(</span>ssh-agent <span class="nt">-s</span><span class="k">)</span><span class="s2">"</span>
+ssh-add ~/.ssh/id_rsa
+<span class="c">#验证</span>
+ssh <span class="nt">-T</span> git@github.com
 </code></pre></div></div>
 
 

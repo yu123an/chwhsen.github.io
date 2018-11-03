@@ -61,6 +61,12 @@ mount -t ntfs-3g /dev/sda /mnt
 ```shell
 armbian-config
 ```
+安装软件
+
+```shell
+apt update 
+apt-get install jq ssmtp zip mplayer sox -y
+```
 
 -----
 
@@ -86,5 +92,28 @@ cp /chwhsen/backup/vimrc ~/.vimrc
 rm /etc/rc.local
 cp /chwhsen/backup/rc.local /etc/rc.local
 /etc/init.d/samba restart
+```
+
+配置`Jekyll`环境
+
+```shell
+apt install ruby-dev libffi-dev clang make -y
+gem install jekyll
+gem install rdiscount
+gem install bundler
+```
+
+同步`github-page`
+
+```shell
+git config --global user.name "yu123an"
+git config --global user.email "chwhsen@qq.com"
+#生成密钥
+ssh-keygen -t rsa -C "chwhsen@qq.com"
+#添加至ssh-agent
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+#验证
+ssh -T git@github.com
 ```
 
