@@ -4,7 +4,7 @@
  <title>第七间夜店</title>
  <link href="https://chwhsen.github.io/atom.xml" rel="self"/>
  <link href="https://chwhsen.github.io"/>
- <updated>2018-11-03T13:38:58+08:00</updated>
+ <updated>2018-11-05T16:13:26+08:00</updated>
  <id>https://chwhsen.github.io/</id>
  <author>
    <name>chwhsen</name>
@@ -13,8 +13,8 @@
  
  <entry>
    <title>Welcome</title>
-   <link href="https://chwhsen.github.io/2018/11/03/about.html"/>
-   <updated>2018-11-03T00:00:00+08:00</updated>
+   <link href="https://chwhsen.github.io/2018/11/05/about.html"/>
+   <updated>2018-11-05T00:00:00+08:00</updated>
    <id>urn:uuid:020e19e6-3b66-400f-8ce1-a6e00da0aafc</id>
    <content type="html">&lt;div align=&quot;center&quot;&gt; &lt;script src=&quot;https://v1.hitokoto.cn/?encode=js&amp;amp;select=%23hitokoto&quot; defer=&quot;&quot;&gt;&lt;/script&gt;
   &lt;p id=&quot;hitokoto&quot;&gt;:D 获取中...&lt;/p&gt;
