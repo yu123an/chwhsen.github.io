@@ -1,0 +1,61 @@
+---
+title: 初次接触爬虫
+guid: urn:uuid:c246c603-638d-4bef-bde3-4f0c6b34c3f5
+tags: linux
+layout: post
+---
+
+其实我也不知道我这个究竟叫做什么，我只是按照规律下载了一些壁纸图片而已
+
+是在[这个网站下载](https://alpha.wallhaven.cc/) （https://alpha.wallhaven.cc/）的
+
+![](https://i.loli.net/2018/11/09/5be47c0d9c01e.png)
+
+首先我们先打开一张图片看一下url地址
+
+![](https://i.loli.net/2018/11/09/5be47c586a775.png)
+
+只有一串编号，尚不清楚这个编号是怎么生成的，或许只是依据上传顺序呢
+
+有了编号，我们先测试一下
+
+```shell
+wget -o- https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-$i.jpg
+```
+
+`$i`为图片的的六位数编号，经测试可以下载图片，而且直接下载原图。
+
+下一步我们想办法来获取这串六位数编号
+
+![](https://i.loli.net/2018/11/09/5be47ddfdf8f5.png)
+
+我们打开网站的toplist，查看源码，可以直接通过处理html来获取需要的编号
+
+```shell
+ curl "https://alpha.wallhaven.cc/toplist?page=2"  | sed 's/.jpg/.jpg\n/g' | sed 's/.*https/https/g' | grep .jpg
+```
+
+可直接得到图片的下载地址
+
+后来爬图的时候，发现一件很诡异的事情，比如这张图
+
+![](https://i.loli.net/2018/11/09/5be48128b7bbf.jpg)
+
+可以通过编号`703710`下载，
+
+```shell
+wget -o- https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-703710.jpg
+```
+
+但是直接访问[图片地址](https://alpha.wallhaven.cc/wallpaper/703710)，却无法打开
+
+![](https://i.loli.net/2018/11/09/5be481e2108a8.png)
+
+这是与违禁图不同的提示
+
+![](https://i.loli.net/2018/11/09/5be48241a570a.png)
+
+有趣的是，对于这样露骨的图片，我们依旧可以通过url下载。经过一天的工作，我爬到了差不多两万张壁纸，但是其中`98%`的是NSFW内容.....
+
+![](https://i.loli.net/2018/11/09/5be48331cfc72.png)
+

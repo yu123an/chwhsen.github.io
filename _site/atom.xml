@@ -4,7 +4,7 @@
  <title>第七间夜店</title>
  <link href="https://chwhsen.github.io/atom.xml" rel="self"/>
  <link href="https://chwhsen.github.io"/>
- <updated>2018-11-06T12:14:58+08:00</updated>
+ <updated>2018-11-09T02:41:53+08:00</updated>
  <id>https://chwhsen.github.io/</id>
  <author>
    <name>chwhsen</name>
@@ -12,9 +12,68 @@
 
  
  <entry>
+   <title>初次接触爬虫</title>
+   <link href="https://chwhsen.github.io/2018/11/09/%E9%9A%BE%E9%81%93%E8%BF%99%E5%B0%B1%E6%98%AF%E4%BC%A0%E8%AF%B4%E4%B8%AD%E7%9A%84%E7%88%AC%E8%99%AB.html"/>
+   <updated>2018-11-09T00:00:00+08:00</updated>
+   <id>urn:uuid:c246c603-638d-4bef-bde3-4f0c6b34c3f5</id>
+   <content type="html">&lt;p&gt;其实我也不知道我这个究竟叫做什么，我只是按照规律下载了一些壁纸图片而已&lt;/p&gt;
+
+&lt;p&gt;是在&lt;a href=&quot;https://alpha.wallhaven.cc/&quot;&gt;这个网站下载&lt;/a&gt; （https://alpha.wallhaven.cc/）的&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/11/09/5be47c0d9c01e.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;首先我们先打开一张图片看一下url地址&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/11/09/5be47c586a775.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;只有一串编号，尚不清楚这个编号是怎么生成的，或许只是依据上传顺序呢&lt;/p&gt;
+
+&lt;p&gt;有了编号，我们先测试一下&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget &lt;span class=&quot;nt&quot;&gt;-o-&lt;/span&gt; https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-&lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt;.jpg
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$i&lt;/code&gt;为图片的的六位数编号，经测试可以下载图片，而且直接下载原图。&lt;/p&gt;
+
+&lt;p&gt;下一步我们想办法来获取这串六位数编号&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/11/09/5be47ddfdf8f5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我们打开网站的toplist，查看源码，可以直接通过处理html来获取需要的编号&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; curl &lt;span class=&quot;s2&quot;&gt;&quot;https://alpha.wallhaven.cc/toplist?page=2&quot;&lt;/span&gt;  | &lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/.jpg/.jpg\n/g'&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/.*https/https/g'&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; .jpg
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;可直接得到图片的下载地址&lt;/p&gt;
+
+&lt;p&gt;后来爬图的时候，发现一件很诡异的事情，比如这张图&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/11/09/5be48128b7bbf.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;可以通过编号&lt;code class=&quot;highlighter-rouge&quot;&gt;703710&lt;/code&gt;下载，&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget &lt;span class=&quot;nt&quot;&gt;-o-&lt;/span&gt; https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-703710.jpg
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;但是直接访问&lt;a href=&quot;https://alpha.wallhaven.cc/wallpaper/703710&quot;&gt;图片地址&lt;/a&gt;，却无法打开&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/11/09/5be481e2108a8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这是与违禁图不同的提示&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/11/09/5be48241a570a.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;有趣的是，对于这样露骨的图片，我们依旧可以通过url下载。经过一天的工作，我爬到了差不多两万张壁纸，但是其中&lt;code class=&quot;highlighter-rouge&quot;&gt;98%&lt;/code&gt;的是NSFW内容…..&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/11/09/5be48331cfc72.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
    <title>Welcome</title>
-   <link href="https://chwhsen.github.io/2018/11/06/about.html"/>
-   <updated>2018-11-06T00:00:00+08:00</updated>
+   <link href="https://chwhsen.github.io/2018/11/09/about.html"/>
+   <updated>2018-11-09T00:00:00+08:00</updated>
    <id>urn:uuid:020e19e6-3b66-400f-8ce1-a6e00da0aafc</id>
    <content type="html">&lt;div align=&quot;center&quot;&gt; &lt;script src=&quot;https://v1.hitokoto.cn/?encode=js&amp;amp;select=%23hitokoto&quot; defer=&quot;&quot;&gt;&lt;/script&gt;
   &lt;p id=&quot;hitokoto&quot;&gt;:D 获取中...&lt;/p&gt;
@@ -595,62 +654,6 @@ xxxxx,4caxxxxxxxxxxxxxxxxxxxxx
     &lt;p&gt;图已更新&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
-
-</content>
- </entry>
- 
- <entry>
-   <title>HG8321R</title>
-   <link href="https://chwhsen.github.io/2018/09/18/HG8321R.html"/>
-   <updated>2018-09-18T00:00:00+08:00</updated>
-   <id>urn:uuid:e225a518-a98c-4370-b35a-563fb160e504</id>
-   <content type="html">&lt;p&gt;&lt;strong&gt;默认你电脑已开启Telnet且光猫telnet已使能&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;电脑和光猫直接通过网线连接；在电脑上“win”+“R”打开cmd窗口&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;telnet 192.168.1.1
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;账号密码分别为&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Login:root
-
-Password:admin
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;然后输入&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;su
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;并回车&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;shell
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;再回车，出现以下内容即代表成功连接光猫&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;BusyBox v1.18.4 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;2017-10-23 07:02:41 CST&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; built-in shell &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;ash&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; Enter &lt;span class=&quot;s1&quot;&gt;'help'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;a list of built-in commands. 
-profile close core dump 
-WAP&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Dopra Linux&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# &lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;接下来正式开始破解&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; //
-
-&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;mnt/jffs2
-
-&lt;span class=&quot;nb&quot;&gt;cp &lt;/span&gt;hw_ctree.xml myconfig.xml.gz
-
-aescrypt2 1 myconf.xml.gz tmp
-
-&lt;span class=&quot;nb&quot;&gt;gzip&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; myconfig.xml.gz
-
-tftp &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; myconfig.xml &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &amp;lt;pc ip&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;在本地打开myconfig.xml文件，寻找超级用户的账号和密码即可&lt;/p&gt;
 
 </content>
  </entry>
