@@ -1,0 +1,7 @@
+---
+title: 连续三天的火鸡面
+guid: urn:uuid:1c1f2c15-0658-465d-b97e-344572a277e2
+tags: 生活
+layout: post
+---
+papers
