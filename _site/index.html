@@ -45,21 +45,19 @@
   
   <article class="content">
     <section class="title">
-      <h2><a href="/2018/11/09/%E9%9A%BE%E9%81%93%E8%BF%99%E5%B0%B1%E6%98%AF%E4%BC%A0%E8%AF%B4%E4%B8%AD%E7%9A%84%E7%88%AC%E8%99%AB.html">初次接触爬虫</a></h2>
+      <h2><a href="/2018/11/10/about.html">Welcome</a></h2>
     </section>
     <section class="meta">
     <span class="time">
-      <time datetime="2018-11-09">2018-11-09</time>
+      <time datetime="2018-11-10">2018-11-10</time>
     </span>
     
     <span class="tags">
       
-      <a href="/tags.html#linux" title="linux">#linux</a>
-      
     </span>
     
     <!-- BEGIN this would not work on any other domain -->
-    <span class="like-wrapper" like-shortname="yuanyuan" like-identifier="urn:uuid:c246c603-638d-4bef-bde3-4f0c6b34c3f5" like-name="初次接触爬虫" like-link="https://chwhsen.github.io/" like-btn="&#xf087;"></span>
+    <span class="like-wrapper" like-shortname="yuanyuan" like-identifier="urn:uuid:020e19e6-3b66-400f-8ce1-a6e00da0aafc" like-name="Welcome" like-link="https://chwhsen.github.io/" like-btn="&#xf087;"></span>
     <script type="text/javascript">
       var l = document.createElement('script'); l.type = 'text/javascript'; l.async = true;
       l.src = 'https://like.lhzhang.com/javascript/widget.js';
@@ -68,56 +66,14 @@
     <!-- END this would not work on any other domain -->
     </section>
     <section class="post">
-    <p>其实我也不知道我这个究竟叫做什么，我只是按照规律下载了一些壁纸图片而已</p>
+    <div align="center"> <script src="https://v1.hitokoto.cn/?encode=js&amp;select=%23hitokoto" defer=""></script>
+  <p id="hitokoto">:D 获取中...</p>
+</div>
 
-<p>是在<a href="https://alpha.wallhaven.cc/">这个网站下载</a> （https://alpha.wallhaven.cc/）的</p>
-
-<p><img src="https://i.loli.net/2018/11/09/5be47c0d9c01e.png" alt="" /></p>
-
-<p>首先我们先打开一张图片看一下url地址</p>
-
-<p><img src="https://i.loli.net/2018/11/09/5be47c586a775.png" alt="" /></p>
-
-<p>只有一串编号，尚不清楚这个编号是怎么生成的，或许只是依据上传顺序呢</p>
-
-<p>有了编号，我们先测试一下</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget <span class="nt">-o-</span> https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-<span class="nv">$i</span>.jpg
-</code></pre></div></div>
-
-<p><code class="highlighter-rouge">$i</code>为图片的的六位数编号，经测试可以下载图片，而且直接下载原图。</p>
-
-<p>下一步我们想办法来获取这串六位数编号</p>
-
-<p><img src="https://i.loli.net/2018/11/09/5be47ddfdf8f5.png" alt="" /></p>
-
-<p>我们打开网站的toplist，查看源码，可以直接通过处理html来获取需要的编号</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="s2">"https://alpha.wallhaven.cc/toplist?page=2"</span>  | <span class="nb">sed</span> <span class="s1">'s/.jpg/.jpg\n/g'</span> | <span class="nb">sed</span> <span class="s1">'s/.*https/https/g'</span> | <span class="nb">grep</span> .jpg
-</code></pre></div></div>
-
-<p>可直接得到图片的下载地址</p>
-
-<p>后来爬图的时候，发现一件很诡异的事情，比如这张图</p>
-
-<p><img src="https://i.loli.net/2018/11/09/5be48128b7bbf.jpg" alt="" /></p>
-
-<p>可以通过编号<code class="highlighter-rouge">703710</code>下载，</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget <span class="nt">-o-</span> https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-703710.jpg
-</code></pre></div></div>
-
-<p>但是直接访问<a href="https://alpha.wallhaven.cc/wallpaper/703710">图片地址</a>，却无法打开</p>
-
-<p><img src="https://i.loli.net/2018/11/09/5be481e2108a8.png" alt="" /></p>
-
-<p>这是与违禁图不同的提示</p>
-
-<p><img src="https://i.loli.net/2018/11/09/5be48241a570a.png" alt="" /></p>
-
-<p>有趣的是，对于这样露骨的图片，我们依旧可以通过url下载。经过一天的工作，我爬到了差不多两万张壁纸，但是其中<code class="highlighter-rouge">98%</code>的是NSFW内容…..</p>
-
-<p><img src="https://i.loli.net/2018/11/09/5be48331cfc72.png" alt="" /></p>
+<div align="center">
+    <img src="/media/img.jpg" width="100%" height="100%" />
+</div>
+<p />
 
 
     </section>
@@ -133,7 +89,7 @@
     
     <li class="listing-item">
       <time datetime="2018-11-09">2018-11-09</time>
-      <a href="/2018/11/09/about.html" title="Welcome">Welcome</a>
+      <a href="/2018/11/09/%E9%9A%BE%E9%81%93%E8%BF%99%E5%B0%B1%E6%98%AF%E4%BC%A0%E8%AF%B4%E4%B8%AD%E7%9A%84%E7%88%AC%E8%99%AB.html" title="初次接触爬虫">初次接触爬虫</a>
     </li>
   
     
