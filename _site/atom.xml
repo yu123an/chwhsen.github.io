@@ -4,7 +4,7 @@
  <title>第七间夜店</title>
  <link href="https://chwhsen.github.io/atom.xml" rel="self"/>
  <link href="https://chwhsen.github.io"/>
- <updated>2018-11-10T15:01:57+08:00</updated>
+ <updated>2018-11-13T00:54:59+08:00</updated>
  <id>https://chwhsen.github.io/</id>
  <author>
    <name>chwhsen</name>
@@ -13,8 +13,8 @@
  
  <entry>
    <title>Welcome</title>
-   <link href="https://chwhsen.github.io/2018/11/10/about.html"/>
-   <updated>2018-11-10T00:00:00+08:00</updated>
+   <link href="https://chwhsen.github.io/2018/11/13/about.html"/>
+   <updated>2018-11-13T00:00:00+08:00</updated>
    <id>urn:uuid:020e19e6-3b66-400f-8ce1-a6e00da0aafc</id>
    <content type="html">&lt;div align=&quot;center&quot;&gt; &lt;script src=&quot;https://v1.hitokoto.cn/?encode=js&amp;amp;select=%23hitokoto&quot; defer=&quot;&quot;&gt;&lt;/script&gt;
   &lt;p id=&quot;hitokoto&quot;&gt;:D 获取中...&lt;/p&gt;
@@ -25,6 +25,15 @@
 &lt;/div&gt;
 &lt;p /&gt;
 
+</content>
+ </entry>
+ 
+ <entry>
+   <title>连续三天的火鸡面</title>
+   <link href="https://chwhsen.github.io/2018/11/10/%E8%BF%9E%E7%BB%AD%E4%B8%89%E5%A4%A9%E7%9A%84%E7%81%AB%E9%B8%A1%E9%9D%A2.html"/>
+   <updated>2018-11-10T00:00:00+08:00</updated>
+   <id>urn:uuid:1c1f2c15-0658-465d-b97e-344572a277e2</id>
+   <content type="html">&lt;p&gt;papers&lt;/p&gt;
 </content>
  </entry>
  
@@ -586,74 +595,6 @@ ssh &lt;span class=&quot;nt&quot;&gt;-T&lt;/span&gt; git@github.com
 &lt;span class=&quot;nv&quot;&gt;urlen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ttt&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;tr&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'\n'&lt;/span&gt; | xxd &lt;span class=&quot;nt&quot;&gt;-plain&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/\(..\)/%\1/g'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
 mplayer &lt;span class=&quot;s2&quot;&gt;&quot;http://tsn.baidu.com/text2audio?tex=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$urlen&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;amp;lan=zh&amp;amp;vol=10&amp;amp;spd=4&amp;amp;cuid=&amp;lt;你的参数&amp;gt;&amp;amp;ctp=1&amp;amp;tok=&amp;lt;你的参数&amp;gt;&quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-</content>
- </entry>
- 
- <entry>
-   <title>IPv6域名解析</title>
-   <link href="https://chwhsen.github.io/2018/10/13/IPV6%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90.html"/>
-   <updated>2018-10-13T00:00:00+08:00</updated>
-   <id>urn:uuid:da10d154-2048-4bc1-98bf-0b449c0131f3</id>
-   <content type="html">&lt;p&gt;由于运营商的问题，即使我们可以获取到公网IP，但是IPv4的80端口与443端口是堵塞的，并不能让我们每个人使用。不过IPV6却没有这方面限制，所以，我们就可以。。。嘿嘿嘿。。。&lt;/p&gt;
-
-&lt;p&gt;使用IPV6还有一个好处是你可以直接访问你一级路由下的任何一个联网设备，前提是你的路由器能为他们分配到IPV6地址&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;注册DNSpod，得到你的token_id，由两部分组成&lt;/p&gt;
-
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ID:xxxxx
-Token:4caxxxxxxxxxxxxxxxxxxx
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-
-    &lt;p&gt;login_token的写法是&lt;/p&gt;
-
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ID，Token
-xxxxx,4caxxxxxxxxxxxxxxxxxxxxx
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;通过login_token获取你的domain_id&lt;/p&gt;
-
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl &lt;span class=&quot;nt&quot;&gt;-k&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'https://dnsapi.cn/Domain.List'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'login_token=&amp;lt;token_id&amp;gt;&amp;amp;format=json'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-
-    &lt;p&gt;每一个要解析的域名会对应一个domain_id，拿到你对应的id，如果只有一个域名的话就只有domain_id。&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/10/23/5bceae74859cf.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;再来获取该域名下的解析记录record_id&lt;/p&gt;
-
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl &lt;span class=&quot;nt&quot;&gt;-k&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'https://dnsapi.cn/Record.List'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'login_token=&amp;lt;token_id&amp;gt;&amp;amp;format=xml&amp;amp;domain_id=&amp;lt;domain_id&amp;gt;'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-
-    &lt;p&gt;同样的，任一解析记录都有自己对应的record_id，正常情况下，会有不少于三个record_id，其中两个为dns记录，剩下的一个或多个你添加的解析记录，你需要仔细找到你要解析的record_id，不要搞错了。&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/10/23/5bceae749270c.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;这样我们就有了login_token ，domain_id ，record_id，就可以通过API来随时更新解析记录了&lt;/p&gt;
-
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; POST &lt;span class=&quot;s2&quot;&gt;&quot;https://dnsapi.cn/Record.Modify&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;login_token=&amp;lt;token_id&amp;gt;&amp;amp;format=xml&amp;amp;domain_id=&amp;lt;domain_id&amp;gt;&amp;amp;record_id=&amp;lt;record_id&amp;gt;&amp;amp;record_type=AAAA&amp;amp;record_line=%e9%bb%98%e8%ae%a4&amp;amp;value=&amp;lt;ipaddress&amp;gt;&amp;amp;sub_domain=@&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-
-    &lt;p&gt;其中record_type决定你的解析类型，A为IPV4，我们需要的是AAAA，即IPV6&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/10/23/5bceae749fe0f.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-    &lt;p&gt;ipaddress可以通过bash脚本获取你的IPV6地址，比如&lt;/p&gt;
-
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;ipaddress&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;ip addr show eth0 | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;2408 | &lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/\/.*//g'&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{print $2}'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-
-    &lt;p&gt;其中eth0与2408要根据自己情况进行改写&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;图已更新&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
 
 </content>
  </entry>

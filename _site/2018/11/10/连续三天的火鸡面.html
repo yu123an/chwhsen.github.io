@@ -5,7 +5,7 @@
     <meta name="author" content="chwhsen" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     
-    <title>初次接触爬虫</title>
+    <title>连续三天的火鸡面</title>
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link href="/atom.xml" rel="alternate" title="第七间夜店" type="application/atom+xml" />
@@ -42,78 +42,28 @@
         <div id="content">
         <article>
   <section class="title">
-    <h2>初次接触爬虫 </h2>
+    <h2>连续三天的火鸡面 </h2>
   </section>
   <section class="meta">
   <span class="time">
-    <time datetime="2018-11-09">2018-11-09</time>
+    <time datetime="2018-11-10">2018-11-10</time>
   </span>
   
   <span class="tags">
     
-    <a href="/tags.html#linux" title="linux">#linux</a>
+    <a href="/tags.html#生活" title="生活">#生活</a>
     
   </span>
   
   </section>
   <section class="post">
-  <p>其实我也不知道我这个究竟叫做什么，我只是按照规律下载了一些壁纸图片而已</p>
-
-<p>是在<a href="https://alpha.wallhaven.cc/">这个网站下载</a> （https://alpha.wallhaven.cc/）的</p>
-
-<p><img src="https://i.loli.net/2018/11/09/5be47c0d9c01e.png" alt="" /></p>
-
-<p>首先我们先打开一张图片看一下url地址</p>
-
-<p><img src="https://i.loli.net/2018/11/09/5be47c586a775.png" alt="" /></p>
-
-<p>只有一串编号，尚不清楚这个编号是怎么生成的，或许只是依据上传顺序呢</p>
-
-<p>有了编号，我们先测试一下</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget <span class="nt">-o-</span> https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-<span class="nv">$i</span>.jpg
-</code></pre></div></div>
-
-<p><code class="highlighter-rouge">$i</code>为图片的的六位数编号，经测试可以下载图片，而且直接下载原图。</p>
-
-<p>下一步我们想办法来获取这串六位数编号</p>
-
-<p><img src="https://i.loli.net/2018/11/09/5be47ddfdf8f5.png" alt="" /></p>
-
-<p>我们打开网站的toplist，查看源码，可以直接通过处理html来获取需要的编号</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="s2">"https://alpha.wallhaven.cc/toplist?page=2"</span>  | <span class="nb">sed</span> <span class="s1">'s/.jpg/.jpg\n/g'</span> | <span class="nb">sed</span> <span class="s1">'s/.*https/https/g'</span> | <span class="nb">grep</span> .jpg
-</code></pre></div></div>
-
-<p>可直接得到图片的下载地址</p>
-
-<p>后来爬图的时候，发现一件很诡异的事情，比如这张图</p>
-
-<p><img src="https://i.loli.net/2018/11/09/5be48128b7bbf.jpg" alt="" /></p>
-
-<p>可以通过编号<code class="highlighter-rouge">703710</code>下载，</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget <span class="nt">-o-</span> https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-703710.jpg
-</code></pre></div></div>
-
-<p>但是直接访问<a href="https://alpha.wallhaven.cc/wallpaper/703710">图片地址</a>，却无法打开</p>
-
-<p><img src="https://i.loli.net/2018/11/09/5be481e2108a8.png" alt="" /></p>
-
-<p>这是与违禁图不同的提示</p>
-
-<p><img src="https://i.loli.net/2018/11/09/5be48241a570a.png" alt="" /></p>
-
-<p>有趣的是，对于这样露骨的图片，我们依旧可以通过url下载。经过一天的工作，我爬到了差不多两万张壁纸，但是其中<code class="highlighter-rouge">98%</code>的是NSFW内容…..</p>
-
-<p><img src="https://i.loli.net/2018/11/09/5be48331cfc72.png" alt="" /></p>
-
+  <p>papers</p>
 
   </section>
   
 <script type="text/javascript">
       var disqus_shortname = 'yuanyuan';
-      var disqus_identifier = 'urn:uuid:c246c603-638d-4bef-bde3-4f0c6b34c3f5';
+      var disqus_identifier = 'urn:uuid:1c1f2c15-0658-465d-b97e-344572a277e2';
 
       function leave_comment() {
           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -136,7 +86,7 @@
   <div class="divider">
     <span>
     
-    <a href="/2018/11/03/N1%E5%88%9D%E5%A7%8B%E5%8C%96.html"><i class="fa fa-chevron-left"></i></a>
+    <a href="/2018/11/09/%E9%9A%BE%E9%81%93%E8%BF%99%E5%B0%B1%E6%98%AF%E4%BC%A0%E8%AF%B4%E4%B8%AD%E7%9A%84%E7%88%AC%E8%99%AB.html"><i class="fa fa-chevron-left"></i></a>
     
     </span>
     
@@ -146,7 +96,7 @@
 
     <span>
     
-    <a href="/2018/11/10/%E8%BF%9E%E7%BB%AD%E4%B8%89%E5%A4%A9%E7%9A%84%E7%81%AB%E9%B8%A1%E9%9D%A2.html"><i class="fa fa-chevron-right"></i></a>
+    <a href="/2018/11/13/about.html"><i class="fa fa-chevron-right"></i></a>
     
     </span>
   </div>
