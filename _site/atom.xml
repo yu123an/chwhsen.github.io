@@ -4,7 +4,7 @@
  <title>第七间夜店</title>
  <link href="https://chwhsen.github.io/atom.xml" rel="self"/>
  <link href="https://chwhsen.github.io"/>
- <updated>2018-11-13T01:24:22+08:00</updated>
+ <updated>2018-11-17T12:02:23+08:00</updated>
  <id>https://chwhsen.github.io/</id>
  <author>
    <name>chwhsen</name>
@@ -12,9 +12,42 @@
 
  
  <entry>
+   <title>沉迷爬虫，无法自拔</title>
+   <link href="https://chwhsen.github.io/2018/11/17/%E6%B2%89%E8%BF%B7%E7%88%AC%E8%99%AB-%E6%97%A0%E6%B3%95%E8%87%AA%E6%8B%94.html"/>
+   <updated>2018-11-17T00:00:00+08:00</updated>
+   <id>urn:uuid:10bfb886-9f72-4324-bce6-afbc10c9a4bc</id>
+   <content type="html">&lt;p&gt;这几天不务正业，爬了好多图片，有壁纸，也有其他的，(⊙﹏⊙)&lt;del&gt;总体来说妹子居多&lt;/del&gt;下面来展示一下成果吧&lt;/p&gt;
+
+&lt;p&gt;首先是壁纸网站，也是爬的最多的，目标是100G，现在有差不多30G了&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://wx2.sinaimg.cn/large/0067rZZnly1fxawoh04bhj31i10u04qp.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我最爱的鼬神，有一部分已经上传到百度云，还有一部分还没来得及上传：&lt;a href=&quot;https://pan.baidu.com/s/13wp0ty9um2q7oWmgz86s4A&quot;&gt;提取码: dgd9&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;还有&lt;a href=&quot;https://qingbuyaohaixiu.com/&quot;&gt;在这里&lt;/a&gt;爬到的图&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://wx1.sinaimg.cn/mw690/0067rZZnly1fxawyt6662j30u00u0dhp.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;百度云：&lt;a href=&quot;https://pan.baidu.com/s/17Gxw2gp4gcL9Kda8G1x8Hg&quot;&gt;提取码: dxk1&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;妹子图的自拍区&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://wx4.sinaimg.cn/mw1024/9d52c073gy1fxa84g5tblj20qo0zkwuw.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;链接在这里：&lt;a href=&quot;https://pan.baidu.com/s/1rCLDoYkBTvkjB4fUZ9JByw&quot;&gt;提取码: utw2&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;豆瓣小组&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://wx1.sinaimg.cn/mw690/0067rZZnly1fxax786qm8j30qt0s141x.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://pan.baidu.com/s/1c0hQ6duQSut8yJJ2BMb59w&quot;&gt;提取码: gnqw&lt;/a&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
    <title>Welcome</title>
-   <link href="https://chwhsen.github.io/2018/11/13/about.html"/>
-   <updated>2018-11-13T00:00:00+08:00</updated>
+   <link href="https://chwhsen.github.io/2018/11/17/about.html"/>
+   <updated>2018-11-17T00:00:00+08:00</updated>
    <id>urn:uuid:020e19e6-3b66-400f-8ce1-a6e00da0aafc</id>
    <content type="html">&lt;div align=&quot;center&quot;&gt; &lt;script src=&quot;https://v1.hitokoto.cn/?encode=js&amp;amp;select=%23hitokoto&quot; defer=&quot;&quot;&gt;&lt;/script&gt;
   &lt;p id=&quot;hitokoto&quot;&gt;:D 获取中...&lt;/p&gt;
@@ -986,45 +1019,6 @@ ssh &lt;span class=&quot;nt&quot;&gt;-T&lt;/span&gt; git@github.com
 &lt;/ul&gt;
 
 &lt;p&gt;！！！！！！！！！！！！！！！！！！&lt;/p&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>调用百度语音API让你的服务器说话</title>
-   <link href="https://chwhsen.github.io/2018/10/16/%E8%B0%83%E7%94%A8%E7%99%BE%E5%BA%A6%E8%AF%AD%E9%9F%B3API%E8%AE%A9%E4%BD%A0%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B4%E8%AF%9D.html"/>
-   <updated>2018-10-16T00:00:00+08:00</updated>
-   <id>urn:uuid:9e0570a6-9de4-4a22-845b-187f4d8d82c1</id>
-   <content type="html">&lt;p&gt;首先需要在&lt;a href=&quot;https://login.bce.baidu.com/&quot;&gt;百度智能语音平台&lt;/a&gt;创建一个应用，并获取你的API Key和Secret Key，很简单的&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/10/23/5bceb47bea9c4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;之后获取你的access_token&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://openapi.baidu.com/oauth/2.0/token?grant_type=client_credentials&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;client_id=&lt;span class=&quot;nt&quot;&gt;&amp;lt;API-key&amp;gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;client_secret=&lt;span class=&quot;nt&quot;&gt;&amp;lt;Secret&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;Key&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;在浏览器打开即可&lt;/p&gt;
-
-&lt;p&gt;然后通过access_token来正确调用API&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;http://tsn.baidu.com/text2audio?tex=你要说的话&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;lan=zh&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;vol=10&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;spd=4&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;cuid=&lt;span class=&quot;nt&quot;&gt;&amp;lt;Api-key&amp;gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;ctp=1&lt;span class=&quot;err&quot;&gt;&amp;amp;&lt;/span&gt;tok=&lt;span class=&quot;nt&quot;&gt;&amp;lt;access&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;_token&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;在浏览器中打开链接，如果正确的话，会自动播放声音，内容为你要他说的话，如果参数错误，也会提示错误码，方便你解决问题。&lt;/p&gt;
-
-&lt;p&gt;如果想在服务器上运行，还要安装命令行播放器&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;mplayer
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;最后就把他写成一个脚本即可&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;ttt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;语音播报内容&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#可以接其他API以实现不同的目的和要求&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;urlen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ttt&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;tr&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'\n'&lt;/span&gt; | xxd &lt;span class=&quot;nt&quot;&gt;-plain&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/\(..\)/%\1/g'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
-mplayer &lt;span class=&quot;s2&quot;&gt;&quot;http://tsn.baidu.com/text2audio?tex=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$urlen&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;amp;lan=zh&amp;amp;vol=10&amp;amp;spd=4&amp;amp;cuid=&amp;lt;你的参数&amp;gt;&amp;amp;ctp=1&amp;amp;tok=&amp;lt;你的参数&amp;gt;&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
 </content>
  </entry>
  
