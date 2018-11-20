@@ -1,0 +1,7 @@
+---
+title: python学不进去好痛苦
+guid: urn:uuid:436b11e5-f29d-408d-bad5-922ac98901d1
+tags: linux python
+layout: post
+---
+papers
