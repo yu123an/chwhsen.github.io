@@ -1,0 +1,77 @@
+---
+title: 使用bypy同步文件到百度云
+guid: urn:uuid:01d495e0-4b37-435b-a2c8-78ac4d9c7fb8
+tags: linux
+layout: post
+---
+`bypy`是一个在`linux`环境下的百度网盘`python`客户端，可以通过命令行的方式在`linux`与百度网盘之间进行文件同步，由于百度权限限制，程序只能存取百度云端`/apps/bypy`目录下面的文件和目录。可以做到
+
+- [x] 查看文件列表
+- [x] 上传文件
+- [x] 下载文件
+- [x] 比较文件列表
+- [x] 向上同步
+- [x] 向下同步
+- [ ] ......
+
+安装
+
+```shell
+apt install python3-pip
+pip3 install pyby
+```
+
+授权
+
+```
+bypy info
+```
+
+这是会给你一个网址，在浏览器中打开，并输入返回的密钥串
+
+![](https://samzong.oss-cn-shenzhen.aliyuncs.com/blog/2grhz.png)
+
+稍等片刻，当出现`Successfully authorized`即代表授权成功
+
+常用命令
+
+```
+bypy list
+```
+
+查看云端文件列表，即`/apps/bypy`目录下的文件列表
+
+```
+/apps/bypy ($t $f $s $m $d):
+F 2018-11-20.zip 7408724 2018-11-20, 16:08:59 a96661431a2abd496656cf155d8b2225
+```
+
+
+```
+bypy upload <file>
+```
+
+上传文件，	`<file>`为空时上传所在目录下的所有文件
+
+```python
+bypy compare <file1> <file2>
+```
+
+比较本地文件与云端文件
+
+定时任务
+
+首先查看`bypy`路径，
+
+```shell
+~#:whereis bypy
+bypy: /usr/local/bin/bypy
+```
+
+然后在`crontab`文件添加
+
+```shell
+* * * * * /usr/local/bin/bypy upload <file> > /dev/null 2>&1
+```
+
+即可实现定时同步服务器文件至百度网盘

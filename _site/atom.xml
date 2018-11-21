@@ -4,12 +4,110 @@
  <title>第七间夜店</title>
  <link href="https://chwhsen.github.io/atom.xml" rel="self"/>
  <link href="https://chwhsen.github.io"/>
- <updated>2018-11-17T12:02:23+08:00</updated>
+ <updated>2018-11-21T15:03:58+08:00</updated>
  <id>https://chwhsen.github.io/</id>
  <author>
    <name>chwhsen</name>
  </author>
 
+ 
+ <entry>
+   <title>使用bypy同步文件到百度云</title>
+   <link href="https://chwhsen.github.io/2018/11/21/%E4%BD%BF%E7%94%A8bypy%E5%90%8C%E6%AD%A5%E6%96%87%E4%BB%B6%E5%88%B0%E7%99%BE%E5%BA%A6%E4%BA%91.html"/>
+   <updated>2018-11-21T00:00:00+08:00</updated>
+   <id>urn:uuid:01d495e0-4b37-435b-a2c8-78ac4d9c7fb8</id>
+   <content type="html">&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;bypy&lt;/code&gt;是一个在&lt;code class=&quot;highlighter-rouge&quot;&gt;linux&lt;/code&gt;环境下的百度网盘&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;客户端，可以通过命令行的方式在&lt;code class=&quot;highlighter-rouge&quot;&gt;linux&lt;/code&gt;与百度网盘之间进行文件同步，由于百度权限限制，程序只能存取百度云端&lt;code class=&quot;highlighter-rouge&quot;&gt;/apps/bypy&lt;/code&gt;目录下面的文件和目录。可以做到&lt;/p&gt;
+
+&lt;ul class=&quot;task-list&quot;&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;查看文件列表&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;上传文件&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;下载文件&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;比较文件列表&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;向上同步&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;向下同步&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;……&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;安装&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;python3-pip
+pip3 &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;pyby
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;授权&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bypy info
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这是会给你一个网址，在浏览器中打开，并输入返回的密钥串&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://samzong.oss-cn-shenzhen.aliyuncs.com/blog/2grhz.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;稍等片刻，当出现&lt;code class=&quot;highlighter-rouge&quot;&gt;Successfully authorized&lt;/code&gt;即代表授权成功&lt;/p&gt;
+
+&lt;p&gt;常用命令&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bypy list
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;查看云端文件列表，即&lt;code class=&quot;highlighter-rouge&quot;&gt;/apps/bypy&lt;/code&gt;目录下的文件列表&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/apps/bypy ($t $f $s $m $d):
+F 2018-11-20.zip 7408724 2018-11-20, 16:08:59 a96661431a2abd496656cf155d8b2225
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bypy upload &amp;lt;file&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;上传文件，	&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;file&amp;gt;&lt;/code&gt;为空时上传所在目录下的所有文件&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;bypy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;compare&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;比较本地文件与云端文件&lt;/p&gt;
+
+&lt;p&gt;定时任务&lt;/p&gt;
+
+&lt;p&gt;首先查看&lt;code class=&quot;highlighter-rouge&quot;&gt;bypy&lt;/code&gt;路径，&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~#:whereis bypy
+bypy: /usr/local/bin/bypy
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;然后在&lt;code class=&quot;highlighter-rouge&quot;&gt;crontab&lt;/code&gt;文件添加&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; /usr/local/bin/bypy upload &amp;lt;file&amp;gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; /dev/null 2&amp;gt;&amp;amp;1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;即可实现定时同步服务器文件至百度网盘&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Welcome</title>
+   <link href="https://chwhsen.github.io/2018/11/21/about.html"/>
+   <updated>2018-11-21T00:00:00+08:00</updated>
+   <id>urn:uuid:020e19e6-3b66-400f-8ce1-a6e00da0aafc</id>
+   <content type="html">&lt;div align=&quot;center&quot;&gt; &lt;script src=&quot;https://v1.hitokoto.cn/?encode=js&amp;amp;select=%23hitokoto&quot; defer=&quot;&quot;&gt;&lt;/script&gt;
+  &lt;p id=&quot;hitokoto&quot;&gt;:D 获取中...&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/media/img.jpg&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;
+&lt;/div&gt;
+&lt;p /&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>python学不进去好痛苦</title>
+   <link href="https://chwhsen.github.io/2018/11/20/python%E5%AD%A6%E4%B8%8D%E8%BF%9B%E5%8E%BB%E5%A5%BD%E7%97%9B%E8%8B%A6.html"/>
+   <updated>2018-11-20T00:00:00+08:00</updated>
+   <id>urn:uuid:436b11e5-f29d-408d-bad5-922ac98901d1</id>
+   <content type="html">&lt;p&gt;papers&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>沉迷爬虫，无法自拔</title>
@@ -41,23 +139,6 @@
 &lt;p&gt;&lt;img src=&quot;http://wx1.sinaimg.cn/mw690/0067rZZnly1fxax786qm8j30qt0s141x.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://pan.baidu.com/s/1c0hQ6duQSut8yJJ2BMb59w&quot;&gt;提取码: gnqw&lt;/a&gt;&lt;/p&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>Welcome</title>
-   <link href="https://chwhsen.github.io/2018/11/17/about.html"/>
-   <updated>2018-11-17T00:00:00+08:00</updated>
-   <id>urn:uuid:020e19e6-3b66-400f-8ce1-a6e00da0aafc</id>
-   <content type="html">&lt;div align=&quot;center&quot;&gt; &lt;script src=&quot;https://v1.hitokoto.cn/?encode=js&amp;amp;select=%23hitokoto&quot; defer=&quot;&quot;&gt;&lt;/script&gt;
-  &lt;p id=&quot;hitokoto&quot;&gt;:D 获取中...&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/media/img.jpg&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;
-&lt;/div&gt;
-&lt;p /&gt;
-
 </content>
  </entry>
  
@@ -843,182 +924,6 @@ ssh &lt;span class=&quot;nt&quot;&gt;-T&lt;/span&gt; git@github.com
 
 &lt;p&gt;待搜集……&lt;/p&gt;
 
-</content>
- </entry>
- 
- <entry>
-   <title>Jekyll美化之路</title>
-   <link href="https://chwhsen.github.io/2018/10/25/Jekyll%E7%BE%8E%E5%8C%96%E4%B9%8B%E8%B7%AF.html"/>
-   <updated>2018-10-25T00:00:00+08:00</updated>
-   <id>urn:uuid:86c54ab8-1ac4-4add-9886-e7256cc860c2</id>
-   <content type="html">&lt;blockquote&gt;
-  &lt;p&gt;因为不太喜欢Jekyll自带的主题，字体太大，自己写CSS和模板又不现实，索性就clone了一份看着不错的主题自己魔改了&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&quot;效果图&quot;&gt;效果图&lt;/h4&gt;
-
-&lt;p&gt;改之前的默认主题&lt;/p&gt;
-
-&lt;p&gt;​	PC端–你看这个字，他又大又圆 ……&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/10/26/5bd1faa8af00f.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;​	手机端–勉强可以接受&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/10/26/5bd1f9e42eaff.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;改之后&quot;&gt;改之后&lt;/h4&gt;
-
-&lt;p&gt;​	PC端–简约大气，大量的留白给人一种从容不迫的舒适感&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/10/26/5bd1fba7e89c5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;​	移动端–赏心悦目，恰到好处的配色让人流连忘返&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/10/26/5bd1fb66976a2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;魔改过程&quot;&gt;魔改过程&lt;/h4&gt;
-
-&lt;p&gt;首先是对&lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;配置文件的修改&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;#-------------&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;个人信息&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#-------------&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;第七间夜店&quot;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;permalink&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/:year/:month/:day/:title.html&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;author&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;chwhsen&quot;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;atom-baseurl&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;https://chwhsen.github.io&quot;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;disqus&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;yuanyuan&quot;&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#------------&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;菜单页&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;屏蔽了没必要的画展页面和订阅页面，增加了挂在路由器上的U盘下载入口&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#------------&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;navigations&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;归档&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;fa fa-list-ul&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/archive.html&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;标签&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;fa fa-tags&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/tags.html&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Stop&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;fa fa-user&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/about.html&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#  - title: Gallery&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#    class: fa fa-film&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#    href: &lt;/span&gt;
- &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Download&lt;/span&gt;
-   &lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;fa fa-rss&lt;/span&gt;
-   &lt;span class=&quot;na&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ftp://www.chwhsen.xyz:909&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#-------------&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;添加了百度统计&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#-------------&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;baidu-analysis&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;9c651515b864fe89150625c30c3dce34&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;现在菜单显示是这样的&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/10/30/5bd8443f51179.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;其次是&lt;code class=&quot;highlighter-rouge&quot;&gt;/_layout&lt;/code&gt;里模板的调整；从另外一位大佬的模板借鉴了新的样式表，可以自由打开或关闭评论区&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/media/css/github.css&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-     undefined&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/media/js/jquery-1.7.1.min.js&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;charset=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;utf-8&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt; 
-    undefined&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/media/js/highlight.pack.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;评论区效果如下：&lt;/p&gt;
-
-&lt;ul class=&quot;task-list&quot;&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;​	默认不显示评论区&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/10/30/5bd84369275f2.png&quot; alt=&quot;默认关闭评论&quot; /&gt;&lt;/p&gt;
-
-&lt;ul class=&quot;task-list&quot;&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;显示评论区&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/10/30/5bd8436948a13.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-</content>
- </entry>
- 
- <entry>
-   <title>用Excel排成绩单的正确食用方法</title>
-   <link href="https://chwhsen.github.io/2018/10/23/%E7%94%A8Excel%E6%8E%92%E6%88%90%E7%BB%A9%E5%8D%95%E7%9A%84%E6%AD%A3%E7%A1%AE%E9%A3%9F%E7%94%A8%E6%96%B9%E6%B3%95.html"/>
-   <updated>2018-10-23T00:00:00+08:00</updated>
-   <id>urn:uuid:70821e45-12c3-470e-8b17-aed5be3d9fe5</id>
-   <content type="html">&lt;p&gt;我手上有一份教学秘书刚发过来的热乎的成绩单&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/10/23/5bcebbf211932.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;很明显这不是我想要的，我的需求是&lt;/p&gt;
-
-&lt;ul class=&quot;task-list&quot;&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;只有我班一个班级的成绩排名&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;字体大小要合适，能打印在一张A4纸上&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;去掉无用信息/空白信息/多余信息&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;按照班级名次从高到低排序&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;第一个要求很容易就能实现，对第一列进行筛选即可&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/10/23/5bcebd17c8886.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;这样就把所有3班的学生过滤出来了&lt;/p&gt;
-
-&lt;ul class=&quot;task-list&quot;&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;只有我班一个班级的成绩排名&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;字体大小要合适，能打印在一张A4纸上&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;去掉无用信息/空白信息/多余信息&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;按照班级名次从高到低排序&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;接下来我们把这个筛选后的表格复制到一个新的excel文档里，调整他的打印输出选项，使之能在一张A4纸上显示完整信息。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/10/23/5bcebec35101f.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;我也同时把一些无用列给删掉了，A4纸大小有限，我把班级那一列也删掉了&lt;/p&gt;
-
-&lt;ul class=&quot;task-list&quot;&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;只有我班一个班级的成绩排名&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;字体大小要合适，能打印在一张A4纸上&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;去掉无用信息/空白信息/多余信息&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;按照班级名次从高到低排序&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;然后我们去调整打印页面设置&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/10/23/5bcebfaaed389.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;在这寸土寸金的地方，我们就不要让页边距占据太多的位置了，象征性的留一丁点距离就可以了，调整之后的页面效果如下图所示&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/10/23/5bcebfab483af.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;可以看到我们对边框真的很吝啬啊，但是即便如此我们也还是要打印4页才可以，这下我们就只能选用小号字体并且缩小单元格大小来压缩空间了&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/10/23/5bcec19dcd235.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;图中的虚线就是打印时每一页的分割处，我们要经过多次调整字体大小与单元格的行高与列宽，让页面处在虚线以内即可&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/10/23/5bcec19dd3b53.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;如此一来，就能将所有的成绩放在一张A4纸上了，虽然看起来字体小且单元格及其紧凑，但是省纸啊，还要啥自行车呢&lt;/p&gt;
-
-&lt;p&gt;打印效果：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/10/23/5bcec32cc190c.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;如此我们的要求便全部达成&lt;/p&gt;
-
-&lt;ul class=&quot;task-list&quot;&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;只有我班一个班级的成绩排名&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;字体大小要合适，能打印在一张A4纸上&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;去掉无用信息/空白信息/多余信息&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;按照班级名次从高到低排序&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;！！！！！！！！！！！！！！！！！！&lt;/p&gt;
 </content>
  </entry>
  
