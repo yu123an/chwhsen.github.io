@@ -4,7 +4,7 @@
  <title>第七间夜店</title>
  <link href="https://chwhsen.github.io/atom.xml" rel="self"/>
  <link href="https://chwhsen.github.io"/>
- <updated>2018-11-21T15:03:58+08:00</updated>
+ <updated>2018-11-21T15:07:03+08:00</updated>
  <id>https://chwhsen.github.io/</id>
  <author>
    <name>chwhsen</name>
@@ -45,28 +45,21 @@ pip3 &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;pyby
 
 &lt;p&gt;稍等片刻，当出现&lt;code class=&quot;highlighter-rouge&quot;&gt;Successfully authorized&lt;/code&gt;即代表授权成功&lt;/p&gt;
 
-&lt;p&gt;常用命令&lt;/p&gt;
-
+&lt;p&gt;常用命令
+查看云端文件列表，即&lt;code class=&quot;highlighter-rouge&quot;&gt;/apps/bypy&lt;/code&gt;目录下的文件列表&lt;/p&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bypy list
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;查看云端文件列表，即&lt;code class=&quot;highlighter-rouge&quot;&gt;/apps/bypy&lt;/code&gt;目录下的文件列表&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/apps/bypy ($t $f $s $m $d):
+/apps/bypy ($t $f $s $m $d):
 F 2018-11-20.zip 7408724 2018-11-20, 16:08:59 a96661431a2abd496656cf155d8b2225
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;p&gt;上传文件，&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;file&amp;gt;&lt;/code&gt;为空时上传所在目录下的所有文件&lt;/p&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bypy upload &amp;lt;file&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;上传文件，	&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;file&amp;gt;&lt;/code&gt;为空时上传所在目录下的所有文件&lt;/p&gt;
-
+&lt;p&gt;比较本地文件与云端文件&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;bypy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;compare&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;比较本地文件与云端文件&lt;/p&gt;
-
-&lt;p&gt;定时任务&lt;/p&gt;
+&lt;p&gt;添加定时任务&lt;/p&gt;
 
 &lt;p&gt;首先查看&lt;code class=&quot;highlighter-rouge&quot;&gt;bypy&lt;/code&gt;路径，&lt;/p&gt;
 

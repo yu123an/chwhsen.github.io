@@ -97,28 +97,21 @@ pip3 <span class="nb">install </span>pyby
 
 <p>稍等片刻，当出现<code class="highlighter-rouge">Successfully authorized</code>即代表授权成功</p>
 
-<p>常用命令</p>
-
+<p>常用命令
+查看云端文件列表，即<code class="highlighter-rouge">/apps/bypy</code>目录下的文件列表</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bypy list
-</code></pre></div></div>
-
-<p>查看云端文件列表，即<code class="highlighter-rouge">/apps/bypy</code>目录下的文件列表</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/apps/bypy ($t $f $s $m $d):
+/apps/bypy ($t $f $s $m $d):
 F 2018-11-20.zip 7408724 2018-11-20, 16:08:59 a96661431a2abd496656cf155d8b2225
 </code></pre></div></div>
 
+<p>上传文件，<code class="highlighter-rouge">&lt;file&gt;</code>为空时上传所在目录下的所有文件</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bypy upload &lt;file&gt;
 </code></pre></div></div>
-
-<p>上传文件，	<code class="highlighter-rouge">&lt;file&gt;</code>为空时上传所在目录下的所有文件</p>
-
+<p>比较本地文件与云端文件</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bypy</span> <span class="n">compare</span> <span class="o">&lt;</span><span class="n">file1</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">file2</span><span class="o">&gt;</span>
 </code></pre></div></div>
 
-<p>比较本地文件与云端文件</p>
-
-<p>定时任务</p>
+<p>添加定时任务</p>
 
 <p>首先查看<code class="highlighter-rouge">bypy</code>路径，</p>
 

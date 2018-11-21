@@ -34,32 +34,23 @@ bypy info
 稍等片刻，当出现`Successfully authorized`即代表授权成功
 
 常用命令
-
+查看云端文件列表，即`/apps/bypy`目录下的文件列表
 ```
 bypy list
-```
-
-查看云端文件列表，即`/apps/bypy`目录下的文件列表
-
-```
 /apps/bypy ($t $f $s $m $d):
 F 2018-11-20.zip 7408724 2018-11-20, 16:08:59 a96661431a2abd496656cf155d8b2225
 ```
 
-
+上传文件，`<file>`为空时上传所在目录下的所有文件
 ```
 bypy upload <file>
 ```
-
-上传文件，	`<file>`为空时上传所在目录下的所有文件
-
+比较本地文件与云端文件
 ```python
 bypy compare <file1> <file2>
 ```
 
-比较本地文件与云端文件
-
-定时任务
+添加定时任务
 
 首先查看`bypy`路径，
 
