@@ -1,0 +1,85 @@
+---
+title: 我眼中的爬虫
+guid: urn:uuid:0d380d77-ec31-425b-bade-be5de29104b2
+tags: linux Spider
+layout: post
+---
+近期也看了不少爬虫方面的知识和博客，发现大神都是用的`python`我也试着去搞了一下，发现自己的`N1`配置`python`环境总是各种各样的出问题，总是磕磕绊绊，也就无疾而终了，反而是一直执着于用`Shell`来写脚本爬，不过对于我这种需求不高的同时只是爬一些简单网站的用户来说用`Shell`也足够了，不过也需要抽一个时间专门用来研究一下`python`环境的搭建了，以防以后确实要用到。下面来说说我使用`shell`爬数据的心得以及遇到的小障碍吧
+
+一个爬虫脚本的构建思路
+
+我拿[当当网的24小时图书热卖榜](http://bang.dangdang.com/books/newhotsales/01.41.00.00.00.00-24hours-0-0-1-1)来分析
+
+首先看一下页面`URL`
+
+```html
+http://bang.dangdang.com/books/newhotsales/01.41.00.00.00.00-24hours-0-0-1-1
+http://bang.dangdang.com/books/newhotsales/01.41.00.00.00.00-24hours-0-0-1-2
+http://bang.dangdang.com/books/newhotsales/01.41.00.00.00.00-24hours-0-0-1-3
+```
+
+很有规律的，简单循环就可以得到所有页面
+
+```shell
+for (( i=1;i<=25;i++ ))
+	do
+	curl "http://bang.dangdang.com/books/newhotsales/01.41.00.00.00.00-24hours-0-0-1-${i}"
+done
+```
+
+然后看一下页面
+
+![](https://ws3.sinaimg.cn/large/005BYqpggy1fxj0zb45l3j311y0ii43p.jpg)
+
+```html
+<div class="pic">
+    <a href="http://product.dangdang.com/25573171.html" target="_blank">
+        <img src="http://img3m1.ddimg.cn/85/29/25573171-1_l_8.jpg" alt="乐观情绪培养绘本·小鳄鱼相伴成长绘本（全10册）"  title="乐观情绪培养绘本·小鳄鱼相伴成长绘本（全10册）"/>
+    </a>
+</div>
+```
+
+可以很直接的看到图书地址，封面图地址与图书标题，只需要用`awk`将其提取出即可
+
+```shell
+awk -F '"' '{print "这是地址",$4,"\n这是封面",$8,"\n这是标题",$12}'
+```
+
+如果要做成`markdown`格式，只需要
+
+```bash
+awk -F '"' '{print "[",$12,"](",$4,")\n"}'
+```
+
+完整代码：
+
+```bash
+for (( i=1;i<=25;i++ ))
+	do
+	curl "http://bang.dangdang.com/books/newhotsales/01.41.00.00.00.00-24hours-0-0-1-${i}" | \
+	awk -F '"' '{print "[",$12,"](",$4,")\n"}' \
+	>> /mnt/dangdang.book
+done
+```
+
+遇到的一次小障碍
+
+在我爬取[这个网站](https://www.mzitu.com/)的时候，可以很容易的获取到图片链接
+
+![](https://ws3.sinaimg.cn/large/005BYqpggy1fxj1gquv05j311y0iitrr.jpg)
+
+```
+https://i.meizitu.net/2018/08/19b01.jpg
+```
+
+但是当我使用`wget`下载时却无法下载，经过了很长一段儿时间才意识到`防盗链`的存在
+
+解决方法也很简单
+
+只需要通过`--referer`指定来源页面即可
+
+```bash
+wget --referer=https://www.mzitu.com/ $url
+```
+
+当然，对于一些复杂的网站仅仅改动`referer`是远远不够的，对于那样的网站，用`Python`就游刃有余了

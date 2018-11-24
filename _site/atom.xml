@@ -4,12 +4,108 @@
  <title>第七间夜店</title>
  <link href="https://chwhsen.github.io/atom.xml" rel="self"/>
  <link href="https://chwhsen.github.io"/>
- <updated>2018-11-21T15:07:03+08:00</updated>
+ <updated>2018-11-24T12:35:38+08:00</updated>
  <id>https://chwhsen.github.io/</id>
  <author>
    <name>chwhsen</name>
  </author>
 
+ 
+ <entry>
+   <title>我眼中的爬虫</title>
+   <link href="https://chwhsen.github.io/2018/11/24/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E7%88%AC%E8%99%AB.html"/>
+   <updated>2018-11-24T00:00:00+08:00</updated>
+   <id>urn:uuid:0d380d77-ec31-425b-bade-be5de29104b2</id>
+   <content type="html">&lt;p&gt;近期也看了不少爬虫方面的知识和博客，发现大神都是用的&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;我也试着去搞了一下，发现自己的&lt;code class=&quot;highlighter-rouge&quot;&gt;N1&lt;/code&gt;配置&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;环境总是各种各样的出问题，总是磕磕绊绊，也就无疾而终了，反而是一直执着于用&lt;code class=&quot;highlighter-rouge&quot;&gt;Shell&lt;/code&gt;来写脚本爬，不过对于我这种需求不高的同时只是爬一些简单网站的用户来说用&lt;code class=&quot;highlighter-rouge&quot;&gt;Shell&lt;/code&gt;也足够了，不过也需要抽一个时间专门用来研究一下&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;环境的搭建了，以防以后确实要用到。下面来说说我使用&lt;code class=&quot;highlighter-rouge&quot;&gt;shell&lt;/code&gt;爬数据的心得以及遇到的小障碍吧&lt;/p&gt;
+
+&lt;p&gt;一个爬虫脚本的构建思路&lt;/p&gt;
+
+&lt;p&gt;我拿&lt;a href=&quot;http://bang.dangdang.com/books/newhotsales/01.41.00.00.00.00-24hours-0-0-1-1&quot;&gt;当当网的24小时图书热卖榜&lt;/a&gt;来分析&lt;/p&gt;
+
+&lt;p&gt;首先看一下页面&lt;code class=&quot;highlighter-rouge&quot;&gt;URL&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;http://bang.dangdang.com/books/newhotsales/01.41.00.00.00.00-24hours-0-0-1-1
+http://bang.dangdang.com/books/newhotsales/01.41.00.00.00.00-24hours-0-0-1-2
+http://bang.dangdang.com/books/newhotsales/01.41.00.00.00.00-24hours-0-0-1-3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;很有规律的，简单循环就可以得到所有页面&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;i&amp;lt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;25&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;i++ &lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;do
+	&lt;/span&gt;curl &lt;span class=&quot;s2&quot;&gt;&quot;http://bang.dangdang.com/books/newhotsales/01.41.00.00.00.00-24hours-0-0-1-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;然后看一下页面&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://ws3.sinaimg.cn/large/005BYqpggy1fxj0zb45l3j311y0ii43p.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;pic&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://product.dangdang.com/25573171.html&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;target=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;_blank&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://img3m1.ddimg.cn/85/29/25573171-1_l_8.jpg&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;alt=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;乐观情绪培养绘本·小鳄鱼相伴成长绘本（全10册）&quot;&lt;/span&gt;  &lt;span class=&quot;na&quot;&gt;title=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;乐观情绪培养绘本·小鳄鱼相伴成长绘本（全10册）&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;可以很直接的看到图书地址，封面图地址与图书标题，只需要用&lt;code class=&quot;highlighter-rouge&quot;&gt;awk&lt;/code&gt;将其提取出即可&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-F&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&quot;'&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{print &quot;这是地址&quot;,$4,&quot;\n这是封面&quot;,$8,&quot;\n这是标题&quot;,$12}'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;如果要做成&lt;code class=&quot;highlighter-rouge&quot;&gt;markdown&lt;/code&gt;格式，只需要&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-F&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&quot;'&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{print &quot;[&quot;,$12,&quot;](&quot;,$4,&quot;)\n&quot;}'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;完整代码：&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;i&amp;lt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;25&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;i++ &lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;do
+	&lt;/span&gt;curl &lt;span class=&quot;s2&quot;&gt;&quot;http://bang.dangdang.com/books/newhotsales/01.41.00.00.00.00-24hours-0-0-1-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+	&lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-F&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&quot;'&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{print &quot;[&quot;,$12,&quot;](&quot;,$4,&quot;)\n&quot;}'&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; /mnt/dangdang.book
+&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;遇到的一次小障碍&lt;/p&gt;
+
+&lt;p&gt;在我爬取&lt;a href=&quot;https://www.mzitu.com/&quot;&gt;这个网站&lt;/a&gt;的时候，可以很容易的获取到图片链接&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://ws3.sinaimg.cn/large/005BYqpggy1fxj1gquv05j311y0iitrr.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://i.meizitu.net/2018/08/19b01.jpg
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;但是当我使用&lt;code class=&quot;highlighter-rouge&quot;&gt;wget&lt;/code&gt;下载时却无法下载，经过了很长一段儿时间才意识到&lt;code class=&quot;highlighter-rouge&quot;&gt;防盗链&lt;/code&gt;的存在&lt;/p&gt;
+
+&lt;p&gt;解决方法也很简单&lt;/p&gt;
+
+&lt;p&gt;只需要通过&lt;code class=&quot;highlighter-rouge&quot;&gt;--referer&lt;/code&gt;指定来源页面即可&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget &lt;span class=&quot;nt&quot;&gt;--referer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;https://www.mzitu.com/ &lt;span class=&quot;nv&quot;&gt;$url&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;当然，对于一些复杂的网站仅仅改动&lt;code class=&quot;highlighter-rouge&quot;&gt;referer&lt;/code&gt;是远远不够的，对于那样的网站，用&lt;code class=&quot;highlighter-rouge&quot;&gt;Python&lt;/code&gt;就游刃有余了&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Welcome</title>
+   <link href="https://chwhsen.github.io/2018/11/24/about.html"/>
+   <updated>2018-11-24T00:00:00+08:00</updated>
+   <id>urn:uuid:020e19e6-3b66-400f-8ce1-a6e00da0aafc</id>
+   <content type="html">&lt;div align=&quot;center&quot;&gt; &lt;script src=&quot;https://v1.hitokoto.cn/?encode=js&amp;amp;select=%23hitokoto&quot; defer=&quot;&quot;&gt;&lt;/script&gt;
+  &lt;p id=&quot;hitokoto&quot;&gt;:D 获取中...&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/media/img.jpg&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;
+&lt;/div&gt;
+&lt;p /&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>使用bypy同步文件到百度云</title>
@@ -30,8 +126,8 @@
 
 &lt;p&gt;安装&lt;/p&gt;
 
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;python3-pip
-pip3 &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;pyby
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;python-pip
+pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;bypy
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;授权&lt;/p&gt;
@@ -73,23 +169,6 @@ bypy: /usr/local/bin/bypy
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;即可实现定时同步服务器文件至百度网盘&lt;/p&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>Welcome</title>
-   <link href="https://chwhsen.github.io/2018/11/21/about.html"/>
-   <updated>2018-11-21T00:00:00+08:00</updated>
-   <id>urn:uuid:020e19e6-3b66-400f-8ce1-a6e00da0aafc</id>
-   <content type="html">&lt;div align=&quot;center&quot;&gt; &lt;script src=&quot;https://v1.hitokoto.cn/?encode=js&amp;amp;select=%23hitokoto&quot; defer=&quot;&quot;&gt;&lt;/script&gt;
-  &lt;p id=&quot;hitokoto&quot;&gt;:D 获取中...&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/media/img.jpg&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;
-&lt;/div&gt;
-&lt;p /&gt;
-
 </content>
  </entry>
  
@@ -871,51 +950,6 @@ ssh &lt;span class=&quot;nt&quot;&gt;-T&lt;/span&gt; git@github.com
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;晴
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-</content>
- </entry>
- 
- <entry>
-   <title>主流路由器刷机教程汇总</title>
-   <link href="https://chwhsen.github.io/2018/10/25/%E4%B8%BB%E6%B5%81%E8%B7%AF%E7%94%B1%E5%99%A8%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B%E6%B1%87%E6%80%BB.html"/>
-   <updated>2018-10-25T00:00:00+08:00</updated>
-   <id>urn:uuid:81bbe88f-191c-4b7e-abe9-a8da9ab33feb</id>
-   <content type="html">&lt;h1 id=&quot;斐讯&quot;&gt;斐讯&lt;/h1&gt;
-&lt;h2 id=&quot;k2&quot;&gt;K2&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.right.com.cn/forum/forum.php?mod=viewthread&amp;amp;tid=270318&amp;amp;extra=page%3D1%26filter%3Dtypeid%26typeid%3D13%26digest%3D1&quot;&gt;刷入breed&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.right.com.cn/forum/forum.php?mod=viewthread&amp;amp;tid=208753&amp;amp;extra=page%3D1%26filter%3Dtypeid%26typeid%3D13%26digest%3D1&quot;&gt;官改&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.right.com.cn/forum/forum.php?mod=viewthread&amp;amp;tid=214183&amp;amp;extra=page%3D1%26filter%3Dtypeid%26typeid%3D13%26digest%3D1&quot;&gt;潘多拉&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.right.com.cn/forum/thread-227226-1-1.html&quot;&gt;Padavan&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.right.com.cn/forum/thread-196116-1-1.html&quot;&gt;Openwrt&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;k2p&quot;&gt;K2P&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.right.com.cn/forum/forum.php?mod=viewthread&amp;amp;tid=221578&amp;amp;extra=page%3D1%26filter%3Ddigest%26digest%3D1%26typeid%3D14&quot;&gt;官改（mtk）&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.right.com.cn/forum/thread-259478-1-1.html&quot;&gt;官改（博通）&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.right.com.cn/forum/forum.php?mod=viewthread&amp;amp;tid=197786&amp;amp;extra=page%3D1%26filter%3Ddigest%26digest%3D1%26typeid%3D14&quot;&gt;潘多拉&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.right.com.cn/forum/thread-218704-1-1.html&quot;&gt;Padavan（荒野无灯）&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.right.com.cn/forum/thread-161324-1-1.html&quot;&gt;Padavan（Hiboy）&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.right.com.cn/forum/thread-255053-1-1.html&quot;&gt;梅林&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.gocloud.cn/bbs/forum.php?mod=viewthread&amp;amp;tid=2641&amp;amp;extra=&quot;&gt;高恪&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://right.com.cn/forum/thread-240730-1-1.html&quot;&gt;Openwrt&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;k3&quot;&gt;K3&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.right.com.cn/forum/forum.php?mod=viewthread&amp;amp;tid=308764&amp;amp;extra=page%3D1%26filter%3Ddigest%26digest%3D1%26typeid%3D15&quot;&gt;梅林混血&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.right.com.cn/forum/forum.php?mod=viewthread&amp;amp;tid=257677&amp;amp;extra=page%3D1%26filter%3Ddigest%26digest%3D1%26typeid%3D15&quot;&gt;Lede&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.right.com.cn/forum/forum.php?mod=viewthread&amp;amp;tid=259012&amp;amp;extra=page%3D1%26filter%3Ddigest%26digest%3D1%26typeid%3D15&quot;&gt;官改&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.right.com.cn/forum/forum.php?mod=viewthread&amp;amp;tid=258101&amp;amp;extra=page%3D1%26filter%3Ddigest%26digest%3D1%26typeid%3D15&quot;&gt;OpenWrt&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&quot;小米&quot;&gt;小米&lt;/h1&gt;
-
-&lt;p&gt;待搜集……&lt;/p&gt;
 
 </content>
  </entry>
