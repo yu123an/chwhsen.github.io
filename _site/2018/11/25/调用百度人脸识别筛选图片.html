@@ -59,11 +59,84 @@
   
   </section>
   <section class="post">
-  <p>爬取图片的时候需要对爬到的图片进行筛选，比如我们只需要妹子图片，而且只要面部图像，这时候可以通过百度的<a href="https://cloud.baidu.com/product/face/detect">人脸识别</a>进行筛选</p>
+  <p>今天搞了一下百度云的人脸识别<code class="highlighter-rouge">API</code>，判断给定的照片里是否含有女性面孔，并根据面孔给出人物年龄以及颜值打分。</p>
 
-<p>首先注册百度云账号，并获取鉴权参数</p>
+<p><img src="https://ws3.sinaimg.cn/large/005BYqpggy1fxkmw8suxmj30i607zjrm.jpg" alt="" /></p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-k</span> <span class="s1">'https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&amp;client_id=&lt;api key&gt;&amp;client_secret=&lt;secret key&gt;'</span> 
+<p>如图所示，可以通过两种方式来输入图片的<code class="highlighter-rouge">url</code>地址，可以将地址写入文件，也可以提交单一地址，会自动返回图片链接，人物的年龄和性别。</p>
+
+<p>但是这个打分标准和审美还是有一定差距的，比如</p>
+
+<p><img src="https://ww4.sinaimg.cn/mw690/9d52c073gw1e9sqvgtrd3j20go0oddi1.jpg" alt="" />
+<img src="https://ww3.sinaimg.cn/mw1024/9d52c073gw1f58mhojtdhj20j60piq5w.jpg" alt="" /></p>
+
+<p>分别给了<code class="highlighter-rouge">82.28</code>和<code class="highlighter-rouge">99.13</code>的评分。</p>
+
+<p>再结合<code class="highlighter-rouge">linux</code>下的<code class="highlighter-rouge">ImageMagisk</code>可以标注人物的标志点，只是效果有点儿，莫名其妙的多了两张面孔</p>
+
+<p><img src="https://i.loli.net/2018/11/25/5bfaa8029c1a5.jpg" alt="" /></p>
+
+<p>人脸识别</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="nv">token</span><span class="o">=</span><span class="k">$(</span>curl <span class="nt">-k</span> <span class="s1">'https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&amp;client_id=QPprSIxxxxxxxO68FYRLzye&amp;client_secret=ERvXATsxxxxxxxkK5V0Kab2xxxbW'</span> | jq <span class="nt">-r</span> <span class="s1">'.access_token'</span><span class="k">)</span>
+<span class="k">function </span>judge <span class="o">()</span>
+<span class="o">{</span>
+<span class="nv">pic_url</span><span class="o">=</span><span class="nv">$1</span>
+curl <span class="nt">-k</span> <span class="s2">"https://aip.baidubce.com/rest/2.0/face/v3/detect?access_token=</span><span class="nv">$token</span><span class="s2">"</span> <span class="se">\</span>
+<span class="nt">--data</span> <span class="s2">"image=</span><span class="nv">$pic_url</span><span class="s2">&amp;image_type=URL&amp;max_face_num=8&amp;face_field=age,beauty,face_shape,face_type,gender,race,quality"</span> <span class="se">\</span>
+<span class="nt">-H</span> <span class="s1">'Content-Type:application/json; charset=UTF-8'</span> <span class="o">&gt;</span> /pic/face.tmp
+
+<span class="nv">num</span><span class="o">=</span><span class="k">$(</span><span class="nb">cat</span> /pic/face.tmp | jq <span class="nt">-r</span> <span class="s1">'.result.face_num'</span><span class="k">)</span>
+<span class="k">for</span> <span class="o">((</span> <span class="nv">i</span><span class="o">=</span>0<span class="p">;</span>i&lt;<span class="nv">$num</span><span class="p">;</span>i++<span class="o">))</span>
+<span class="k">do
+</span><span class="nv">xingbie</span><span class="o">=</span><span class="k">$(</span>jq <span class="nt">-r</span> .result.face_list[<span class="nv">$i</span><span class="o">]</span>.gender.type  /pic/face.tmp<span class="k">)</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$xingbie</span> <span class="o">=</span> <span class="s2">"female"</span> <span class="o">]</span><span class="p">;</span><span class="k">then
+	</span><span class="nv">age</span><span class="o">=</span><span class="k">$(</span>jq <span class="nt">-r</span> .result.face_list[<span class="nv">$i</span><span class="o">]</span>.age /pic/face.tmp<span class="k">)</span>
+	<span class="nv">mei</span><span class="o">=</span><span class="k">$(</span>jq <span class="nt">-r</span> .result.face_list[<span class="nv">$i</span><span class="o">]</span>.beauty /pic/face.tmp<span class="k">)</span>
+	<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"-----------</span><span class="se">\n</span><span class="s2">Link:</span><span class="nv">$pic_url</span><span class="se">\n</span><span class="s2">Nianling:</span><span class="nv">$age</span><span class="se">\n</span><span class="s2">Yanzhi:</span><span class="nv">$mei</span><span class="s2">"</span>
+<span class="k">fi
+done</span>
+<span class="o">}</span>
+<span class="nb">echo</span> <span class="s2">"+---------------------------------------------------+"</span>
+<span class="nb">echo</span> <span class="s2">"|              1.)读取文件中的图片url列表           |"</span>
+<span class="nb">echo</span> <span class="s2">"|- - - - - - - - - - - - - - - - - - - - - - - - - -|"</span>
+<span class="nb">echo</span> <span class="s2">"|              2.)手动输入图片url列表               |"</span>
+<span class="nb">echo</span> <span class="s2">"+---------------------------------------------------+"</span>
+<span class="nb">read</span> <span class="nt">-p</span> <span class="s2">"请选择："</span> <span class="k">select
+if</span> <span class="o">[</span> <span class="nv">$select</span> <span class="o">=</span> <span class="s2">"1"</span> <span class="o">]</span><span class="p">;</span><span class="k">then
+</span><span class="nb">read</span> <span class="nt">-p</span> <span class="s2">"请输入文件位置："</span> add
+<span class="k">for </span>url <span class="k">in</span> <span class="k">$(</span><span class="nb">cat</span> <span class="nv">$add</span> | <span class="nb">sed</span> <span class="s1">':a;N;$!ba;s/\n/ /g'</span><span class="k">)</span>
+<span class="k">do
+</span>judge <span class="nv">$url</span>
+<span class="nb">sleep </span>1s
+<span class="k">done
+elif</span> <span class="o">[</span> <span class="nv">$select</span> <span class="o">=</span> <span class="s2">"2"</span> <span class="o">]</span><span class="p">;</span><span class="k">then
+</span><span class="nb">read</span> <span class="nt">-p</span> <span class="s2">"请输入图片地址："</span> url
+judge <span class="nv">$url</span>
+<span class="k">fi</span> 
+</code></pre></div></div>
+
+<p>添加标志点</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="k">for </span>url <span class="k">in</span> <span class="k">$(</span><span class="nb">cat</span> /pic/mzi.log | <span class="nb">sed</span> <span class="s1">':a;N;$!ba;s/\n/ /g'</span><span class="k">)</span>
+<span class="k">do
+</span><span class="nv">name</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="nv">$url</span> | <span class="nb">sed</span> <span class="s1">'s#/#_#g'</span><span class="k">)</span>
+<span class="nb">echo</span> <span class="nv">$name</span>
+wget <span class="nt">-o-</span> <span class="nv">$url</span> <span class="nt">-O</span> /pic/faces/<span class="nv">$name</span>
+curl <span class="nt">-k</span> <span class="s2">"https://aip.baidubce.com/rest/2.0/face/v3/detect?access_token=24.351xxxxxxxxxx561eeb902b5fa.2592000.1545xxxx25.282335-147xxxxx6"</span> <span class="se">\</span>
+<span class="nt">--data</span> <span class="s2">"image=</span><span class="nv">$url</span><span class="s2">&amp;image_type=URL&amp;max_face_num=8&amp;face_field=landmark"</span> <span class="se">\</span>
+<span class="nt">-H</span> <span class="s1">'Content-Type:application/json; charset=UTF-8'</span> | <span class="se">\</span>
+jq <span class="s1">'.result.face_list[] | .landmark,.landmark72'</span> | <span class="nb">grep</span> : | <span class="nb">sed</span> <span class="s1">'s/.*: //g'</span> | <span class="nb">sed</span> <span class="s1">':a;N;$!ba;s/,\n/,/g'</span> <span class="o">&gt;</span> /pic/point.tmp
+<span class="k">for </span>dot <span class="k">in</span> <span class="k">$(</span><span class="nb">cat</span> /pic/point.tmp | <span class="nb">sed</span> <span class="s1">':a;N;$!ba;s/\n/ /g'</span><span class="k">)</span>
+<span class="k">do
+</span>convert /pic/faces/<span class="nv">$name</span> <span class="se">\</span>
+ <span class="nt">-fill</span> green <span class="nt">-pointsize</span> 25 <span class="se">\</span>
+<span class="nt">-font</span> DejaVu-Sans <span class="se">\</span>
+<span class="nt">-draw</span> <span class="s2">"text </span><span class="nv">$dot</span><span class="s2"> '.'"</span>  /pic/faces/<span class="nv">$name</span>
+<span class="k">done
+done</span>
 </code></pre></div></div>
 
 
