@@ -45,23 +45,19 @@
   
   <article class="content">
     <section class="title">
-      <h2><a href="/2018/11/24/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E7%88%AC%E8%99%AB.html">我眼中的爬虫</a></h2>
+      <h2><a href="/2018/11/25/about.html">Welcome</a></h2>
     </section>
     <section class="meta">
     <span class="time">
-      <time datetime="2018-11-24">2018-11-24</time>
+      <time datetime="2018-11-25">2018-11-25</time>
     </span>
     
     <span class="tags">
       
-      <a href="/tags.html#linux" title="linux">#linux</a>
-      
-      <a href="/tags.html#Spider" title="Spider">#Spider</a>
-      
     </span>
     
     <!-- BEGIN this would not work on any other domain -->
-    <span class="like-wrapper" like-shortname="yuanyuan" like-identifier="urn:uuid:0d380d77-ec31-425b-bade-be5de29104b2" like-name="我眼中的爬虫" like-link="https://chwhsen.github.io/" like-btn="&#xf087;"></span>
+    <span class="like-wrapper" like-shortname="yuanyuan" like-identifier="urn:uuid:020e19e6-3b66-400f-8ce1-a6e00da0aafc" like-name="Welcome" like-link="https://chwhsen.github.io/" like-btn="&#xf087;"></span>
     <script type="text/javascript">
       var l = document.createElement('script'); l.type = 'text/javascript'; l.async = true;
       l.src = 'https://like.lhzhang.com/javascript/widget.js';
@@ -70,77 +66,15 @@
     <!-- END this would not work on any other domain -->
     </section>
     <section class="post">
-    <p>近期也看了不少爬虫方面的知识和博客，发现大神都是用的<code class="highlighter-rouge">python</code>我也试着去搞了一下，发现自己的<code class="highlighter-rouge">N1</code>配置<code class="highlighter-rouge">python</code>环境总是各种各样的出问题，总是磕磕绊绊，也就无疾而终了，反而是一直执着于用<code class="highlighter-rouge">Shell</code>来写脚本爬，不过对于我这种需求不高的同时只是爬一些简单网站的用户来说用<code class="highlighter-rouge">Shell</code>也足够了，不过也需要抽一个时间专门用来研究一下<code class="highlighter-rouge">python</code>环境的搭建了，以防以后确实要用到。下面来说说我使用<code class="highlighter-rouge">shell</code>爬数据的心得以及遇到的小障碍吧</p>
+    <div align="center"> <script src="https://v1.hitokoto.cn/?encode=js&amp;select=%23hitokoto" defer=""></script>
+  <p id="hitokoto">:D 获取中...</p>
+</div>
 
-<p>一个爬虫脚本的构建思路</p>
+<div align="center">
+    <img src="/media/img.jpg" width="100%" height="100%" />
+</div>
+<p />
 
-<p>我拿<a href="http://bang.dangdang.com/books/newhotsales/01.41.00.00.00.00-24hours-0-0-1-1">当当网的24小时图书热卖榜</a>来分析</p>
-
-<p>首先看一下页面<code class="highlighter-rouge">URL</code></p>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://bang.dangdang.com/books/newhotsales/01.41.00.00.00.00-24hours-0-0-1-1
-http://bang.dangdang.com/books/newhotsales/01.41.00.00.00.00-24hours-0-0-1-2
-http://bang.dangdang.com/books/newhotsales/01.41.00.00.00.00-24hours-0-0-1-3
-</code></pre></div></div>
-
-<p>很有规律的，简单循环就可以得到所有页面</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="o">((</span> <span class="nv">i</span><span class="o">=</span>1<span class="p">;</span>i&lt;<span class="o">=</span>25<span class="p">;</span>i++ <span class="o">))</span>
-	<span class="k">do
-	</span>curl <span class="s2">"http://bang.dangdang.com/books/newhotsales/01.41.00.00.00.00-24hours-0-0-1-</span><span class="k">${</span><span class="nv">i</span><span class="k">}</span><span class="s2">"</span>
-<span class="k">done</span>
-</code></pre></div></div>
-
-<p>然后看一下页面</p>
-
-<p><img src="https://ws3.sinaimg.cn/large/005BYqpggy1fxj0zb45l3j311y0ii43p.jpg" alt="" /></p>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pic"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://product.dangdang.com/25573171.html"</span> <span class="na">target=</span><span class="s">"_blank"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"http://img3m1.ddimg.cn/85/29/25573171-1_l_8.jpg"</span> <span class="na">alt=</span><span class="s">"乐观情绪培养绘本·小鳄鱼相伴成长绘本（全10册）"</span>  <span class="na">title=</span><span class="s">"乐观情绪培养绘本·小鳄鱼相伴成长绘本（全10册）"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/a&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-</code></pre></div></div>
-
-<p>可以很直接的看到图书地址，封面图地址与图书标题，只需要用<code class="highlighter-rouge">awk</code>将其提取出即可</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">awk</span> <span class="nt">-F</span> <span class="s1">'"'</span> <span class="s1">'{print "这是地址",$4,"\n这是封面",$8,"\n这是标题",$12}'</span>
-</code></pre></div></div>
-
-<p>如果要做成<code class="highlighter-rouge">markdown</code>格式，只需要</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">awk</span> <span class="nt">-F</span> <span class="s1">'"'</span> <span class="s1">'{print "[",$12,"](",$4,")\n"}'</span>
-</code></pre></div></div>
-
-<p>完整代码：</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="o">((</span> <span class="nv">i</span><span class="o">=</span>1<span class="p">;</span>i&lt;<span class="o">=</span>25<span class="p">;</span>i++ <span class="o">))</span>
-	<span class="k">do
-	</span>curl <span class="s2">"http://bang.dangdang.com/books/newhotsales/01.41.00.00.00.00-24hours-0-0-1-</span><span class="k">${</span><span class="nv">i</span><span class="k">}</span><span class="s2">"</span> | <span class="se">\</span>
-	<span class="nb">awk</span> <span class="nt">-F</span> <span class="s1">'"'</span> <span class="s1">'{print "[",$12,"](",$4,")\n"}'</span> <span class="se">\</span>
-	<span class="o">&gt;&gt;</span> /mnt/dangdang.book
-<span class="k">done</span>
-</code></pre></div></div>
-
-<p>遇到的一次小障碍</p>
-
-<p>在我爬取<a href="https://www.mzitu.com/">这个网站</a>的时候，可以很容易的获取到图片链接</p>
-
-<p><img src="https://ws3.sinaimg.cn/large/005BYqpggy1fxj1gquv05j311y0iitrr.jpg" alt="" /></p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://i.meizitu.net/2018/08/19b01.jpg
-</code></pre></div></div>
-
-<p>但是当我使用<code class="highlighter-rouge">wget</code>下载时却无法下载，经过了很长一段儿时间才意识到<code class="highlighter-rouge">防盗链</code>的存在</p>
-
-<p>解决方法也很简单</p>
-
-<p>只需要通过<code class="highlighter-rouge">--referer</code>指定来源页面即可</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget <span class="nt">--referer</span><span class="o">=</span>https://www.mzitu.com/ <span class="nv">$url</span>
-</code></pre></div></div>
-
-<p>当然，对于一些复杂的网站仅仅改动<code class="highlighter-rouge">referer</code>是远远不够的，对于那样的网站，用<code class="highlighter-rouge">Python</code>就游刃有余了</p>
 
     </section>
     </article>
@@ -155,7 +89,7 @@ http://bang.dangdang.com/books/newhotsales/01.41.00.00.00.00-24hours-0-0-1-3
     
     <li class="listing-item">
       <time datetime="2018-11-24">2018-11-24</time>
-      <a href="/2018/11/24/about.html" title="Welcome">Welcome</a>
+      <a href="/2018/11/24/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E7%88%AC%E8%99%AB.html" title="我眼中的爬虫">我眼中的爬虫</a>
     </li>
   
     
