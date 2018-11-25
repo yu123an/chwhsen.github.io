@@ -45,7 +45,7 @@
   
   <article class="content">
     <section class="title">
-      <h2><a href="/2018/11/25/about.html">Welcome</a></h2>
+      <h2><a href="/2018/11/25/%E8%B0%83%E7%94%A8%E7%99%BE%E5%BA%A6%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%AD%9B%E9%80%89%E5%9B%BE%E7%89%87.html">调用百度人脸识别筛选图片</a></h2>
     </section>
     <section class="meta">
     <span class="time">
@@ -54,10 +54,14 @@
     
     <span class="tags">
       
+      <a href="/tags.html#linux" title="linux">#linux</a>
+      
+      <a href="/tags.html#spider" title="spider">#spider</a>
+      
     </span>
     
     <!-- BEGIN this would not work on any other domain -->
-    <span class="like-wrapper" like-shortname="yuanyuan" like-identifier="urn:uuid:020e19e6-3b66-400f-8ce1-a6e00da0aafc" like-name="Welcome" like-link="https://chwhsen.github.io/" like-btn="&#xf087;"></span>
+    <span class="like-wrapper" like-shortname="yuanyuan" like-identifier="urn:uuid:e2edcaac-f015-41b2-a175-712141f1e55a" like-name="调用百度人脸识别筛选图片" like-link="https://chwhsen.github.io/" like-btn="&#xf087;"></span>
     <script type="text/javascript">
       var l = document.createElement('script'); l.type = 'text/javascript'; l.async = true;
       l.src = 'https://like.lhzhang.com/javascript/widget.js';
@@ -66,14 +70,12 @@
     <!-- END this would not work on any other domain -->
     </section>
     <section class="post">
-    <div align="center"> <script src="https://v1.hitokoto.cn/?encode=js&amp;select=%23hitokoto" defer=""></script>
-  <p id="hitokoto">:D 获取中...</p>
-</div>
+    <p>爬取图片的时候需要对爬到的图片进行筛选，比如我们只需要妹子图片，而且只要面部图像，这时候可以通过百度的<a href="https://cloud.baidu.com/product/face/detect">人脸识别</a>进行筛选</p>
 
-<div align="center">
-    <img src="/media/img.jpg" width="100%" height="100%" />
-</div>
-<p />
+<p>首先注册百度云账号，并获取鉴权参数</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-k</span> <span class="s1">'https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&amp;client_id=&lt;api key&gt;&amp;client_secret=&lt;secret key&gt;'</span> 
+</code></pre></div></div>
 
 
     </section>
@@ -84,6 +86,13 @@
   <ul class="listing main-listing">
     <li class="listing-seperator">Happend earlier this year</li>
   
+  
+    
+    
+    <li class="listing-item">
+      <time datetime="2018-11-25">2018-11-25</time>
+      <a href="/2018/11/25/about.html" title="Welcome">Welcome</a>
+    </li>
   
     
     

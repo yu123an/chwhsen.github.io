@@ -1,0 +1,14 @@
+---
+title: 调用百度人脸识别筛选图片
+guid: urn:uuid:e2edcaac-f015-41b2-a175-712141f1e55a
+tags: linux spider
+layout: post
+---
+爬取图片的时候需要对爬到的图片进行筛选，比如我们只需要妹子图片，而且只要面部图像，这时候可以通过百度的[人脸识别](https://cloud.baidu.com/product/face/detect)进行筛选
+
+首先注册百度云账号，并获取鉴权参数
+
+```bash
+curl -k 'https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=<api key>&client_secret=<secret key>' 
+```
+
