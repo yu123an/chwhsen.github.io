@@ -1,0 +1,89 @@
+---
+title: 运行在N1上的微博机器人
+guid: urn:uuid:5a5e6a14-e74b-4136-8567-614c30962a75
+tags: linux 微博
+layout: post
+---
+首先呢，要先在[微博开放平台](http://open.weibo.com/)创建一个应用，按照提示进行即可，需要注意的是要在`应用信息-高级信息`中将授权回调页改为`https://api.weibo.com/oauth2/default.html`
+
+![](https://i.loli.net/2018/11/28/5bfe94d85df32.png)
+
+由于微博`API`限制发微博必须包含一个网页URL，所以我们还需要按照提示添加一个安全域名
+
+![](https://i.loli.net/2018/11/28/5bfe95b4054b4.png)
+
+![](https://i.loli.net/2018/11/28/5bfe95eee3f13.png)
+
+这个填什么无所谓，我一开始填的自己的`.xyz`域名。但是一直报错，就填了这个。
+
+现在我们需要的信息就都有了：
+
+```shell
+App_Key="2261356123"
+App_Secret="e0c7dffa49ddc32fab306d1e9a731d35"
+url="http://www.ip111.cn"
+授权回调页="https://api.weibo.com/oauth2/default.html"
+```
+
+接下来获取鉴权参数
+
+用浏览器打开
+
+```html
+https://api.weibo.com/oauth2/authorize?redirect_uri=https://api.weibo.com/oauth2/default.html&response_type=code&client_id=<App_Key>
+```
+
+会出现这个页面，我们需要把`code`的值复制下来，下一步用来换取我们需要的`Access_Token`
+
+![](https://i.loli.net/2018/11/28/5bfe9affc686b.png)
+
+如果要在`shell`里，我们还需要获取浏览器的`Cookies`，可以使用`Chrome`很方便的获取到，然后使用`Curl`携带`Cookies`模拟请求即可
+
+```bash
+curl -LI "https://api.weibo.com/oauth2/authorize?redirect_uri=https%3A%2F%2Fapi.weibo.com/oauth2/default.html&response_type=code&client_id=<App_Key>" \
+-H "Cookie: <your cookies> "
+```
+
+返回结果中`Location`就是跳转链接
+
+![](https://i.loli.net/2018/11/28/5bfe9ff5ccc18.png)
+
+对结果进行筛选即可获取到`code`的值
+
+```bash
+curl -LI "url" | grep Location | sed 's/.*=//g'
+```
+
+但是这样获取到的`code`永远带有一个回车，而且怎么也处理不掉，于是就引入了一个新的字符串`truecode`
+
+```bash
+truecode=${codee:0:32}
+```
+
+只是为了去掉换行符
+
+接下来通过`https://api.weibo.com/oauth2/access_token`获取`access_token`
+
+```bash
+curl 'https://api.weibo.com/oauth2/access_token' -d "client_id=<your app key>&client_secret=<your secret key>&grant_type=authorization_code&code=<上一步获取的truecode>&redirect_uri=https://api.weibo.com/oauth2/default.html" | jq -r '.access_token'
+```
+
+到此为止，我们的鉴权参数已经全部拿到了，接下来就可以去做一些想做的事情了
+
+比如说，通过`API`发微博
+
+```bash
+curl 'https://api.weibo.com/2/statuses/share.json' \
+-F "access_token=${token}" \
+-F "status=${bobo}<你的安全域名>"  | jq '.'
+```
+
+如果需要附加图片，只需要加一行即可
+
+```bash
+-F "pic=@${ppic};type=image/jpeg"
+```
+
+[演示地址](https://www.weibo.com/5606904489/profile?rightmod=1&wvr=6&mod=personnumber&is_all=1)
+
+![](https://i.loli.net/2018/11/28/5bfea3bb0ba92.png)
