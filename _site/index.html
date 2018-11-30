@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
   <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-130190580-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-130190580-1');
+</script>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="author" content="chwhsen" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -45,23 +54,19 @@
   
   <article class="content">
     <section class="title">
-      <h2><a href="/2018/11/28/%E8%BF%90%E8%A1%8C%E5%9C%A8N1%E4%B8%8A%E7%9A%84%E5%BE%AE%E5%8D%9A%E6%9C%BA%E5%99%A8%E4%BA%BA.html">运行在N1上的微博机器人</a></h2>
+      <h2><a href="/2018/11/30/about.html">Welcome</a></h2>
     </section>
     <section class="meta">
     <span class="time">
-      <time datetime="2018-11-28">2018-11-28</time>
+      <time datetime="2018-11-30">2018-11-30</time>
     </span>
     
     <span class="tags">
       
-      <a href="/tags.html#linux" title="linux">#linux</a>
-      
-      <a href="/tags.html#微博" title="微博">#微博</a>
-      
     </span>
     
     <!-- BEGIN this would not work on any other domain -->
-    <span class="like-wrapper" like-shortname="yuanyuan" like-identifier="urn:uuid:5a5e6a14-e74b-4136-8567-614c30962a75" like-name="运行在N1上的微博机器人" like-link="https://chwhsen.github.io/" like-btn="&#xf087;"></span>
+    <span class="like-wrapper" like-shortname="yuanyuan" like-identifier="urn:uuid:020e19e6-3b66-400f-8ce1-a6e00da0aafc" like-name="Welcome" like-link="https://chwhsen.github.io/" like-btn="&#xf087;"></span>
     <script type="text/javascript">
       var l = document.createElement('script'); l.type = 'text/javascript'; l.async = true;
       l.src = 'https://like.lhzhang.com/javascript/widget.js';
@@ -70,81 +75,15 @@
     <!-- END this would not work on any other domain -->
     </section>
     <section class="post">
-    <p>首先呢，要先在<a href="http://open.weibo.com/">微博开放平台</a>创建一个应用，按照提示进行即可，需要注意的是要在<code class="highlighter-rouge">应用信息-高级信息</code>中将授权回调页改为<code class="highlighter-rouge">https://api.weibo.com/oauth2/default.html</code></p>
+    <div align="center"> <script src="https://v1.hitokoto.cn/?encode=js&amp;select=%23hitokoto" defer=""></script>
+  <p id="hitokoto">:D 获取中...</p>
+</div>
 
-<p><img src="https://i.loli.net/2018/11/28/5bfe94d85df32.png" alt="" /></p>
+<div align="center">
+    <img src="/media/img.jpg" width="100%" height="100%" />
+</div>
+<p />
 
-<p>由于微博<code class="highlighter-rouge">API</code>限制发微博必须包含一个网页URL，所以我们还需要按照提示添加一个安全域名</p>
-
-<p><img src="https://i.loli.net/2018/11/28/5bfe95b4054b4.png" alt="" /></p>
-
-<p><img src="https://i.loli.net/2018/11/28/5bfe95eee3f13.png" alt="" /></p>
-
-<p>这个填什么无所谓，我一开始填的自己的<code class="highlighter-rouge">.xyz</code>域名。但是一直报错，就填了这个。</p>
-
-<p>现在我们需要的信息就都有了：</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">App_Key</span><span class="o">=</span><span class="s2">"2261356123"</span>
-<span class="nv">App_Secret</span><span class="o">=</span><span class="s2">"e0c7dffa49ddc32fab306d1e9a731d35"</span>
-<span class="nv">url</span><span class="o">=</span><span class="s2">"http://www.ip111.cn"</span>
-授权回调页<span class="o">=</span><span class="s2">"https://api.weibo.com/oauth2/default.html"</span>
-</code></pre></div></div>
-
-<p>接下来获取鉴权参数</p>
-
-<p>用浏览器打开</p>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://api.weibo.com/oauth2/authorize?redirect_uri=https://api.weibo.com/oauth2/default.html<span class="err">&amp;</span>response_type=code<span class="err">&amp;</span>client_id=<span class="nt">&lt;App</span><span class="na">_Key</span><span class="nt">&gt;</span>
-</code></pre></div></div>
-
-<p>会出现这个页面，我们需要把<code class="highlighter-rouge">code</code>的值复制下来，下一步用来换取我们需要的<code class="highlighter-rouge">Access_Token</code></p>
-
-<p><img src="https://i.loli.net/2018/11/28/5bfe9affc686b.png" alt="" /></p>
-
-<p>如果要在<code class="highlighter-rouge">shell</code>里，我们还需要获取浏览器的<code class="highlighter-rouge">Cookies</code>，可以使用<code class="highlighter-rouge">Chrome</code>很方便的获取到，然后使用<code class="highlighter-rouge">Curl</code>携带<code class="highlighter-rouge">Cookies</code>模拟请求即可</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-LI</span> <span class="s2">"https://api.weibo.com/oauth2/authorize?redirect_uri=https%3A%2F%2Fapi.weibo.com/oauth2/default.html&amp;response_type=code&amp;client_id=&lt;App_Key&gt;"</span> <span class="se">\</span>
-<span class="nt">-H</span> <span class="s2">"Cookie: &lt;your cookies&gt; "</span>
-</code></pre></div></div>
-
-<p>返回结果中<code class="highlighter-rouge">Location</code>就是跳转链接</p>
-
-<p><img src="https://i.loli.net/2018/11/28/5bfe9ff5ccc18.png" alt="" /></p>
-
-<p>对结果进行筛选即可获取到<code class="highlighter-rouge">code</code>的值</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-LI</span> <span class="s2">"url"</span> | <span class="nb">grep </span>Location | <span class="nb">sed</span> <span class="s1">'s/.*=//g'</span>
-</code></pre></div></div>
-
-<p>但是这样获取到的<code class="highlighter-rouge">code</code>永远带有一个回车，而且怎么也处理不掉，于是就引入了一个新的字符串<code class="highlighter-rouge">truecode</code></p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">truecode</span><span class="o">=</span><span class="k">${</span><span class="nv">codee</span>:0:32<span class="k">}</span>
-</code></pre></div></div>
-
-<p>只是为了去掉换行符</p>
-
-<p>接下来通过<code class="highlighter-rouge">https://api.weibo.com/oauth2/access_token</code>获取<code class="highlighter-rouge">access_token</code></p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="s1">'https://api.weibo.com/oauth2/access_token'</span> <span class="nt">-d</span> <span class="s2">"client_id=&lt;your app key&gt;&amp;client_secret=&lt;your secret key&gt;&amp;grant_type=authorization_code&amp;code=&lt;上一步获取的truecode&gt;&amp;redirect_uri=https://api.weibo.com/oauth2/default.html"</span> | jq <span class="nt">-r</span> <span class="s1">'.access_token'</span>
-</code></pre></div></div>
-
-<p>到此为止，我们的鉴权参数已经全部拿到了，接下来就可以去做一些想做的事情了</p>
-
-<p>比如说，通过<code class="highlighter-rouge">API</code>发微博</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="s1">'https://api.weibo.com/2/statuses/share.json'</span> <span class="se">\</span>
-<span class="nt">-F</span> <span class="s2">"access_token=</span><span class="k">${</span><span class="nv">token</span><span class="k">}</span><span class="s2">"</span> <span class="se">\</span>
-<span class="nt">-F</span> <span class="s2">"status=</span><span class="k">${</span><span class="nv">bobo</span><span class="k">}</span><span class="s2">&lt;你的安全域名&gt;"</span>  | jq <span class="s1">'.'</span>
-</code></pre></div></div>
-
-<p>如果需要附加图片，只需要加一行即可</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">-F</span> <span class="s2">"pic=@</span><span class="k">${</span><span class="nv">ppic</span><span class="k">}</span><span class="s2">;type=image/jpeg"</span>
-</code></pre></div></div>
-
-<p><a href="https://www.weibo.com/5606904489/profile?rightmod=1&amp;wvr=6&amp;mod=personnumber&amp;is_all=1">演示地址</a></p>
-
-<p><img src="https://i.loli.net/2018/11/28/5bfea3bb0ba92.png" alt="" /></p>
 
     </section>
     </article>
@@ -159,7 +98,7 @@
     
     <li class="listing-item">
       <time datetime="2018-11-28">2018-11-28</time>
-      <a href="/2018/11/28/about.html" title="Welcome">Welcome</a>
+      <a href="/2018/11/28/%E8%BF%90%E8%A1%8C%E5%9C%A8N1%E4%B8%8A%E7%9A%84%E5%BE%AE%E5%8D%9A%E6%9C%BA%E5%99%A8%E4%BA%BA.html" title="运行在N1上的微博机器人">运行在N1上的微博机器人</a>
     </li>
   
     
