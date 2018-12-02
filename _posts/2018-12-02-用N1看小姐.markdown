@@ -1,0 +1,23 @@
+---
+title: 用N1看小姐姐套图
+guid: urn:uuid:5792f297-8e8b-40ff-8bc4-3b8fa0e0161a
+tags: linux spider
+layout: post
+---
+今天我们用N1来爬取[妹子网](https://www.mzitu.com/)的套图。
+
+![](https://i.loli.net/2018/12/02/5c0395ca49518.png)
+
+因为对`python`不熟悉，所以我还是用`shell`写的脚本来爬的，
+
+首先用浏览器打开网站，F12看一下页面结构，找到我们需要的东西：每一个套图的地址
+
+![](https://i.loli.net/2018/12/02/5c03970639d54.png)
+
+```bash
+http https://www.mzitu.com/ | sed 's/"/\n/g' | grep mzitu.com/[0-9] | uniq
+```
+
+就能过滤出我们需要的信息
+
+接下来看一下每套图的页面，继续观察，
