@@ -14,7 +14,7 @@
     <meta name="author" content="chwhsen" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     
-    <title>用N1看小姐姐套图</title>
+    <title>一个推送优惠信息的电报频道</title>
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link href="/atom.xml" rel="alternate" title="第七间夜店" type="application/atom+xml" />
@@ -51,45 +51,38 @@
         <div id="content">
         <article>
   <section class="title">
-    <h2>用N1看小姐姐套图 </h2>
+    <h2>一个推送优惠信息的电报频道 </h2>
   </section>
   <section class="meta">
   <span class="time">
-    <time datetime="2018-12-02">2018-12-02</time>
+    <time datetime="2018-12-09">2018-12-09</time>
   </span>
   
   <span class="tags">
     
-    <a href="/tags.html#linux" title="linux">#linux</a>
-    
-    <a href="/tags.html#spider" title="spider">#spider</a>
+    <a href="/tags.html#telegram" title="telegram">#telegram</a>
     
   </span>
   
   </section>
   <section class="post">
-  <p>今天我们用N1来爬取<a href="https://www.mzitu.com/">妹子网</a>的套图。</p>
+  <p>写了一个<code class="highlighter-rouge">Telegram Bot</code>并创建了一个频道，用来推送一个网站的优惠信息，每五分钟更新一次</p>
 
-<p><img src="https://i.loli.net/2018/12/02/5c0395ca49518.png" alt="" /></p>
+<p><a href="https://t.me/joinchat/AAAAAFlgH8OeTJYsyOfClw">频道链接在此</a></p>
 
-<p>因为对<code class="highlighter-rouge">python</code>不熟悉，所以我还是用<code class="highlighter-rouge">shell</code>写的脚本来爬的，</p>
+<p>预览图</p>
 
-<p>首先用浏览器打开网站，F12看一下页面结构，找到我们需要的东西：每一个套图的地址</p>
+<p><img src="https://ws3.sinaimg.cn/large/005BYqpgly1fxzb2buj0lj30qp0b2dhm.jpg" alt="" /></p>
 
-<p><img src="https://i.loli.net/2018/12/02/5c03970639d54.png" alt="" /></p>
+<p><img src="https://ws3.sinaimg.cn/large/005BYqpgly1fxzb7mwaqej30g20i3q6l.jpg" alt="" /></p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http https://www.mzitu.com/ | <span class="nb">sed</span> <span class="s1">'s/"/\n/g'</span> | <span class="nb">grep </span>mzitu.com/[0-9] | <span class="nb">uniq</span>
-</code></pre></div></div>
-
-<p>就能过滤出我们需要的信息</p>
-
-<p>接下来看一下每套图的页面，继续观察，</p>
+<p>目前还未提供定制化服务，只能推送固定的内容，以后想到了那些有趣的玩法再逐渐添加</p>
 
   </section>
   
 <script type="text/javascript">
       var disqus_shortname = 'yuanyuan';
-      var disqus_identifier = 'urn:uuid:5792f297-8e8b-40ff-8bc4-3b8fa0e0161a';
+      var disqus_identifier = 'urn:uuid:4697d845-26f3-4e41-b7b3-6192eb674553';
 
       function leave_comment() {
           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -112,7 +105,7 @@
   <div class="divider">
     <span>
     
-    <a href="/2018/11/28/%E8%BF%90%E8%A1%8C%E5%9C%A8N1%E4%B8%8A%E7%9A%84%E5%BE%AE%E5%8D%9A%E6%9C%BA%E5%99%A8%E4%BA%BA.html"><i class="fa fa-chevron-left"></i></a>
+    <a href="/2018/12/09/about.html"><i class="fa fa-chevron-left"></i></a>
     
     </span>
     
@@ -122,7 +115,7 @@
 
     <span>
     
-    <a href="/2018/12/09/about.html"><i class="fa fa-chevron-right"></i></a>
+    <i class="fa fa-circle"></i>
     
     </span>
   </div>

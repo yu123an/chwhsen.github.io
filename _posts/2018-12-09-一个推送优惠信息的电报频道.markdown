@@ -1,0 +1,17 @@
+---
+title: 一个推送优惠信息的电报频道
+guid: urn:uuid:4697d845-26f3-4e41-b7b3-6192eb674553
+tags: telegram
+layout: post
+---
+写了一个`Telegram Bot`并创建了一个频道，用来推送一个网站的优惠信息，每五分钟更新一次
+
+[频道链接在此](https://t.me/joinchat/AAAAAFlgH8OeTJYsyOfClw)
+
+预览图
+
+![](https://ws3.sinaimg.cn/large/005BYqpgly1fxzb2buj0lj30qp0b2dhm.jpg)
+
+![](https://ws3.sinaimg.cn/large/005BYqpgly1fxzb7mwaqej30g20i3q6l.jpg)
+
+目前还未提供定制化服务，只能推送固定的内容，以后想到了那些有趣的玩法再逐渐添加
