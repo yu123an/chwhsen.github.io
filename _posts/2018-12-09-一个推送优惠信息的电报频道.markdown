@@ -1,10 +1,93 @@
 ---
-title: 一个推送优惠信息的电报频道
+title: 写一个Telegram bot推送消息
 guid: urn:uuid:4697d845-26f3-4e41-b7b3-6192eb674553
 tags: telegram
 layout: post
 ---
-写了一个`Telegram Bot`并创建了一个频道，用来推送一个网站的优惠信息，每五分钟更新一次
+首先[在这里](https://telegram.me/botfather)申请一个`Bot`
+新建一个`Bot`，然后按照提示输入Bot名与用户名，随后会返回Bot的链接与Token，切记要妥善保管自己的Token。
+```
+/newbot
+```
+![](https://ws3.sinaimg.cn/large/005BYqpgly1fy0eqxatqkj30n50igwld.jpg)
+
+
+接下来新建一个群组/频道，并将你的Bot加入到群组/频道中，随后任意发送一条消息，
+
+```bash
+curl -k "https://api.telegram.org/bot788888883:AAxxxEqxxxNdyvfxxxaaxxxoSn-ZOxxx5cc/getupdates"
+```
+
+会返回一个Json串
+
+```json
+{
+  "ok": true,
+  "result": [
+    {
+      "update_id": 288888867,
+      "channel_post": {
+        "message_id": 6,
+        "chat": {
+          "id": -1001888888811,
+          "title": "每日价格优惠",
+          "type": "channel"
+        },
+        "date": 1588888606,
+      }
+    }
+]
+}
+```
+
+记录下chat id，后面发送消息要用到。
+
+这样就可以通过Get请求的方式来推送消息了
+
+```bash
+token="788888883:AAxxxEqxxxNdyvfxxxaaxxxoSn-ZOxxx5cc"
+id="-1001888888811"
+message="whatever you want push"
+curl -k \
+"https://api.telegram.org/bot${token}/sendmessage" \
+-d "chat_id=${id}&text=${message}"
+```
+
+这样推送的消息体中不能含有换行符与“&”符号，会报错，可以改为Urlencode，即
+
+```bash
+turlmessage=$(echo $message | sed -e ':a;N;$!ba;s/\n/%0a/g' -e 's/&/%26/g')
+```
+
+封装成函数
+
+```bash
+#!/bin/bash
+function tg_bot()
+{
+token="788888883:AAxxxEqxxxNdyvfxxxaaxxxoSn-ZOxxx5cc"
+id="-1001888888811"
+message=$(echo $1 | sed -e ':a;N;$!ba;s/\n/%0a/g' -e 's/&/%26/g')
+curl -k \
+"https://api.telegram.org/bot${token}/sendmessage" \
+-d "chat_id=${id}&text=${message}"
+}
+```
+
+这样，在需要推送细心的脚本中只需要添加两行代码即可实现推送
+
+```bash
+#!/bin/bash
+. /(上面函数文件的绝对路径)
+. /root/Allfunctions
+....
+.....
+.........
+...........
+tg_bot ${you want push}
+```
+
+下面是我创建的一个`Telegram Bot`，并创建了一个频道，用来推送一个网站的优惠折扣信息，每五分钟更新一次。
 
 [频道链接在此](https://t.me/joinchat/AAAAAFlgH8OeTJYsyOfClw)
 
