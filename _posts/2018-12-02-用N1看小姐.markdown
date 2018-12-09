@@ -20,4 +20,37 @@ http https://www.mzitu.com/ | sed 's/"/\n/g' | grep mzitu.com/[0-9] | uniq
 
 就能过滤出我们需要的信息
 
-接下来看一下每套图的页面，继续观察，
+接下来看一下每套图的页面，找到图片地址，因为每个页面只有一张图片，所以还要找到总共的图片数量，并且获取套图下所有图片的页面
+
+![](https://i.loli.net/2018/12/09/5c0cf75831b5e.png)
+
+![](https://i.loli.net/2018/12/09/5c0cf770cc70d.png)
+
+获取当前图片地址：
+
+```shell
+http https://www.mzitu.com/161290 | grep "img src" | awk -F '"' '{print $6}'
+```
+
+获取套图数量：
+
+```bash
+http https://www.mzitu.com/161290 | grep "class='dots'" | sed -e 's/class/\n/g' -e 's/</>/g' | awk -F '>' ' END {print $8}'
+```
+
+获取套图下所有图片地址
+
+```bash
+num=$(http https://www.mzitu.com/161290 | grep "class='dots'" | sed -e 's/class/\n/g' -e 's/</>/g' | awk -F '>' ' END {print $8}')
+for (( i=1;i<=$num;i++ ))
+do
+http https://www.mzitu.com/161290/$num | grep "img src" | awk -F '"' '{print $6}'
+done
+```
+
+获取所有链接之后，开始下载图片
+
+```bash
+wget -o- $url
+```
+

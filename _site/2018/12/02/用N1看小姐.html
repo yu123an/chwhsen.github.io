@@ -83,7 +83,36 @@
 
 <p>就能过滤出我们需要的信息</p>
 
-<p>接下来看一下每套图的页面，继续观察，</p>
+<p>接下来看一下每套图的页面，找到图片地址，因为每个页面只有一张图片，所以还要找到总共的图片数量，并且获取套图下所有图片的页面</p>
+
+<p><img src="https://i.loli.net/2018/12/09/5c0cf75831b5e.png" alt="" /></p>
+
+<p><img src="https://i.loli.net/2018/12/09/5c0cf770cc70d.png" alt="" /></p>
+
+<p>获取当前图片地址：</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http https://www.mzitu.com/161290 | <span class="nb">grep</span> <span class="s2">"img src"</span> | <span class="nb">awk</span> <span class="nt">-F</span> <span class="s1">'"'</span> <span class="s1">'{print $6}'</span>
+</code></pre></div></div>
+
+<p>获取套图数量：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http https://www.mzitu.com/161290 | <span class="nb">grep</span> <span class="s2">"class='dots'"</span> | <span class="nb">sed</span> <span class="nt">-e</span> <span class="s1">'s/class/\n/g'</span> <span class="nt">-e</span> <span class="s1">'s/&lt;/&gt;/g'</span> | <span class="nb">awk</span> <span class="nt">-F</span> <span class="s1">'&gt;'</span> <span class="s1">' END {print $8}'</span>
+</code></pre></div></div>
+
+<p>获取套图下所有图片地址</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">num</span><span class="o">=</span><span class="k">$(</span>http https://www.mzitu.com/161290 | <span class="nb">grep</span> <span class="s2">"class='dots'"</span> | <span class="nb">sed</span> <span class="nt">-e</span> <span class="s1">'s/class/\n/g'</span> <span class="nt">-e</span> <span class="s1">'s/&lt;/&gt;/g'</span> | <span class="nb">awk</span> <span class="nt">-F</span> <span class="s1">'&gt;'</span> <span class="s1">' END {print $8}'</span><span class="k">)</span>
+<span class="k">for</span> <span class="o">((</span> <span class="nv">i</span><span class="o">=</span>1<span class="p">;</span>i&lt;<span class="o">=</span><span class="nv">$num</span><span class="p">;</span>i++ <span class="o">))</span>
+<span class="k">do
+</span>http https://www.mzitu.com/161290/<span class="nv">$num</span> | <span class="nb">grep</span> <span class="s2">"img src"</span> | <span class="nb">awk</span> <span class="nt">-F</span> <span class="s1">'"'</span> <span class="s1">'{print $6}'</span>
+<span class="k">done</span>
+</code></pre></div></div>
+
+<p>获取所有链接之后，开始下载图片</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget <span class="nt">-o-</span> <span class="nv">$url</span>
+</code></pre></div></div>
+
 
   </section>
   

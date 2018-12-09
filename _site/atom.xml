@@ -4,7 +4,7 @@
  <title>第七间夜店</title>
  <link href="https://chwhsen.github.io/atom.xml" rel="self"/>
  <link href="https://chwhsen.github.io"/>
- <updated>2018-12-09T13:46:59+08:00</updated>
+ <updated>2018-12-09T19:22:24+08:00</updated>
  <id>https://chwhsen.github.io/</id>
  <author>
    <name>chwhsen</name>
@@ -142,7 +142,36 @@ tg_bot &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&qu
 
 &lt;p&gt;就能过滤出我们需要的信息&lt;/p&gt;
 
-&lt;p&gt;接下来看一下每套图的页面，继续观察，&lt;/p&gt;
+&lt;p&gt;接下来看一下每套图的页面，找到图片地址，因为每个页面只有一张图片，所以还要找到总共的图片数量，并且获取套图下所有图片的页面&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/12/09/5c0cf75831b5e.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/12/09/5c0cf770cc70d.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;获取当前图片地址：&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;http https://www.mzitu.com/161290 | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;img src&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-F&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&quot;'&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{print $6}'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;获取套图数量：&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;http https://www.mzitu.com/161290 | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;class='dots'&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/class/\n/g'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/&amp;lt;/&amp;gt;/g'&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-F&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&amp;gt;'&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;' END {print $8}'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;获取套图下所有图片地址&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;http https://www.mzitu.com/161290 | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;class='dots'&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/class/\n/g'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/&amp;lt;/&amp;gt;/g'&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-F&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&amp;gt;'&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;' END {print $8}'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;i&amp;lt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;i++ &lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;do
+&lt;/span&gt;http https://www.mzitu.com/161290/&lt;span class=&quot;nv&quot;&gt;$num&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;img src&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-F&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&quot;'&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{print $6}'&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;获取所有链接之后，开始下载图片&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget &lt;span class=&quot;nt&quot;&gt;-o-&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$url&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
 </content>
  </entry>
  
