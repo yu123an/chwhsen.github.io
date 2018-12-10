@@ -54,21 +54,19 @@
   
   <article class="content">
     <section class="title">
-      <h2><a href="/2018/12/09/%E4%B8%80%E4%B8%AA%E6%8E%A8%E9%80%81%E4%BC%98%E6%83%A0%E4%BF%A1%E6%81%AF%E7%9A%84%E7%94%B5%E6%8A%A5%E9%A2%91%E9%81%93.html">写一个Telegram bot推送消息</a></h2>
+      <h2><a href="/2018/12/11/about.html">Welcome</a></h2>
     </section>
     <section class="meta">
     <span class="time">
-      <time datetime="2018-12-09">2018-12-09</time>
+      <time datetime="2018-12-11">2018-12-11</time>
     </span>
     
     <span class="tags">
       
-      <a href="/tags.html#telegram" title="telegram">#telegram</a>
-      
     </span>
     
     <!-- BEGIN this would not work on any other domain -->
-    <span class="like-wrapper" like-shortname="yuanyuan" like-identifier="urn:uuid:4697d845-26f3-4e41-b7b3-6192eb674553" like-name="写一个Telegram bot推送消息" like-link="https://chwhsen.github.io/" like-btn="&#xf087;"></span>
+    <span class="like-wrapper" like-shortname="yuanyuan" like-identifier="urn:uuid:020e19e6-3b66-400f-8ce1-a6e00da0aafc" like-name="Welcome" like-link="https://chwhsen.github.io/" like-btn="&#xf087;"></span>
     <script type="text/javascript">
       var l = document.createElement('script'); l.type = 'text/javascript'; l.async = true;
       l.src = 'https://like.lhzhang.com/javascript/widget.js';
@@ -77,92 +75,15 @@
     <!-- END this would not work on any other domain -->
     </section>
     <section class="post">
-    <p>首先<a href="https://telegram.me/botfather">在这里</a>申请一个<code class="highlighter-rouge">Bot</code>
-新建一个<code class="highlighter-rouge">Bot</code>，然后按照提示输入Bot名与用户名，随后会返回Bot的链接与Token，切记要妥善保管自己的Token。</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/newbot
-</code></pre></div></div>
-<p><img src="https://ws3.sinaimg.cn/large/005BYqpgly1fy0eqxatqkj30n50igwld.jpg" alt="" /></p>
+    <div align="center"> <script src="https://v1.hitokoto.cn/?encode=js&amp;select=%23hitokoto" defer=""></script>
+  <p id="hitokoto">:D 获取中...</p>
+</div>
 
-<p>接下来新建一个群组/频道，并将你的Bot加入到群组/频道中，随后任意发送一条消息，</p>
+<div align="center">
+    <img src="/media/img.jpg" width="100%" height="100%" />
+</div>
+<p />
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-k</span> <span class="s2">"https://api.telegram.org/bot788888883:AAxxxEqxxxNdyvfxxxaaxxxoSn-ZOxxx5cc/getupdates"</span>
-</code></pre></div></div>
-
-<p>会返回一个Json串</p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"ok"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"update_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">288888867</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"channel_post"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"message_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"chat"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1001888888811</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"每日价格优惠"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"channel"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588888606</span><span class="p">,</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<p>记录下chat id，后面发送消息要用到。</p>
-
-<p>这样就可以通过Get请求的方式来推送消息了</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">token</span><span class="o">=</span><span class="s2">"788888883:AAxxxEqxxxNdyvfxxxaaxxxoSn-ZOxxx5cc"</span>
-<span class="nb">id</span><span class="o">=</span><span class="s2">"-1001888888811"</span>
-<span class="nv">message</span><span class="o">=</span><span class="s2">"whatever you want push"</span>
-curl <span class="nt">-k</span> <span class="se">\</span>
-<span class="s2">"https://api.telegram.org/bot</span><span class="k">${</span><span class="nv">token</span><span class="k">}</span><span class="s2">/sendmessage"</span> <span class="se">\</span>
-<span class="nt">-d</span> <span class="s2">"chat_id=</span><span class="k">${</span><span class="nv">id</span><span class="k">}</span><span class="s2">&amp;text=</span><span class="k">${</span><span class="nv">message</span><span class="k">}</span><span class="s2">"</span>
-</code></pre></div></div>
-
-<p>这样推送的消息体中不能含有换行符与“&amp;”符号，会报错，可以改为Urlencode，即</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">turlmessage</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="nv">$message</span> | <span class="nb">sed</span> <span class="nt">-e</span> <span class="s1">':a;N;$!ba;s/\n/%0a/g'</span> <span class="nt">-e</span> <span class="s1">'s/&amp;/%26/g'</span><span class="k">)</span>
-</code></pre></div></div>
-
-<p>封装成函数</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
-<span class="k">function </span>tg_bot<span class="o">()</span>
-<span class="o">{</span>
-<span class="nv">token</span><span class="o">=</span><span class="s2">"788888883:AAxxxEqxxxNdyvfxxxaaxxxoSn-ZOxxx5cc"</span>
-<span class="nb">id</span><span class="o">=</span><span class="s2">"-1001888888811"</span>
-<span class="nv">message</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="nv">$1</span> | <span class="nb">sed</span> <span class="nt">-e</span> <span class="s1">':a;N;$!ba;s/\n/%0a/g'</span> <span class="nt">-e</span> <span class="s1">'s/&amp;/%26/g'</span><span class="k">)</span>
-curl <span class="nt">-k</span> <span class="se">\</span>
-<span class="s2">"https://api.telegram.org/bot</span><span class="k">${</span><span class="nv">token</span><span class="k">}</span><span class="s2">/sendmessage"</span> <span class="se">\</span>
-<span class="nt">-d</span> <span class="s2">"chat_id=</span><span class="k">${</span><span class="nv">id</span><span class="k">}</span><span class="s2">&amp;text=</span><span class="k">${</span><span class="nv">message</span><span class="k">}</span><span class="s2">"</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>这样，在需要推送细心的脚本中只需要添加两行代码即可实现推送</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
-<span class="nb">.</span> /<span class="o">(</span>上面函数文件的绝对路径<span class="o">)</span>
-<span class="nb">.</span> /root/Allfunctions
-....
-.....
-.........
-...........
-tg_bot <span class="k">${</span><span class="nv">you</span><span class="p"> want push</span><span class="k">}</span>
-</code></pre></div></div>
-
-<p>下面是我创建的一个<code class="highlighter-rouge">Telegram Bot</code>，并创建了一个频道，用来推送一个网站的优惠折扣信息，每五分钟更新一次。</p>
-
-<p><a href="https://t.me/joinchat/AAAAAFlgH8OeTJYsyOfClw">频道链接在此</a></p>
-
-<p>预览图</p>
-
-<p><img src="https://ws3.sinaimg.cn/large/005BYqpgly1fxzb2buj0lj30qp0b2dhm.jpg" alt="" /></p>
-
-<p><img src="https://ws3.sinaimg.cn/large/005BYqpgly1fxzb7mwaqej30g20i3q6l.jpg" alt="" /></p>
-
-<p>目前还未提供定制化服务，只能推送固定的内容，以后想到了那些有趣的玩法再逐渐添加</p>
 
     </section>
     </article>
@@ -177,7 +98,14 @@ tg_bot <span class="k">${</span><span class="nv">you</span><span class="p"> want
     
     <li class="listing-item">
       <time datetime="2018-12-09">2018-12-09</time>
-      <a href="/2018/12/09/about.html" title="Welcome">Welcome</a>
+      <a href="/2018/12/09/%E6%AF%8F%E6%97%A5%E7%94%B5%E5%BD%B1%E6%9B%B4%E6%96%B0.html" title="Daily movie">Daily movie</a>
+    </li>
+  
+    
+    
+    <li class="listing-item">
+      <time datetime="2018-12-09">2018-12-09</time>
+      <a href="/2018/12/09/%E4%B8%80%E4%B8%AA%E6%8E%A8%E9%80%81%E4%BC%98%E6%83%A0%E4%BF%A1%E6%81%AF%E7%9A%84%E7%94%B5%E6%8A%A5%E9%A2%91%E9%81%93.html" title="写一个Telegram bot推送消息">写一个Telegram bot推送消息</a>
     </li>
   
     
